@@ -4,6 +4,12 @@ TP Libs is a free resource (script) which will be used in lot of our scripts for
 
 This script can also be used by other developers if they are willing.
 
+**How to use the API exports**
+
+```lua
+exports.tp_libs:rClientAPI() -- Client Side
+exports.tp_libs:rServerAPI() -- Server Side
+```
 
 **How to get API functions**
 
