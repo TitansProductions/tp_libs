@@ -23,9 +23,9 @@ TriggerEvent("getTPAPI", function(cb) API = cb end)
 
 -- Get Configuration (TP Libs)
 
-API.getConfiguration()
+local config = API.getConfiguration()
 
-exports.tp_libs:rServerAPI().getConfiguration()
+local config = exports.tp_libs:rServerAPI().getConfiguration()
 
 -- Get Round Math Function
 
@@ -105,3 +105,33 @@ exports.tp_libs:rServerAPI().addGold(source, quantity)
 API.removeGold(source, quantity)
 
 exports.tp_libs:rServerAPI().removeGold(source, quantity)
+
+-- Can Carry item-s
+
+local canCarry = API.canCarryItem(source, item, quantity)
+
+local canCarry = exports.tp_libs:rServerAPI().canCarryItem(source, item, quantity)
+
+-- Can Carry weapon-s
+
+local canCarryWeapons = API.canCarryWeapons(source, weapon_name, quantity)
+
+local canCarryWeapons = exports.tp_libs:rServerAPI().canCarryWeapons(source, weapon_name, quantity)
+
+-- Get user inventory contents
+
+local inventoryContents = API.getUserInventoryContents(source)
+
+local inventoryContents = exports.tp_libs:rServerAPI().getUserInventoryContents(source)
+
+-- Get job
+
+local job = API.getJob(source)
+
+local job = exports.tp_libs:rServerAPI().getJob(source)
+
+-- Get job grade
+
+local jobGrade = API.getJobGrade(source)
+
+local jobGrade = exports.tp_libs:rServerAPI().getJobGrade(source)
