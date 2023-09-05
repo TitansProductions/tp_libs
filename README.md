@@ -19,7 +19,7 @@ local API    = {}
 TriggerEvent("getTPAPI", function(cb) API = cb end)
 ```
 
-```
+```lua
 
 API.getConfiguration()
 exports.tp_libs:rServerAPI().getConfiguration()
@@ -28,3 +28,4 @@ API.sendNotification(source, message, type) -- success, error (This is also supp
 
 exports.tp_libs:rClientAPI().sendNotification(source, message, type) -- success, error.
 exports.tp_libs:rServerAPI().sendNotification(source, message, type) -- success, error.
+
