@@ -126,3 +126,21 @@ local job = exports.tp_libs:rServerAPI().getJob(source)
 local jobGrade = API.getJobGrade(source)
 
 local jobGrade = exports.tp_libs:rServerAPI().getJobGrade(source)
+
+**Server Side Events**
+
+```lua
+-- Send notifications
+
+TriggerServerEvent('tp_libs:sendNotification', source, message, type) -- Client Side to be used
+TriggerEvent('tp_libs:sendNotification', source, message, type) -- Server Side to be used.
+```
+
+```lua
+
+-- Send discord webhooks
+
+TriggerServerEvent('tp_libs:sendToDiscord', webhook, name, description, color) -- Client Side to be used
+TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color) -- Server Side to be used.
+
+```
