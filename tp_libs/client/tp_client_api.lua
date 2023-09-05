@@ -9,6 +9,10 @@ AddEventHandler('getTPAPI', function(cb)
         TriggerServerEvent('tp_libs:sendNotification', source, message, type)
     end
 
+    apiData.sendToDiscord = function(webhook, name, description, color)
+        TriggerServerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
+    end
+
     cb(apiData)
 end)
 
@@ -30,6 +34,10 @@ exports('rClientAPI', function()
     self.sendNotification = function(source, message, type)
         TriggerServerEvent('tp_libs:sendNotification', source, message, type)
     end
-
+        
+    self.sendToDiscord = function(webhook, name, description, color)
+        TriggerServerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
+    end
+        
     return self
 end)
