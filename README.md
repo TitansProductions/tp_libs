@@ -4,6 +4,16 @@ TP Libs is a free resource (script) which will be used in lot of our scripts for
 
 This script can also be used by other developers if they are willing.
 
+**Frameworks Supported**
+
+
+    VORP
+    GUM
+    QBCORE
+    RSG
+    REDMRP
+
+
 **How to use the API exports**
 
 ```lua
