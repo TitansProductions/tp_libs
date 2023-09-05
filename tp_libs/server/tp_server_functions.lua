@@ -406,7 +406,7 @@ function GetJob(_source)
 
     elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
 
-        return xPlayer.PlayerData.job.name
+        return tostring(xPlayer.PlayerData.job.name)
 
     elseif Config.Framework == "redmrp" then
 
