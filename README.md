@@ -82,11 +82,11 @@ exports.tp_libs:rServerAPI().removeMoney(source, quantity)
 
 -- Gold Functions
 
-local money = API.getGold(source)
+local gold = API.getGold(source)
 API.addGold(source, quantity)
 API.removeGold(source, quantity)
 
-local money = exports.tp_libs:rServerAPI().getGold(source)
+local gold = exports.tp_libs:rServerAPI().getGold(source)
 exports.tp_libs:rServerAPI().addGold(source, quantity)
 exports.tp_libs:rServerAPI().removeGold(source, quantity)
 
