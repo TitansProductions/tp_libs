@@ -40,6 +40,13 @@ API.sendNotification(source, message, type) -- success, error (This is also supp
 exports.tp_libs:rClientAPI().sendNotification(source, message, type) -- success, error.
 exports.tp_libs:rServerAPI().sendNotification(source, message, type) -- success, error.
 
+-- Send Webhook
+
+API.sendToDiscord(webhook, name, description, color)
+
+exports.tp_libs:rClientAPI().sendToDiscord(webhook, name, description, color)
+exports.tp_libs:rServerAPI().sendToDiscord(webhook, name, description, color)
+
 -- Get Player / User.
 
 local xPlayer = API.getPlayer(source)
