@@ -130,7 +130,7 @@ local jobGrade = exports.tp_libs:rServerAPI().getJobGrade(source)
 ```
 
 
-**Server Side Events**
+**Events**
 
 * Notifications
   
