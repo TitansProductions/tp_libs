@@ -7,9 +7,8 @@ This script can also be used by other developers if they are willing.
 
 **How to get API functions**
 
-```
+```lua
 local API    = {}
 
 TriggerEvent("getTPAPI", function(cb) API = cb end)
-
 ```
