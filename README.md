@@ -21,11 +21,34 @@ TriggerEvent("getTPAPI", function(cb) API = cb end)
 
 ```lua
 
+-- Get Configuration (TP Libs)
+
 API.getConfiguration()
+
 exports.tp_libs:rServerAPI().getConfiguration()
+
+-- Get Round Math Function
+
+API.round(number, decimals)
+
+exports.tp_libs:rServerAPI().round(number, decimals)
+
+-- Send Notifications
 
 API.sendNotification(source, message, type) -- success, error (This is also supported on client side)
 
 exports.tp_libs:rClientAPI().sendNotification(source, message, type) -- success, error.
 exports.tp_libs:rServerAPI().sendNotification(source, message, type) -- success, error.
+
+-- getPlayer
+
+local xPlayer = API.getPlayer(source)
+
+local xPlayer = exports.tp_libs:rServerAPI().getPlayer(source)
+
+-- getIdentifier
+
+local identifier = API.getIdentifier(source)
+
+local identifier = exports.tp_libs:rServerAPI().getIdentifier(source)
 
