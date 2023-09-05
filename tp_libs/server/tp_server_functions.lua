@@ -191,13 +191,18 @@ function GetItemCount(_source, item)
 
         local xPlayer = GetPlayer(_source)
 
-        return xPlayer.PlayerData.items[item].amount
+        return CoreInventoryAPI.getItemCount(tonumber(_source), id)
 
     elseif Config.Framework == "rsg" then
 
         local xPlayer = GetPlayer(_source)
 
-        return xPlayer.PlayerData.items[item].amount
+        if xPlayer.Functions.GetItemByName(item) == nil then
+            return 0
+        else
+            local amountitem = xPlayer.Functions.GetItemByName(item).amount
+            return amountitem
+        end
 
     elseif Config.Framework == "redmrp" then
 
@@ -381,9 +386,13 @@ function GetUserInventory(_source)
 
         return CoreInventoryAPI.getUserInventory(_source)
 
-    elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
+    elseif Config.Framework == "rsg" then
+        
+        return CoreAPI.Player.LoadInventory
+        
+    elseif Config.Framework == "qbcore" then
 
-        return nil
+        return CoreAPI.Player.LoadInventory
 
     elseif Config.Framework == "redmrp" then
 
