@@ -13,18 +13,19 @@ Config.DiscordWebhooking = {
 -- source is always null when called from client.
 -- messageType, returns "success" or "error" depends when and where the message is sent.
 function SendNotification(source, message, messageType)
+    local _source = source
 
     -- Server Side
-    if source then
+    if _source then
 
         if Config.Framework == "vorp" then
-            TriggerClientEvent("vorp:TipRight", source, message, 3000)
+            TriggerClientEvent("vorp:TipRight", _source, message, 3000)
 
         elseif Config.Framework == "gum" then
-            TriggerClientEvent("gum:TipRight", source, message, 3000)
+            TriggerClientEvent("gum:TipRight", _source, message, 3000)
 
         elseif Config.Framework == "redmrp" then
-            TriggerClientEvent("redemrp_notification:start", source, message, 3, "success")
+            TriggerClientEvent("redemrp_notification:start", _source, message, 3, "success")
 
         elseif Config.Framework == "rsg" then
             TriggerClientEvent('RSGCore:Notify', _source, message, 'primary')
