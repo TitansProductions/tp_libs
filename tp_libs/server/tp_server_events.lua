@@ -5,7 +5,13 @@
 
 RegisterServerEvent('tp_libs:sendNotification')
 AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
-    local _source = tsource
+
+    local _source = source
+
+    if tsource then
+        _source = tsource
+    end
+    
     SendNotification(_source, message, type)
 end)
 
