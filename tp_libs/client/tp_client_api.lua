@@ -6,7 +6,7 @@ AddEventHandler('getTPAPI', function(cb)
     end
 
     apiData.sendNotification = function(source, message, type)
-        TriggerEvent('tp_libs:sendNotification', source, message, type)
+        TriggerServerEvent('tp_libs:sendNotification', source, message, type)
     end
 
     cb(apiData)
@@ -25,6 +25,10 @@ exports('rClientAPI', function()
         end
 
         return str
+    end
+
+    self.sendNotification = function(source, message, type)
+        TriggerServerEvent('tp_libs:sendNotification', source, message, type)
     end
 
     return self
