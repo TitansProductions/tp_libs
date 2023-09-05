@@ -1,2 +1,5 @@
 # tp_libs
-TP Libs, A script that will be used in many of our scripts in order to support multiple frameworks.
+
+TP Libs is a free resource (script) which will be used in lot of our scripts for supporting multiple frameworks and also contain a lot of API Functions such as Notifications, Discord Webhooking and Locales System.
+
+This script can also be used by other developers if they are willing.
