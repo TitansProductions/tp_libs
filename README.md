@@ -70,40 +70,24 @@ local itemCount = API.getItemCount(source, item)
 
 local itemCount = exports.tp_libs:rServerAPI().getItemCount(source, item)
 
--- Get Money
+-- Money Functions
 
 local money = API.getMoney(source)
-
-local money = exports.tp_libs:rServerAPI().getMoney(source)
-
--- Add Money
-
 API.addMoney(source, quantity)
-
-exports.tp_libs:rServerAPI().addMoney(source, quantity)
-
--- Remove Money
-
 API.removeMoney(source, quantity)
 
+local money = exports.tp_libs:rServerAPI().getMoney(source)
+exports.tp_libs:rServerAPI().addMoney(source, quantity)
 exports.tp_libs:rServerAPI().removeMoney(source, quantity)
 
--- Get Gold
+-- Gold Functions
 
 local money = API.getGold(source)
-
-local money = exports.tp_libs:rServerAPI().getGold(source)
-
--- Add Gold
-
 API.addGold(source, quantity)
-
-exports.tp_libs:rServerAPI().addGold(source, quantity)
-
--- Remove Gold
-
 API.removeGold(source, quantity)
 
+local money = exports.tp_libs:rServerAPI().getGold(source)
+exports.tp_libs:rServerAPI().addGold(source, quantity)
 exports.tp_libs:rServerAPI().removeGold(source, quantity)
 
 -- Can Carry item-s
