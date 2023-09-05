@@ -40,7 +40,7 @@ API.sendNotification(source, message, type) -- success, error (This is also supp
 exports.tp_libs:rClientAPI().sendNotification(source, message, type) -- success, error.
 exports.tp_libs:rServerAPI().sendNotification(source, message, type) -- success, error.
 
--- getPlayer
+-- Get Player / User.
 
 local xPlayer = API.getPlayer(source)
 
@@ -52,3 +52,56 @@ local identifier = API.getIdentifier(source)
 
 local identifier = exports.tp_libs:rServerAPI().getIdentifier(source)
 
+-- Add Items
+
+API.addItemToInventory(source, item, quantity)
+
+exports.tp_libs:rServerAPI().addItemToInventory(source, item, quantity)
+
+-- Add Weapons
+
+API.addWeaponToInventory(source, weapon_name, quantity)
+
+exports.tp_libs:rServerAPI().addWeaponToInventory(source, weapon_name, quantity)
+
+-- Get Item Count
+
+local itemCount = API.getItemCount(source, item)
+
+local itemCount = exports.tp_libs:rServerAPI().getItemCount(source, item)
+
+-- Get Money
+
+local money = API.getMoney(source)
+
+local money = exports.tp_libs:rServerAPI().getMoney(source)
+
+-- Add Money
+
+API.addMoney(source, quantity)
+
+exports.tp_libs:rServerAPI().addMoney(source, quantity)
+
+-- Remove Money
+
+API.removeMoney(source, quantity)
+
+exports.tp_libs:rServerAPI().removeMoney(source, quantity)
+
+-- Get Gold
+
+local money = API.getGold(source)
+
+local money = exports.tp_libs:rServerAPI().getGold(source)
+
+-- Add Gold
+
+API.addGold(source, quantity)
+
+exports.tp_libs:rServerAPI().addGold(source, quantity)
+
+-- Remove Gold
+
+API.removeGold(source, quantity)
+
+exports.tp_libs:rServerAPI().removeGold(source, quantity)
