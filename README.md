@@ -42,7 +42,7 @@ exports.tp_libs:rServerAPI().sendNotification(source, message, type) -- success,
 
 -- Send Webhook
 
-API.sendToDiscord(webhook, name, description, color)
+API.sendToDiscord(webhook, name, description, color) -- (This is also supported on client side)
 
 exports.tp_libs:rClientAPI().sendToDiscord(webhook, name, description, color)
 exports.tp_libs:rServerAPI().sendToDiscord(webhook, name, description, color)
