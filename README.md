@@ -69,6 +69,12 @@ local identifier = API.getIdentifier(source)
 
 local identifier = exports.tp_libs:rServerAPI().getIdentifier(source)
 
+-- Get Char Identifier
+
+local charIdentifier = API.getChar(source)
+
+local charIdentifier = exports.tp_libs:rServerAPI().getChar(source)
+
 -- Add Items
 
 API.addItemToInventory(source, item, quantity)
