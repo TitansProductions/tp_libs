@@ -40,6 +40,10 @@ AddEventHandler('getTPAPI', function(cb)
         local rv = GetIdentifier(source) return rv
     end
 
+    apiData.getChar = function(source)
+        local rv = GetChar(source) return rv
+    end
+
     apiData.addItemToInventory = function(source, item, quantity)
         AddItemToInventory(source, item, quantity)
     end
@@ -144,6 +148,10 @@ exports('rServerAPI', function()
 
     self.getIdentifier = function(source)
         local rv = GetIdentifier(source) return rv
+    end
+
+    self.getChar = function(source)
+        local rv = GetChar(source) return rv
     end
 
     self.addItemToInventory = function(source, item, quantity)
