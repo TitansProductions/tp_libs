@@ -90,6 +90,28 @@ function GetIdentifier(_source)
 
 end
 
+function GetChar(_source)
+	local xPlayer = GetPlayer(_source)
+
+	if Config.Framework == "vorp" then
+		return xPlayer.charIdentifier
+
+    elseif Config.Framework == "gum" then
+		return xPlayer.charIdentifier
+
+	elseif Config.Framework == "rsg" then
+		return xPlayer.PlayerData.cid
+
+	elseif Config.Framework == "qbcore" then
+		return xPlayer.PlayerData.cid
+	
+    elseif Config.Framework == "redmrp" then
+        return xPlayer.charid
+    end
+
+	return 1
+end
+
 function AddItemToInventory(_source, item, amount)
 
     local xPlayer = GetPlayer(_source)
