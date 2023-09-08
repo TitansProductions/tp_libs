@@ -282,7 +282,11 @@ end
 function CanCarryItem(_source, item, amount)
 
     if Config.Framework == "vorp" then
-        return CoreInventoryAPI.canCarryItem(_source, item, amount) and CoreInventoryAPI.canCarryItems(_source, amount)
+
+	local canCarryItem  = CoreInventoryAPI.canCarryItem(_source, item, amount)
+	local canCarryItems = CoreInventoryAPI.canCarryItems(_source, amount)
+		
+        return (canCarryItem and canCarryItems)
 
     elseif Config.Framework == "gum" then
         return CoreInventoryAPI.canCarryItems(_source, amount)
