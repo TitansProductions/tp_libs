@@ -306,9 +306,20 @@ function CanCarryWeapons(_source, item, amount)
 
     if Config.Framework == "vorp" then
 
+        local canCarry, finished = false, false
+
         CoreInventoryAPI.canCarryWeapons(_source, amount, function(invWeaponAvailable)
-            return invWeaponAvailable
+
+            canCarry = invWeaponAvailable
+            finished = true
+
         end, item)
+
+        while not finished do
+            Wait(50)
+        end
+
+        return canCarry
 
     elseif Config.Framework == "redmrp" then
         local ItemData = CoreInventoryAPI.getItem(_source, item)
@@ -320,7 +331,6 @@ function CanCarryWeapons(_source, item, amount)
     end
 
 end
-
 function AddMoney(_source, amount)
 
     local xPlayer = GetPlayer(_source)
