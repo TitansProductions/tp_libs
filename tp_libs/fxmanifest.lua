@@ -4,7 +4,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 author 'Nosmakos'
 description 'Titans Productions Libs'
-version '1.0.0'
+version '1.0.1'
 
 shared_scripts { 'config.lua', 'locales.lua'   }
 client_scripts { 'client/*.lua' }
