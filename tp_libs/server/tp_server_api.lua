@@ -104,7 +104,7 @@ AddEventHandler('getTPAPI', function(cb)
         local rv = GetJobGrade(source) return rv
     end
 
-    apiData.getFirstname = function(source)
+    apiData.getFirstName = function(source)
         local rv = GetFirstName(_source) return rv
     end
 
@@ -222,7 +222,7 @@ exports('rServerAPI', function()
         local rv = GetJobGrade(source) return rv
     end
 
-    self.getFirstname = function(source)
+    self.getFirstName = function(source)
         local rv = GetFirstName(_source) return rv
     end
 
