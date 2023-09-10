@@ -112,6 +112,43 @@ function GetChar(_source)
 	return 1
 end
 
+function GetFirstName(_source)
+    local xPlayer = GetPlayer(_source)
+
+	if Config.Framework == "vorp" then
+		return xPlayer.firstname
+
+	elseif Config.Framework == "gum" then
+		return xPlayer.firstname
+
+	elseif Config.Framework == "rsg" then
+		return xPlayer.PlayerData.charinfo.firstname
+
+	elseif Config.Framework == "qbcore" then
+		
+		return xPlayer.PlayerData.charinfo.firstname
+	end
+end
+
+function GetLastName(_source)
+    local xPlayer = GetPlayer(_source)
+
+	if Config.Framework == "vorp" then
+		return xPlayer.lastname
+		
+	elseif Config.Framework == "gum" then
+		return xPlayer.lastname
+
+	elseif Config.Framework == "rsg" then
+
+		return xPlayer.PlayerData.charinfo.lastname
+
+	elseif Config.Framework == "qbcore" then
+
+		return xPlayer.PlayerData.charinfo.lastname
+	end
+end
+
 function AddItemToInventory(_source, item, amount)
 
     local xPlayer = GetPlayer(_source)
