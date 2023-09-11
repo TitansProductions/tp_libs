@@ -112,6 +112,64 @@ function GetChar(_source)
 	return 1
 end
 
+function GetGroup(_source)
+
+    local xPlayer = GetPlayer(_source)
+
+	if Config.Framework == "vorp" then
+        local finished = false
+        local group    = "user"
+
+        TriggerEvent("vorp:getCharacter", _source, function(user)
+            group = user.group
+            finished = true
+        end)
+
+        while not finished do
+            Wait(50)
+        end
+
+		return group
+
+    elseif Config.Framework == "gum" then
+        return xPlayer.group
+
+    elseif Config.Framework == "rsg" then
+
+        if RSGCore.Functions.HasPermission(_source, 'admin') then
+            return 'admin'
+        end
+
+        return 'user'
+
+    elseif Config.Framework == "qbcore" then
+
+        return xPlayer.group
+
+    elseif Config.Framework == "redmrp" then
+
+        local finished = false
+        local group    = "user"
+
+        TriggerEvent('redemrp:getPlayerFromId', _source, function(user)
+            if user ~= nil then
+                
+                group = user.getGroup()
+                finished = true
+
+            end
+
+        end)
+
+        while not finished do
+            Wait(50)
+        end
+
+		return group
+    end
+
+end
+
 function GetFirstName(_source)
     local xPlayer = GetPlayer(_source)
 
