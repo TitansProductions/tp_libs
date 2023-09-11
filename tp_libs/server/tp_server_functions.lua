@@ -207,7 +207,7 @@ function GetLastName(_source)
 	end
 end
 
-function AddItemToInventory(_source, item, amount)
+function AddItemToInventory(_source, item, amount, label)
 
     local xPlayer = GetPlayer(_source)
 
@@ -219,7 +219,7 @@ function AddItemToInventory(_source, item, amount)
  
         xPlayer.Functions.AddItem(item, amount)
 
-        TriggerClientEvent('inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add")
+        TriggerClientEvent('inventory:client:ItemBox', _source, label, "add")
         
 	elseif Config.Framework == "qbcore" then
         
