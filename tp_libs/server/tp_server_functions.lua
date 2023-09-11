@@ -136,7 +136,7 @@ function GetGroup(_source)
 
     elseif Config.Framework == "rsg" then
 
-        if RSGCore.Functions.HasPermission(_source, 'admin') then
+        if CoreAPI.Functions.HasPermission(_source, 'admin') then
             return 'admin'
         end
 
