@@ -519,7 +519,34 @@ function GetUserInventory(_source)
 
     elseif Config.Framework == "rsg" then
         
-        return CoreAPI.Player.LoadInventory
+        elseif Config.Framework == "rsg" then
+        
+        local inventory = CoreAPI.Shared.Items
+        local inventoryContents = {}
+
+        local finished = false
+
+        for k, v in pairs(inventory) do
+
+            local itemCount = GetItemCount(_source, v.name)
+    
+            if itemCount > 0 then
+                local data = { name = v.name, label = v.label, count = itemCount, amount = itemCount, quantity = itemCount }
+    
+                table.insert(inventoryContents, data)
+            end
+    
+            if next(inventory, k) == nil then
+                finished = true
+            end
+    
+        end
+    
+        while not finished do
+            Wait(100)
+        end
+    
+        return inventoryContents
         
     elseif Config.Framework == "qbcore" then
 
