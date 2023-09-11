@@ -531,7 +531,7 @@ function GetUserInventory(_source)
             local itemCount = GetItemCount(_source, v.name)
     
             if itemCount > 0 then
-                local data = { name = v.name, label = v.label, count = itemCount, amount = itemCount, quantity = itemCount }
+                local data = { item = v.name, name = v.name, label = v.label, count = itemCount, amount = itemCount, quantity = itemCount }
     
                 table.insert(inventoryContents, data)
             end
