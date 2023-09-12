@@ -519,8 +519,6 @@ function GetUserInventory(_source)
 
     elseif Config.Framework == "rsg" then
         
-        elseif Config.Framework == "rsg" then
-        
         local inventory = CoreAPI.Shared.Items
         local inventoryContents = {}
 
