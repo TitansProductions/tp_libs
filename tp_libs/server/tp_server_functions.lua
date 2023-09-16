@@ -237,7 +237,7 @@ function AddItemToInventory(_source, item, amount, label)
     end
 end
 
-function RemoveItemFromInventory(_source, item, amount)
+function RemoveItemFromInventory(_source, item, amount, label)
 
     local xPlayer = GetPlayer(_source)
 
@@ -247,6 +247,8 @@ function RemoveItemFromInventory(_source, item, amount)
 	elseif Config.Framework == "rsg" then
  
 		xPlayer.Functions.RemoveItem(item, amount)
+
+		TriggerClientEvent('inventory:client:ItemBox', _source, label, "remove")
 
 	elseif Config.Framework == "qbcore" then
         
