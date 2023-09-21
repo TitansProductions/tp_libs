@@ -386,7 +386,20 @@ function CanCarryItem(_source, item, amount)
         return (canCarryItem and canCarryItems)
 
     elseif Config.Framework == "gum" then
-        return CoreInventoryAPI.canCarryItems(_source, amount)
+
+	local canCarry = false
+	local finished = false
+		
+	TriggerEvent("gumCore:canCarryItem", _source, item, amount, function(cb)
+	    canCarry = cb
+	    finished = true
+	end)
+
+	while not finished do
+	  Wait(50)
+        end
+		
+        return canCarry
 
     elseif Config.Framework == "redmrp" then
         local ItemData = CoreInventoryAPI.getItem(_source, item)
