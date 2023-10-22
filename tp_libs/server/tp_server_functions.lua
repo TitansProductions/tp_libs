@@ -34,7 +34,16 @@ Citizen.CreateThread(function ()
             CoreInventoryAPI = call
         end)
 
+    elseif Config.Framework == "tpzcore" then
+
+        TriggerEvent("getTPZCore", function(cb) 
+            CoreAPI = cb 
+        end)
+
+		CoreInventoryAPI = exports.tpz_inventory:getInventoryAPI()
+
     end
+
 
     print("Sucessfully loaded [" .. Config.Framework .. "] Framework...")
 
@@ -60,6 +69,9 @@ function GetPlayer(_source)
 
     elseif Config.Framework == "redmrp" then
         return CoreAPI.GetPlayer(_source)
+
+    elseif Config.Framework == "tpzcore" then
+        return CoreAPI.GetPlayer(_source)
     end
 
 	return nil
@@ -84,6 +96,9 @@ function GetIdentifier(_source)
 	
     elseif Config.Framework == "redmrp" then
         return xPlayer.identifier
+
+    elseif Config.Framework == "tpzcore" then
+        return xPlayer.getIdentifier()
     end
 
 	return nil
@@ -107,6 +122,9 @@ function GetChar(_source)
 	
     elseif Config.Framework == "redmrp" then
         return xPlayer.charid
+
+    elseif Config.Framework == "tpzcore" then
+        return xPlayer.getCharacterIdentifier()
     end
 
 	return 1
@@ -166,6 +184,10 @@ function GetGroup(_source)
         end
 
 		return group
+
+    elseif Config.Framework == "tpzcore" then
+        return xPlayer.getGroup()
+
     end
 
 end
@@ -185,6 +207,9 @@ function GetFirstName(_source)
 	elseif Config.Framework == "qbcore" then
 		
 		return xPlayer.PlayerData.charinfo.firstname
+
+    elseif Config.Framework == "tpzcore" then
+        return xPlayer.getFirstName()
 	end
 end
 
@@ -204,6 +229,10 @@ function GetLastName(_source)
 	elseif Config.Framework == "qbcore" then
 
 		return xPlayer.PlayerData.charinfo.lastname
+
+    elseif Config.Framework == "tpzcore" then
+
+        return xPlayer.getLastName()
 	end
 end
 
@@ -234,6 +263,9 @@ function AddItemToInventory(_source, item, amount, label)
 
         local ItemData = CoreInventoryAPI.getItem(_source, item)
         ItemData.AddItem(amount)
+
+    elseif Config.Framework == "tpzcore" then
+        CoreInventoryAPI.addItem(_source, item, amount)
     end
 end
 
@@ -261,6 +293,9 @@ function RemoveItemFromInventory(_source, item, amount, label)
         local ItemData = CoreInventoryAPI.getItem(_source, item)
         
         ItemData.RemoveItem(amount)
+
+    elseif Config.Framework == "tpzcore" then
+        CoreInventoryAPI.removeItem(_source, item, amount)
 
     end
 end
@@ -294,6 +329,9 @@ function AddWeaponToInventory(_source, weapon)
 
     elseif Config.Framework == "redmrp" then
         CoreInventoryAPI.addItem(_source, weapon, 100, GetHashKey(weapon))
+
+    elseif Config.Framework == "tpzcore" then
+        CoreInventoryAPI.addWeapon(_source, weapon)
     end
 end
 
@@ -327,6 +365,12 @@ function GetItemCount(_source, item)
 
         local ItemData = CoreInventoryAPI.getItem(_source, item)
         return ItemData.ItemAmount
+
+    elseif Config.Framework == "tpzcore" then
+
+        local count = CoreInventoryAPI.getItemQuantity(_source, item)
+        return count
+
     end
 end
 
@@ -348,6 +392,9 @@ function GetMoney(_source)
 	
     elseif Config.Framework == "redmrp" then
         return xPlayer.getMoney()
+
+    elseif Config.Framework == "tpzcore" then
+        return xPlayer.getAccount(0)
     end
 
 	return 0
@@ -369,6 +416,9 @@ function GetGold(_source)
 
 	elseif Config.Framework == "qbcore" then
 		return xPlayer.Functions.GetMoney('gold')
+
+    elseif Config.Framework == "tpzcore" then
+        return xPlayer.getAccount(1)
 	end
 
 	return 0
@@ -408,6 +458,9 @@ function CanCarryItem(_source, item, amount)
 
     elseif Config.Framework == "qbcore" or Config.Framework == "rsg" then
         return true
+    elseif Config.Framework == "tpzcore" then
+
+        return CoreInventoryAPI.canCarryItem(_source, item, amount)
     end
 
 end
@@ -436,11 +489,16 @@ function CanCarryWeapons(_source, item, amount)
 
         if not ItemData.AddItem(amount) then return false else return true end
 
+    elseif Config.Framework == "tpzcore" then
+        
+        return CoreInventoryAPI.canCarryItem(_source, item, amount)
+
     else
         return true
     end
 
 end
+
 function AddMoney(_source, amount)
 
     local xPlayer = GetPlayer(_source)
@@ -459,6 +517,9 @@ function AddMoney(_source, amount)
 
     elseif Config.Framework == "redmrp" then
         xPlayer.AddMoney(amount)
+
+    elseif Config.Framework == "tpzcore" then
+        xPlayer.addAccount(0, amount)
     end
 end
 
@@ -477,6 +538,9 @@ function AddGold(_source, amount)
         
     elseif Config.Framework == "rsg" then
         xPlayer.Functions.AddMoney('gold', amount)
+
+    elseif Config.Framework == "tpzcore" then
+        xPlayer.addAccount(1, amount)
     end
 
 end
@@ -500,6 +564,10 @@ function RemoveMoney(_source, amount)
     elseif Config.Framework == "redmrp" then
 
         xPlayer.RemoveMoney(amount)
+
+    elseif Config.Framework == "tpzcore" then
+        xPlayer.removeAccount(0, amount)
+
     end
 
 end
@@ -519,6 +587,9 @@ function RemoveGold(_source, amount)
         
     elseif Config.Framework == "rsg" then
         xPlayer.Functions.RemoveMoney('gold', amount)
+
+    elseif Config.Framework == "tpzcore" then
+        xPlayer.removeAccount(1, amount)
     end
 
 end
@@ -569,6 +640,10 @@ function GetUserInventory(_source)
 
         return CoreInventoryAPI.getPlayerInventory(_source)
 
+    elseif Config.Framework == "tpzcore" then
+
+        return CoreInventoryAPI.getInventoryContents(_source)
+
     end
 end
 
@@ -592,6 +667,10 @@ function GetJob(_source)
 
         return xPlayer.job
 
+    elseif Config.Framework == "tpzcore" then
+
+        return xPlayer.getJob()
+
     end
 end
 
@@ -614,6 +693,10 @@ function GetJobGrade(_source)
     elseif Config.Framework == "redmrp" then
 
         return xPlayer.jobgrade
+
+    elseif Config.Framework == "tpzcore" then
+
+        return 0 -- to-do
 
     end
 end
