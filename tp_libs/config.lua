@@ -1,6 +1,6 @@
 Config = {}
 
--- @Supported Versions: vorp, gum, rsg, qbcore, redmrp
+-- @Supported Versions: vorp, gum, rsg, qbcore, redmrp, tpzcore
 Config.Framework = "vorp"
 
 -- All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
