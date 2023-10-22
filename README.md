@@ -7,12 +7,12 @@ This script can also be used by other developers if they are willing.
 **Frameworks Supported**
 
 
-1. VORP
-2. GUM
-3. QBCORE
-4. RSG
-5. REDMRP
-
+1. TPZ-CORE
+2. VORP
+3. GUM
+4. QBCORE
+5. RSG
+6. REDMRP
 
 **How to use the API exports**
 
