@@ -491,7 +491,7 @@ function CanCarryWeapons(_source, item, amount)
 
     elseif Config.Framework == "tpzcore" then
         
-        return CoreInventoryAPI.canCarryItem(_source, item, amount)
+        return CoreInventoryAPI.canCarryWeapon(_source, item)
 
     else
         return true
