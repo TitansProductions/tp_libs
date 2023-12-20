@@ -18,6 +18,10 @@ AddEventHandler('getTPAPI', function(cb)
         return Config
     end
 
+    apiData.getFramework = function()
+        return Config.Framework
+    end
+        
     apiData.round = function(number, decimals)
         local power = 10^decimals
         return math.floor(number * power) / power
@@ -107,13 +111,13 @@ AddEventHandler('getTPAPI', function(cb)
     apiData.getJobGrade = function(source)
         local rv = GetJobGrade(source) return rv
     end
-
+        
     apiData.getFirstName = function(source)
-        local rv = GetFirstName(_source) return rv
+        local rv = GetFirstName(source) return rv
     end
 
     apiData.getLastName = function(source)
-        local rv = GetLastName(_source) return rv
+        local rv = GetLastName(source) return rv
     end
         
     cb(apiData)
