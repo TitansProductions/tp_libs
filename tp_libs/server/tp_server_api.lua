@@ -144,6 +144,10 @@ exports('rServerAPI', function()
         return Config
     end
 
+    self.getFramework = function()
+        return Config.Framework
+    end
+
     self.round = function(number, decimals)
         local power = 10^decimals
         return math.floor(number * power) / power
@@ -235,11 +239,11 @@ exports('rServerAPI', function()
     end
 
     self.getFirstName = function(source)
-        local rv = GetFirstName(_source) return rv
+        local rv = GetFirstName(source) return rv
     end
 
     self.getLastName = function(source)
-        local rv = GetLastName(_source) return rv
+        local rv = GetLastName(source) return rv
     end
 
     return self
