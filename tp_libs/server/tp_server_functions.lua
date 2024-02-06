@@ -418,7 +418,7 @@ function GetGold(_source)
 		return xPlayer.Functions.GetMoney('gold')
 
     elseif Config.Framework == "tpzcore" then
-        return xPlayer.getAccount(1)
+        return xPlayer.getAccount(2)
 	end
 
 	return 0
