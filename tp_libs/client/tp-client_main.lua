@@ -9,6 +9,17 @@ end)
 
 -- Gets the player job when character is selected.
 
+-- TPZ CORE
 AddEventHandler("tpz_core:isPlayerReady", function()
+    TriggerEvent("tp_libs:isPlayerReady")
+end)
+
+-- VORP
+RegisterNetEvent("vorp:SelectedCharacter", function(charId)
+    TriggerEvent("tp_libs:isPlayerReady")
+end)
+
+-- GUM
+RegisterNetEvent("gum:SelectedCharacter", function(charId)
     TriggerEvent("tp_libs:isPlayerReady")
 end)
