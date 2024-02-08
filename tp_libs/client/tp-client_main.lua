@@ -7,8 +7,6 @@ AddEventHandler("tp_libs:isPlayerReady", function()
 
 end)
 
--- Gets the player job when character is selected.
-
 -- TPZ CORE
 AddEventHandler("tpz_core:isPlayerReady", function()
     TriggerEvent("tp_libs:isPlayerReady")
