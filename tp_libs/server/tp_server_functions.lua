@@ -24,6 +24,7 @@ Citizen.CreateThread(function ()
 		CoreAPI = exports['rsg-core']:GetCoreObject()
 
 	elseif Config.Framework == "qbcore" then
+		CoreAPI = exports['qbr-core']:GetCoreObject()
 
     elseif Config.Framework == "redmrp" then
         CoreAPI = exports["redem_roleplay"]:RedEM()
