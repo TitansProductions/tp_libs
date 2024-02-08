@@ -3,6 +3,11 @@
    Events
 ]]---------------------------------------------------
 
+
+AddEventHandler("redemrp:playerLoaded", function(source, user)
+      TriggerClientEvent("tp_libs:isPlayerReady", source)
+end)
+
 RegisterServerEvent('tp_libs:sendNotification')
 AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
     local _source = tonumber(tsource)
