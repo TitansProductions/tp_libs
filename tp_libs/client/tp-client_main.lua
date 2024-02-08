@@ -37,7 +37,7 @@ end)
 -- Redemrp
 
 AddEventHandler("redemrp_charselect:SpawnCharacter", function()
-        Wait(5000)
-        TriggerEvent("tp_libs:isPlayerReady")
+    Wait(5000)
+    TriggerEvent("tp_libs:isPlayerReady")
 end)
 
