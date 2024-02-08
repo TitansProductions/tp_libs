@@ -34,7 +34,7 @@ function SendNotification(source, message, messageType)
             TriggerClientEvent('QBCore:Notify', _source, message, "success")
             
         elseif Config.Framework == "tpzcore" then
-            TriggerClientEvent('tpz_core:sendNotification', _source, message, "right")
+            TriggerClientEvent('tpz_core:sendRightTipNotification', _source, message, 3000)
         end
 
     -- Client Side
@@ -57,7 +57,7 @@ function SendNotification(source, message, messageType)
             TriggerEvent('QBCore:Notify', message, "success")
 
         elseif Config.Framework == "tpzcore" then
-            TriggerEvent('tpz_core:sendNotification', message, "right")
+            TriggerEvent('tpz_core:sendRightTipNotification', message, 3000)
         end
     end
 
