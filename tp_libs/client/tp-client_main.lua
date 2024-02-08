@@ -34,3 +34,10 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     TriggerEvent("tp_libs:isPlayerReady")
 end)
 
+-- Redemrp
+
+AddEventHandler("redemrp_charselect:SpawnCharacter", function()
+        Wait(5000)
+        TriggerEvent("tp_libs:isPlayerReady")
+end)
+
