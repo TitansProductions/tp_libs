@@ -1,4 +1,4 @@
-# tp_libs
+# TP Libs
 
 TP Libs is a free resource (script) which will be used in lot of our scripts for supporting multiple frameworks and also contain a lot of API Functions such as Notifications, Discord Webhooking and Locales System.
 
@@ -13,6 +13,14 @@ This script can also be used by other developers if they are willing.
 4. QBCORE
 5. RSG
 6. REDMRP
+
+# Installation
+
+1. When opening the zip file, open `tp_libs-main` directory folder and inside there will be another directory folder which is called as `tp_libs`, this directory folder is the one that should be exported to your resources (The folder which contains `fxmanifest.lua`).
+
+2. Add `ensure tp_libs` after your core essentials (core, characters & inventory) in the resources.cfg or server.cfg, depends where your scripts are located. 
+
+# Developers 
 
 **How to use the API exports**
 
