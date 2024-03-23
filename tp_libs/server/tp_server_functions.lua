@@ -56,7 +56,12 @@ end)
 
 function GetPlayer(_source)
 
-	if Config.Framework == "vorp" then
+	if Config.Framework == "vorp" or Config.Framework == 'gum' then
+
+        if CoreAPI.getUser(_source) == nil then
+            return nil
+        end
+
         return CoreAPI.getUser(_source).getUsedCharacter
 
 	elseif Config.Framework == "rsg" then
@@ -64,9 +69,6 @@ function GetPlayer(_source)
 
 	elseif Config.Framework == "qbcore" then
         return exports['qbr-core']:GetPlayer(_source)
-
-    elseif Config.Framework == "gum" then
-        return CoreAPI.getUser(_source).getUsedCharacter
 
     elseif Config.Framework == "redmrp" then
         return CoreAPI.GetPlayer(_source)
