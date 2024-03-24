@@ -39,3 +39,30 @@ AddEventHandler("redemrp_charselect:SpawnCharacter", function()
     TriggerEvent("tp_libs:isPlayerReady")
 end)
 
+
+---------------------------------------------------------------
+--[[ Job Update ]]--
+---------------------------------------------------------------
+
+RegisterNetEvent("tp_libs:getPlayerJob")
+AddEventHandler("tp_libs:getPlayerJob", function()
+
+end)
+
+-- QBCORE
+RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
+    TriggerEvent("tp_libs:getPlayerJob", job)
+end)
+
+-- RSG
+RegisterNetEvent('RSGCore:Client:OnJobUpdate', function(job)
+    TriggerEvent("tp_libs:getPlayerJob", job)
+end)
+
+-- TPZ Core
+RegisterNetEvent("tpz_core:getPlayerJob")
+AddEventHandler("tpz_core:getPlayerJob", function(data)
+
+    TriggerEvent("tp_libs:getPlayerJob", data.job)
+end)
+
