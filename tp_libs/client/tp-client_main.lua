@@ -45,8 +45,8 @@ end)
 ---------------------------------------------------------------
 
 RegisterNetEvent("tp_libs:getPlayerJob")
-AddEventHandler("tp_libs:getPlayerJob", function()
-
+AddEventHandler("tp_libs:getPlayerJob", function(job)
+    -- todo nothing
 end)
 
 -- QBCORE
