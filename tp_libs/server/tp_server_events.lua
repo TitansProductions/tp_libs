@@ -36,3 +36,13 @@ AddEventHandler("tp_libs:sendToDiscord", function(webhook, name, description, co
         ['Content-Type'] = 'application/json'
     })
 end)
+
+
+--[[ ------------------------------------------------
+   Framework Events
+]]---------------------------------------------------
+
+AddEventHandler("vorp:playerJobChange", function(source, job)
+    local _source = source
+    TriggerClientEvent("tp_libs:getPlayerJob", _source, job)
+end)
