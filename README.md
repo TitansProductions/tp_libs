@@ -171,3 +171,5 @@ TriggerServerEvent('tp_libs:sendToDiscord', webhook, name, description, color) -
 TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color) -- Server Side to be used.
 
 ```
+
+@Credits to VORP-CORE for the Server Callback & Client Callback files.
