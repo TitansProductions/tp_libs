@@ -6,6 +6,11 @@
 RegisterServerEvent('tp_libs:sendNotification')
 AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
     local _source = tonumber(tsource)
+
+    if tsource == nil then
+        _source = source
+    end
+
     SendNotification(_source, message, type)
 end)
 
