@@ -3,12 +3,33 @@ Config = {}
 -- @Supported Versions: vorp, gum, rsg, qbcore, redmrp, tpzcore
 Config.Framework = "vorp"
 
+---------------------------------------------------------------
+--[[ Discord Webhooking ]]--
+---------------------------------------------------------------
+
 -- All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
 Config.DiscordWebhooking = {
     Label = "Server Name",
     ImageUrl = "https://i.imgur.com/xxxxxxxxx.png",
     Footer = "© Server Name Team",
 }
+
+---------------------------------------------------------------
+--[[ Documents Menu ]]--
+---------------------------------------------------------------
+
+-- DO NOT SET TO false if you don't want a command to open the Documents NUI.
+-- Set it to something unknown.
+Config.DocumentsCommand = 'documents'
+
+-- https://github.com/mja00/redm-shit/blob/master/nuiweaponspawner/config.lua
+-- Set to false if you don't want any key to open the Documents NUI.
+Config.DocumentsKey     = false
+
+
+---------------------------------------------------------------
+--[[ Notifications ]]--
+---------------------------------------------------------------
 
 -- source is always null when called from client.
 -- messageType, returns "success" or "error" depends when and where the message is sent.
