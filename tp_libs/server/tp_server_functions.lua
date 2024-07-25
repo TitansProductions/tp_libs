@@ -4,6 +4,8 @@ CoreInventoryAPI = nil
 
 Citizen.CreateThread(function ()
 
+	Wait(5000)
+		
 	if Config.Framework == "vorp" then
 
         TriggerEvent("getCore", function(cb) 
