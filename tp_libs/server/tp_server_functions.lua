@@ -562,7 +562,7 @@ function AddGold(_source, amount)
         xPlayer.Functions.AddMoney('gold', amount)
 
     elseif Config.Framework == "tpzcore" then
-        xPlayer.addAccount(1, amount)
+        xPlayer.addAccount(2, amount)
     end
 
 end
@@ -621,7 +621,7 @@ function RemoveGold(_source, amount)
         xPlayer.Functions.RemoveMoney('gold', amount)
 
     elseif Config.Framework == "tpzcore" then
-        xPlayer.removeAccount(1, amount)
+        xPlayer.removeAccount(2, amount)
     end
 
 end
