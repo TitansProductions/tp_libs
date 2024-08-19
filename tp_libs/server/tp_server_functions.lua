@@ -640,26 +640,14 @@ function GetUserInventory(_source)
         local inventory = CoreAPI.Shared.Items
         local inventoryContents = {}
 
-        local finished = false
-
         for k, v in pairs(inventory) do
 
-            local itemCount = GetItemCount(_source, v.name)
-    
-            if itemCount > 0 then
-                local data = { item = v.name, name = v.name, label = v.label, count = itemCount, amount = itemCount, quantity = itemCount }
+            if v.amount > 0 then
+                local data = { item = v.name, name = v.name, label = v.label, count = v.amount, amount = v.amount, quantity = v.amount }
     
                 table.insert(inventoryContents, data)
             end
     
-            if next(inventory, k) == nil then
-                finished = true
-            end
-    
-        end
-    
-        while not finished do
-            Wait(100)
         end
     
         return inventoryContents
