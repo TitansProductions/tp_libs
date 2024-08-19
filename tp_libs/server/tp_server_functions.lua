@@ -635,27 +635,12 @@ function GetUserInventory(_source)
 
         return CoreInventoryAPI.getUserInventory(_source)
 
-    elseif Config.Framework == "rsg" then
+    elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
+
+        local xPlayer = GetPlayer(_source)
         
-        local inventory = CoreAPI.Shared.Items
-        local inventoryContents = {}
-
-        for k, v in pairs(inventory) do
-
-            if v.amount > 0 then
-                local data = { item = v.name, name = v.name, label = v.label, count = v.amount, amount = v.amount, quantity = v.amount }
-    
-                table.insert(inventoryContents, data)
-            end
-    
-        end
-    
-        return inventoryContents
+        return xPlayer.PlayerData.items
         
-    elseif Config.Framework == "qbcore" then
-
-        return CoreAPI.Player.LoadInventory
-
     elseif Config.Framework == "redmrp" then
 
         return CoreInventoryAPI.getPlayerInventory(_source)
