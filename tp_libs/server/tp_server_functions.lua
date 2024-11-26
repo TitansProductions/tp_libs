@@ -668,6 +668,8 @@ function GetInventoryTotalWeight(_source)
         return CoreInventoryAPI.getInventoryTotalWeight(_source)
     end
 
+    return 0
+
 end
 
 function GetJob(_source)
