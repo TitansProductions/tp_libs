@@ -242,6 +242,10 @@ exports('rServerAPI', function()
         local rv = GetUserInventory(source) return rv
     end
 
+    self.getInventoryTotalWeight = function(source)
+        return GetInventoryTotalWeight(source)
+    end
+
     self.getJob = function(source)
         local rv = GetJob(source) return rv
     end
