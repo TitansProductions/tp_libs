@@ -652,6 +652,24 @@ function GetUserInventory(_source)
     end
 end
 
+function GetInventoryTotalWeight(_source)
+
+    local xPlayer = GetPlayer(_source)
+
+    if Config.Framework == "vorp" then
+        
+        return 0
+
+    elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
+
+        return CoreAPI.Player.GetTotalWeight(xPlayer.PlayerData.items)
+
+    elseif Config.Framework == "tpzcore" then
+        return CoreInventoryAPI.getInventoryTotalWeight(_source)
+    end
+
+end
+
 function GetJob(_source)
 
     local xPlayer = GetPlayer(_source)
