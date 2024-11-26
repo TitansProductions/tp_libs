@@ -116,6 +116,10 @@ AddEventHandler('getTPAPI', function(cb)
         local rv = GetUserInventory(source) return rv
     end
 
+    apiData.getInventoryTotalWeight = function(source)
+        return GetInventoryTotalWeight(source)
+    end
+
     apiData.getJob = function(source)
         local rv = GetJob(source) return rv
     end
