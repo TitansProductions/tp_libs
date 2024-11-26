@@ -657,8 +657,8 @@ function GetInventoryTotalWeight(_source)
     local xPlayer = GetPlayer(_source)
 
     if Config.Framework == "vorp" then
-        
-        return 0
+
+        return xPlayer.invCapacity
 
     elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
 
