@@ -52,8 +52,8 @@ AddEventHandler('getTPAPI', function(cb)
         local rv = GetGroup(source) return rv
     end
         
-    apiData.addItemToInventory = function(source, item, quantity)
-        AddItemToInventory(source, item, quantity)
+    apiData.addItemToInventory = function(source, item, quantity, label)
+        AddItemToInventory(source, item, quantity, label)
     end
 
     apiData.removeItemFromInventory = function(source, item, quantity)
@@ -194,8 +194,8 @@ exports('rServerAPI', function()
         local rv = GetGroup(source) return rv
     end
 
-    self.addItemToInventory = function(source, item, quantity)
-        AddItemToInventory(source, item, quantity)
+    self.addItemToInventory = function(source, item, quantity, label)
+        AddItemToInventory(source, item, quantity, label)
     end
 
     self.removeItemFromInventory = function(source, item, quantity)
