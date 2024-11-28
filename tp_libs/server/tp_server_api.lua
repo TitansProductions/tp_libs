@@ -56,8 +56,8 @@ AddEventHandler('getTPAPI', function(cb)
         AddItemToInventory(source, item, quantity, label)
     end
 
-    apiData.removeItemFromInventory = function(source, item, quantity)
-        RemoveItemFromInventory(source, item, quantity)
+    apiData.removeItemFromInventory = function(source, item, quantity, label)
+        RemoveItemFromInventory(source, item, quantity, label)
     end
 
     apiData.addWeaponToInventory = function(source, weapon)
@@ -198,8 +198,8 @@ exports('rServerAPI', function()
         AddItemToInventory(source, item, quantity, label)
     end
 
-    self.removeItemFromInventory = function(source, item, quantity)
-        RemoveItemFromInventory(source, item, quantity)
+    self.removeItemFromInventory = function(source, item, quantity, label)
+        RemoveItemFromInventory(source, item, quantity, label)
     end
 
     self.addWeaponToInventory = function(source, weapon)
