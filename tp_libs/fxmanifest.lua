@@ -4,7 +4,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 author 'Nosmakos'
 description 'Titans Productions Libs'
-version '1.0.6'
+version '1.0.7'
 
 ui_page 'html/index.html'
 
