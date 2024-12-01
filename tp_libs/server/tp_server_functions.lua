@@ -629,8 +629,20 @@ end
 function GetUserInventory(_source)
     if Config.Framework == "vorp" then
 
-        return CoreInventoryAPI.getUserInventory(_source)
+        local items = CoreInventoryAPI.getUserInventory(_source)
+        local weapons = CoreInventoryAPI.getUserWeapons(_source)
 
+        for k, v in pairs (weapons) do
+
+            v.metadata = { quality = 1 }
+            v.quantity = 1
+            v.type = "weapon"
+
+            table.insert(items, v)
+        end
+
+        return items
+		
     elseif Config.Framework == "gum" then
 
         return CoreInventoryAPI.getUserInventory(_source)
