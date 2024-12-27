@@ -1,6 +1,6 @@
 Config = {}
 
--- @Supported Versions: vorp, gum, rsg, qbcore, redmrp, tpzcore
+-- @Supported Versions: vorp, gum, rsg, rsgv2, qbcore, redmrp, tpzcore
 Config.Framework = "vorp"
 
 ---------------------------------------------------------------
