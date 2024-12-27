@@ -788,7 +788,7 @@ function GetJob(_source)
 
     elseif Config.Framework == "rsgv2" then
 
-        return xPlayer.PlayerData.job
+        return tostring(xPlayer.PlayerData.job.name)
 
     elseif Config.Framework == "redmrp" then
 
