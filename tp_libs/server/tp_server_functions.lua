@@ -25,7 +25,7 @@ Citizen.CreateThread(function ()
 	elseif Config.Framework == "rsg" then
 		CoreAPI = exports['rsg-core']:GetCoreObject()
 			
-        elseif Config.Framework == "rsgv2" then
+  elseif Config.Framework == "rsgv2" then
 		CoreAPI = exports['rsg-core']:GetCoreObject()
 			
 	elseif Config.Framework == "qbcore" then
