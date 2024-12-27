@@ -24,8 +24,8 @@ Citizen.CreateThread(function ()
 		
 	elseif Config.Framework == "rsg" then
 		CoreAPI = exports['rsg-core']:GetCoreObject()
-			
-  elseif Config.Framework == "rsgv2" then
+  
+    elseif Config.Framework == "rsgv2" then
 		CoreAPI = exports['rsg-core']:GetCoreObject()
 			
 	elseif Config.Framework == "qbcore" then
@@ -72,6 +72,9 @@ function GetPlayer(_source)
 	elseif Config.Framework == "rsg" then
         return CoreAPI.Functions.GetPlayer(_source)
 
+	elseif Config.Framework == "rsgv2" then
+        return CoreAPI.Functions.GetPlayer(_source)
+
 	elseif Config.Framework == "qbcore" then
         return exports['qbr-core']:GetPlayer(_source)
 
@@ -99,6 +102,9 @@ function GetIdentifier(_source)
 	elseif Config.Framework == "rsg" then
 		return xPlayer.PlayerData.citizenid
 
+    elseif Config.Framework == "rsgv2" then
+		return xPlayer.PlayerData.citizenid
+
 	elseif Config.Framework == "qbcore" then
 		return xPlayer.PlayerData.citizenid
 	
@@ -123,6 +129,9 @@ function GetChar(_source)
 		return xPlayer.charIdentifier
 
 	elseif Config.Framework == "rsg" then
+		return xPlayer.PlayerData.cid
+
+    elseif Config.Framework == "rsgv2" then
 		return xPlayer.PlayerData.cid
 
 	elseif Config.Framework == "qbcore" then
@@ -161,6 +170,14 @@ function GetGroup(_source)
         return xPlayer.group
 
     elseif Config.Framework == "rsg" then
+
+        if CoreAPI.Functions.HasPermission(_source, 'admin') then
+            return 'admin'
+        end
+
+        return 'user'
+
+    elseif Config.Framework == "rsgv2" then
 
         if CoreAPI.Functions.HasPermission(_source, 'admin') then
             return 'admin'
@@ -212,6 +229,9 @@ function GetFirstName(_source)
 	elseif Config.Framework == "rsg" then
 		return xPlayer.PlayerData.charinfo.firstname
 
+    elseif Config.Framework == "rsgv2" then
+		return xPlayer.PlayerData.charinfo.firstname
+
 	elseif Config.Framework == "qbcore" then
 		
 		return xPlayer.PlayerData.charinfo.firstname
@@ -231,6 +251,10 @@ function GetLastName(_source)
 		return xPlayer.lastname
 
 	elseif Config.Framework == "rsg" then
+
+		return xPlayer.PlayerData.charinfo.lastname
+
+    elseif Config.Framework == "rsgv2" then
 
 		return xPlayer.PlayerData.charinfo.lastname
 
@@ -257,6 +281,12 @@ function AddItemToInventory(_source, item, amount, label)
         xPlayer.Functions.AddItem(item, amount)
 
         TriggerClientEvent('inventory:client:ItemBox', _source, label, "add")
+        
+    elseif Config.Framework == "rsgv2" then
+ 
+        xPlayer.Functions.AddItem(item, amount)
+
+        TriggerClientEvent('rsg-inventory:client:ItemBox', _source, CoreAPI.Shared.Items[item], "add", amount)
         
 	elseif Config.Framework == "qbcore" then
         
@@ -289,6 +319,12 @@ function RemoveItemFromInventory(_source, item, amount, label)
 		xPlayer.Functions.RemoveItem(item, amount)
 
 		TriggerClientEvent('inventory:client:ItemBox', _source, label, "remove")
+
+	elseif Config.Framework == "rsgv2" then
+ 
+		xPlayer.Functions.RemoveItem(item, amount)
+
+		TriggerClientEvent('rsg-inventory:client:ItemBox', _source, CoreAPI.Shared.Items[item], "remove", amount)
 
 	elseif Config.Framework == "qbcore" then
         
@@ -333,7 +369,14 @@ function AddWeaponToInventory(_source, weapon)
         local xPlayer = GetPlayer(_source)
 
         xPlayer.Functions.AddItem(weapon, 1)
-        TriggerClientEvent('inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add")
+        TriggerClientEvent('inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add", 1)
+
+    elseif Config.Framework == "rsgv2" then
+
+        local xPlayer = CoreAPI.Functions.GetPlayer(_source)
+
+        xPlayer.Functions.AddItem(weapon, 1)
+        TriggerClientEvent('rsg-inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add", 1)
 
     elseif Config.Framework == "redmrp" then
         CoreInventoryAPI.addItem(_source, weapon, 100, GetHashKey(weapon))
@@ -369,6 +412,17 @@ function GetItemCount(_source, item)
             return amountitem
         end
 
+    elseif Config.Framework == "rsgv2" then
+
+        local xPlayer = CoreAPI.Functions.GetPlayer(_source)
+
+        if xPlayer.Functions.GetItemByName(item) == nil then
+            return 0
+        else
+            local amountitem = xPlayer.Functions.GetItemByName(item).amount
+            return amountitem
+        end
+
     elseif Config.Framework == "redmrp" then
 
         local ItemData = CoreInventoryAPI.getItem(_source, item)
@@ -393,6 +447,9 @@ function GetMoney(_source)
 		return xPlayer.money
 
 	elseif Config.Framework == "rsg" then
+		return xPlayer.Functions.GetMoney('cash')
+
+    elseif Config.Framework == "rsgv2" then
 		return xPlayer.Functions.GetMoney('cash')
 
 	elseif Config.Framework == "qbcore" then
@@ -420,6 +477,9 @@ function GetGold(_source)
 		return xPlayer.gold
 
 	elseif Config.Framework == "rsg" then
+		return xPlayer.Functions.GetMoney('gold')
+        
+    elseif Config.Framework == "rsgv2" then
 		return xPlayer.Functions.GetMoney('gold')
 
 	elseif Config.Framework == "qbcore" then
@@ -471,8 +531,9 @@ function CanCarryItem(_source, item, amount)
 
         if not ItemData.AddItem(amount) then return false else return true end
 
-    elseif Config.Framework == "qbcore" or Config.Framework == "rsg" then
+    elseif Config.Framework == "qbcore" or Config.Framework == "rsg" or Config.Framework == "rsgv2" then
         return true
+
     elseif Config.Framework == "tpzcore" then
 
         return CoreInventoryAPI.canCarryItem(_source, item, amount)
@@ -530,6 +591,9 @@ function AddMoney(_source, amount)
     elseif Config.Framework == "rsg" then
         xPlayer.Functions.AddMoney('cash', amount)
 
+    elseif Config.Framework == "rsgv2" then
+        xPlayer.Functions.AddMoney('cash', amount)
+
     elseif Config.Framework == "redmrp" then
         xPlayer.AddMoney(amount)
 
@@ -564,6 +628,9 @@ function AddGold(_source, amount)
     elseif Config.Framework == "rsg" then
         xPlayer.Functions.AddMoney('gold', amount)
 
+    elseif Config.Framework == "rsgv2" then
+        xPlayer.Functions.AddMoney('gold', amount)
+
     elseif Config.Framework == "tpzcore" then
         xPlayer.addAccount(2, amount)
     end
@@ -584,6 +651,9 @@ function RemoveMoney(_source, amount)
         xPlayer.Functions.RemoveMoney('cash', amount)
         
     elseif Config.Framework == "rsg" then
+        xPlayer.Functions.RemoveMoney('cash', amount)
+
+    elseif Config.Framework == "rsgv2" then
         xPlayer.Functions.RemoveMoney('cash', amount)
 
     elseif Config.Framework == "redmrp" then
@@ -623,6 +693,9 @@ function RemoveGold(_source, amount)
     elseif Config.Framework == "rsg" then
         xPlayer.Functions.RemoveMoney('gold', amount)
 
+    elseif Config.Framework == "rsgv2" then
+        xPlayer.Functions.RemoveMoney('gold', amount)   --updatev2
+
     elseif Config.Framework == "tpzcore" then
         xPlayer.removeAccount(2, amount)
     end
@@ -656,6 +729,12 @@ function GetUserInventory(_source)
         
         return xPlayer.PlayerData.items
         
+    elseif Config.Framework == "rsgv2" then
+
+        local xPlayer = GetPlayer(_source)
+        
+        return xPlayer.PlayerData.items
+
     elseif Config.Framework == "redmrp" then
 
         return CoreInventoryAPI.getPlayerInventory(_source)
@@ -678,6 +757,10 @@ function GetInventoryTotalWeight(_source)
     elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
 
         return CoreAPI.Player.GetTotalWeight(xPlayer.PlayerData.items)
+
+    elseif Config.Framework == "rsgv2" then
+        local totalWeight = exports['rsg-inventory']:GetTotalWeight(xPlayer.PlayerData.items)
+        return totalWeight
 
     elseif Config.Framework == "tpzcore" then
         return CoreInventoryAPI.getInventoryTotalWeight(_source)
@@ -702,6 +785,10 @@ function GetJob(_source)
     elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
 
         return tostring(xPlayer.PlayerData.job.name)
+
+    elseif Config.Framework == "rsgv2" then
+
+        return xPlayer.PlayerData.job
 
     elseif Config.Framework == "redmrp" then
 
@@ -729,6 +816,10 @@ function GetJobGrade(_source)
     elseif Config.Framework == "rsg" or Config.Framework == "qbcore" then
 
         return 0
+
+    elseif Config.Framework == "rsgv2" then
+
+        return xPlayer.PlayerData.job.grade.level
 
     elseif Config.Framework == "redmrp" then
 
