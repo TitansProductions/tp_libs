@@ -12,7 +12,8 @@ This script can also be used by other developers if they are willing.
 3. GUM
 4. QBCORE
 5. RSG
-6. REDMRP
+6. RSG V2
+7. REDEM:RP
 
 # Installation
 
