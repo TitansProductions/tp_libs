@@ -456,11 +456,15 @@ function GetItemWeight(targetItem)
 
     elseif Config.Framework == "rsg" then
 
-        return 0
+        local weight = exports['rsg-inventory']:GetItemWeight(targetItem)
+
+        return weight or 0
 
     elseif Config.Framework == "rsgv2" then
 
-        return 0
+        local weight = exports['rsg-inventory']:GetItemWeight(targetItem)
+
+        return weight or 0
         
     elseif Config.Framework == "redmrp" then
 
