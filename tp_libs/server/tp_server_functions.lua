@@ -436,6 +436,44 @@ function GetItemCount(_source, item)
     end
 end
 
+function GetItemWeight(targetItem)
+
+    if Config.Framework == "vorp" then
+
+        local item = exports.vorp_inventory:getInventoryItem(targetItem)
+
+        return item.weight or 0
+
+    elseif Config.Framework == "gum" then
+
+        local item = exports.gum_inventory:getInventoryItem(targetItem)
+
+        return item.weight or 0
+        
+    elseif Config.Framework == "qbcore" then
+
+        return 0
+
+    elseif Config.Framework == "rsg" then
+
+        return 0
+
+    elseif Config.Framework == "rsgv2" then
+
+        return 0
+        
+    elseif Config.Framework == "redmrp" then
+
+        return 0
+
+    elseif Config.Framework == "tpzcore" then
+
+        local count = CoreInventoryAPI.getItemWeight(targetItem)
+        return count or 0
+
+    end
+end
+
 function GetMoney(_source)
     
     local xPlayer = GetPlayer(_source)
