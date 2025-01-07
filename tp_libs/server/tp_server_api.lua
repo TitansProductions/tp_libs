@@ -67,6 +67,10 @@ AddEventHandler('getTPAPI', function(cb)
     apiData.getItemCount = function(source, item)
         local rv = GetItemCount(source, item) return rv
     end
+        
+    apiData.getItemWeight = function(item)
+        local rv = GetItemWeight(item) return rv
+    end
 
     apiData.getMoney = function(source)
         local rv = GetMoney(source) return rv
@@ -208,6 +212,10 @@ exports('rServerAPI', function()
 
     self.getItemCount = function(source, item)
         local rv = GetItemCount(source, item) return rv
+    end
+
+    self.getItemWeight = function(item)
+        local rv = GetItemWeight(item) return rv
     end
 
     self.getMoney = function(source)
