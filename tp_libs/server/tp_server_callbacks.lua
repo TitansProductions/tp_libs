@@ -122,6 +122,7 @@ end
 
 RegisterNetEvent('tp_libs:ServerCallback', ServerRPC.ExecuteRpc)
 
+addNewCallBack = function(name, cb) TriggerEvent("tp_libs:addNewCallBack", name, cb) end
 
 --- * Trigger a callback Asynchronously
 ---@param source number player source
