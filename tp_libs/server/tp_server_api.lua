@@ -35,6 +35,10 @@ AddEventHandler('getTPAPI', function(cb)
         TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
     end
 
+    apiData.sendNotification = function(webhook, url, color)
+        TriggerEvent('tp_libs:sendImageUrlToDiscord', webhook, url, color)
+    end
+
     -- Framework Functions
     apiData.getPlayer = function(source)
         local rv = GetPlayer(source) return rv
@@ -179,6 +183,10 @@ exports('rServerAPI', function()
 
     self.sendToDiscord = function(webhook, name, description, color)
         TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
+    end
+
+    self.sendImageUrlToDiscord = function(webhook, url, color)
+        TriggerEvent('tp_libs:sendImageUrlToDiscord', webhook, url, color)
     end
 
     -- Framework Functions
