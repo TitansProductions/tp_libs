@@ -873,3 +873,15 @@ function GetJobGrade(_source)
 
     end
 end
+
+function GetDiscordRoles(_source)
+    
+    local userRoles  = GetDiscordRoles(_source, Config.DiscordServerID)
+
+    if not userRoles or userRoles == nil then
+        userRoles = {}
+    end
+
+    return userRoles
+
+end
