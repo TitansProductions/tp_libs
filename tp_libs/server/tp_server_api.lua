@@ -40,6 +40,11 @@ AddEventHandler('getTPAPI', function(cb)
     end
 
     -- Framework Functions
+        
+    apiData.isPlayerCharacterSelected = function(source)
+        local rv = IsPlayerCharacterSelected(source) return rv
+    end
+
     apiData.getPlayer = function(source)
         local rv = GetPlayer(source) return rv
     end
@@ -194,6 +199,11 @@ exports('rServerAPI', function()
     end
 
     -- Framework Functions
+
+    self.isPlayerCharacterSelected = function(source)
+        local rv = IsPlayerCharacterSelected(source) return rv
+    end
+        
     self.getPlayer = function(source)
         local rv = GetPlayer(source) return rv
     end
