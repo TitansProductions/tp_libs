@@ -3,6 +3,7 @@ Config = {}
 -- @Supported Versions: vorp, gum, rsg, rsgv2, qbcore, redmrp, tpzcore
 Config.Framework = "vorp"
 
+Config.Debug = true
 ---------------------------------------------------------------
 --[[ Discord Webhooking ]]--
 ---------------------------------------------------------------
