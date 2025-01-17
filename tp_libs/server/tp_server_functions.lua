@@ -874,7 +874,7 @@ function GetJobGrade(_source)
     end
 end
 
-function GetDiscordRoles(_source)
+function GetUserDiscordRoles(_source)
     
     local userRoles  = GetDiscordRoles(_source, Config.DiscordServerID)
 
