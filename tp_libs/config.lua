@@ -15,6 +15,20 @@ Config.DiscordWebhooking = {
 }
 
 ---------------------------------------------------------------
+--[[ Discord API Configurations ]]--
+---------------------------------------------------------------
+
+-- The specified feature is for advanced permissions which are based on the
+-- discord roles of your discord server.
+
+-- Your discord server ID.
+Config.DiscordServerID = 'xxxxxxxxxxxxxxxxxxxx'
+
+-- Your discord bot token, if does not exist, create a bot in the url below:
+-- https://discord.com/developers/applications
+Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+---------------------------------------------------------------
 --[[ Documents Menu ]]--
 ---------------------------------------------------------------
 
