@@ -35,7 +35,7 @@ AddEventHandler('getTPAPI', function(cb)
         TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
     end
 
-    apiData.sendNotification = function(webhook, url, color)
+    apiData.sendImageUrlToDiscord = function(webhook, url, color)
         TriggerEvent('tp_libs:sendImageUrlToDiscord', webhook, url, color)
     end
 
