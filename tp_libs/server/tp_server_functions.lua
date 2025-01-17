@@ -59,6 +59,77 @@ end)
 -- Functions
 -------------------------------------------------
 
+function IsPlayerCharacterSelected(source)
+
+	if Config.Framework == "vorp" then
+		
+        local xPlayer = CoreAPI.getUser(source)
+        local cb      = true
+
+        if not xPlayer then -- is player in session?
+            cb = false
+        end
+
+        return cb 
+
+    elseif Config.Framework == "gum" then
+
+        local xPlayer = CoreAPI.getUser(source)
+        local cb      = true
+
+        if not xPlayer then -- is player in session?
+            cb = false
+        end
+
+        return cb 
+
+	elseif Config.Framework == "rsg" or Config.Framework == 'rsgv2' then
+
+        local xPlayer = CoreAPI.Functions.GetPlayer(source)
+
+        local cb      = true
+
+        if not xPlayer then -- is player in session?
+            cb = false
+        end
+
+        return cb 
+
+	elseif Config.Framework == "qbcore" then
+
+        local xPlayer = exports['qbr-core']:GetPlayer(source)
+
+        local cb      = true
+
+        if not xPlayer then -- is player in session?
+            cb = false
+        end
+
+        return cb 
+	
+    elseif Config.Framework == "redmrp" then
+
+        local xPlayer = CoreAPI.GetPlayer(source)
+
+        local cb      = true
+
+        if not xPlayer then -- is player in session?
+            cb = false
+        end
+
+        return cb 
+
+    elseif Config.Framework == "tpzcore" then
+
+        local xPlayer = CoreAPI.GetPlayer(source)
+
+        return xPlayer.loaded()
+    end
+
+	return false
+
+end
+
 function GetPlayer(_source)
 
 	if Config.Framework == "vorp" or Config.Framework == 'gum' then
