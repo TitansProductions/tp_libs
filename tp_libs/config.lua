@@ -36,13 +36,6 @@ Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 -- DO NOT SET TO false if you don't want a command to open the Documents NUI.
 -- Set it to something unknown.
 Config.DocumentsCommand = 'documents'
-
--- https://github.com/mja00/redm-shit/blob/master/nuiweaponspawner/config.lua
--- Set to false if you don't want any key to open the Documents NUI.
--- (!) SOON - UNDER DEVELOPMENT
-Config.DocumentsKey     = false
-
-
 ---------------------------------------------------------------
 --[[ Notifications ]]--
 ---------------------------------------------------------------
