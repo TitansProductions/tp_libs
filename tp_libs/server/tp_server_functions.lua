@@ -472,7 +472,7 @@ function GetItemWeight(targetItem)
 
     elseif Config.Framework == "tpzcore" then
 
-        local count = CoreInventoryAPI.getItemWeight(targetItem)
+        local count = exports.tpz_inventory:getInventoryAPI().getItemWeight(targetItem)
         return count or 0
 
     end
