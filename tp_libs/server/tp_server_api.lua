@@ -143,6 +143,10 @@ AddEventHandler('getTPAPI', function(cb)
     apiData.getLastName = function(source)
         local rv = GetLastName(source) return rv
     end
+    
+    apiData.getDiscordRoles = function(source)
+        local rv = GetDiscordRoles(source) return rv
+    end
         
     cb(apiData)
 end)
@@ -280,6 +284,10 @@ exports('rServerAPI', function()
 
     self.getLastName = function(source)
         local rv = GetLastName(source) return rv
+    end
+
+    self.getDiscordRoles = function(source)
+        local rv = GetDiscordRoles(source) return rv
     end
 
     return self
