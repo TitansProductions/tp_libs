@@ -145,7 +145,7 @@ AddEventHandler('getTPAPI', function(cb)
     end
     
     apiData.getDiscordRoles = function(source)
-        local rv = GetDiscordRoles(source) return rv
+        local rv = GetUserDiscordRoles(source) return rv
     end
         
     cb(apiData)
@@ -287,7 +287,7 @@ exports('rServerAPI', function()
     end
 
     self.getDiscordRoles = function(source)
-        local rv = GetDiscordRoles(source) return rv
+        local rv = GetUserDiscordRoles(source) return rv
     end
 
     return self
