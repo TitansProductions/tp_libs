@@ -43,7 +43,7 @@ AddEventHandler("tp_libs:sendToDiscord", function(webhook, name, description, co
 end)
 
 RegisterServerEvent("tp_libs:sendImageUrlToDiscord")
-AddEventHandler("tp_libs:sendImageUrlToDiscord", function(webhook, url, color)
+AddEventHandler("tp_libs:sendImageUrlToDiscord", function(webhook, name, description, url, color)
     local data = Config.DiscordWebhooking
 
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({
@@ -54,7 +54,10 @@ AddEventHandler("tp_libs:sendImageUrlToDiscord", function(webhook, url, color)
                     ["name"] = data.Label,
                     ["icon_url"] = data.ImageUrl,
                 },
-
+                     
+                ["title"] = name,
+                ["description"] = description,
+                     
                 ["footer"] = {
                     ["text"] = data.Footer .. " • " .. os.date("%x %X %p"),
                     ["icon_url"] = data.ImageUrl,
