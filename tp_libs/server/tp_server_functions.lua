@@ -450,7 +450,9 @@ function AddWeaponToInventory(_source, weapon)
         TriggerClientEvent('rsg-inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add", 1)
 
     elseif Config.Framework == "redmrp" then
-        CoreInventoryAPI.addItem(_source, weapon, 100, GetHashKey(weapon))
+		
+        local ItemData = CoreInventoryAPI.getItem(_source, weapon)
+        ItemData.AddItem(1)
 
     elseif Config.Framework == "tpzcore" then
         CoreInventoryAPI.addWeapon(_source, weapon)
