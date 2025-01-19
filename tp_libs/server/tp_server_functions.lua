@@ -31,7 +31,7 @@ Citizen.CreateThread(function ()
 	elseif Config.Framework == "qbcore" then
 		CoreAPI = exports['qbr-core']:GetCoreObject()
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         CoreAPI = exports["redem_roleplay"]:RedEM()
 
         CoreInventoryAPI = {}
@@ -107,7 +107,7 @@ function IsPlayerCharacterSelected(source)
 
         return cb 
 	
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         local xPlayer = CoreAPI.GetPlayer(source)
 
@@ -149,7 +149,7 @@ function GetPlayer(_source)
 	elseif Config.Framework == "qbcore" then
         return exports['qbr-core']:GetPlayer(_source)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         return CoreAPI.GetPlayer(_source)
 
     elseif Config.Framework == "tpzcore" then
@@ -179,7 +179,7 @@ function GetIdentifier(_source)
 	elseif Config.Framework == "qbcore" then
 		return xPlayer.PlayerData.citizenid
 	
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         return xPlayer.identifier
 
     elseif Config.Framework == "tpzcore" then
@@ -208,7 +208,7 @@ function GetChar(_source)
 	elseif Config.Framework == "qbcore" then
 		return xPlayer.PlayerData.cid
 	
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         return xPlayer.charid
 
     elseif Config.Framework == "tpzcore" then
@@ -260,7 +260,7 @@ function GetGroup(_source)
 
         return xPlayer.group
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         local finished = false
         local group    = "user"
@@ -368,7 +368,7 @@ function AddItemToInventory(_source, item, amount, label)
     elseif Config.Framework == "gum" then
         CoreInventoryAPI.addItem(_source, item, amount)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         local ItemData = CoreInventoryAPI.getItem(_source, item)
         ItemData.AddItem(amount)
@@ -404,7 +404,7 @@ function RemoveItemFromInventory(_source, item, amount, label)
     elseif Config.Framework == "gum" then
         CoreInventoryAPI.subItem(_source, item, amount)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         local ItemData = CoreInventoryAPI.getItem(_source, item)
         
         ItemData.RemoveItem(amount)
@@ -449,7 +449,7 @@ function AddWeaponToInventory(_source, weapon)
         xPlayer.Functions.AddItem(weapon, 1)
         TriggerClientEvent('rsg-inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add", 1)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 		
         local ItemData = CoreInventoryAPI.getItem(_source, weapon)
         ItemData.AddItem(1)
@@ -496,7 +496,7 @@ function GetItemCount(_source, item)
             return amountitem
         end
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         local ItemData = CoreInventoryAPI.getItem(_source, item)
         return ItemData.ItemAmount
@@ -539,7 +539,7 @@ function GetItemWeight(targetItem)
 
         return weight or 0
         
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         return 0
 
@@ -570,7 +570,7 @@ function GetMoney(_source)
 	elseif Config.Framework == "qbcore" then
 		return xPlayer.Functions.GetMoney('cash')
 	
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         return xPlayer.getMoney()
 
     elseif Config.Framework == "tpzcore" then
@@ -641,7 +641,7 @@ function CanCarryItem(_source, item, amount)
 		
         return canCarry
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         local ItemData = CoreInventoryAPI.getItem(_source, item)
 
         if not ItemData.AddItem(amount) then return false else return true end
@@ -675,7 +675,7 @@ function CanCarryWeapons(_source, item, amount)
 
         return canCarry
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         local ItemData = CoreInventoryAPI.getItem(_source, item)
 
         if not ItemData.AddItem(amount) then return false else return true end
@@ -709,7 +709,7 @@ function AddMoney(_source, amount)
     elseif Config.Framework == "rsgv2" then
         xPlayer.Functions.AddMoney('cash', amount)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
         xPlayer.AddMoney(amount)
 
     elseif Config.Framework == "tpzcore" then
@@ -771,7 +771,7 @@ function RemoveMoney(_source, amount)
     elseif Config.Framework == "rsgv2" then
         xPlayer.Functions.RemoveMoney('cash', amount)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         xPlayer.RemoveMoney(amount)
 
@@ -850,7 +850,7 @@ function GetUserInventory(_source)
         
         return xPlayer.PlayerData.items
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         return CoreInventoryAPI.getPlayerInventory(_source)
 
@@ -905,7 +905,7 @@ function GetJob(_source)
 
         return tostring(xPlayer.PlayerData.job.name)
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         return xPlayer.job
 
@@ -936,7 +936,7 @@ function GetJobGrade(_source)
 
         return xPlayer.PlayerData.job.grade.level
 
-    elseif Config.Framework == "redmrp" then
+    elseif Config.Framework == "redemrp" then
 
         return xPlayer.jobgrade
 
