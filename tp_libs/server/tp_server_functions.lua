@@ -549,7 +549,20 @@ function GetItemWeight(targetItem)
         
     elseif Config.Framework == "redemrp" then
 
-        return 0
+        local ItemData = nil
+        local finished = false 
+
+        TriggerEvent("redemrp_inventory:getData",function(call)
+
+            ItemData = call.getItemData(targetItem) -- return info from config
+            finished = true
+        end)
+
+        while not finished do
+            Wait(1)
+        end
+
+        return ItemData.weight
 
     elseif Config.Framework == "tpzcore" then
 
