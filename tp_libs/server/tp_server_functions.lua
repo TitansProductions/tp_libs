@@ -307,6 +307,10 @@ function GetFirstName(_source)
 		
 		return xPlayer.PlayerData.charinfo.firstname
 
+    elseif Config.Framework == "redemrp" then
+		
+		return xPlayer.firstname
+
     elseif Config.Framework == "tpzcore" then
         return xPlayer.getFirstName()
 	end
@@ -332,6 +336,10 @@ function GetLastName(_source)
 	elseif Config.Framework == "qbcore" then
 
 		return xPlayer.PlayerData.charinfo.lastname
+
+    elseif Config.Framework == "redemrp" then
+		
+		return xPlayer.firstname
 
     elseif Config.Framework == "tpzcore" then
 
