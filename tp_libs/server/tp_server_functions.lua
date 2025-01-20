@@ -339,7 +339,7 @@ function GetLastName(_source)
 
     elseif Config.Framework == "redemrp" then
 		
-		return xPlayer.firstname
+		return xPlayer.lastname
 
     elseif Config.Framework == "tpzcore" then
 
