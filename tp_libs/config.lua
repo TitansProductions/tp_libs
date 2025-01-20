@@ -55,7 +55,7 @@ function SendNotification(source, message, messageType)
             TriggerClientEvent("gum:TipRight", _source, message, 3000)
 
         elseif Config.Framework == "redmrp" then
-            TriggerClientEvent("redemrp_notification:start", _source, message, 3, "success")
+            TriggerClientEvent("redem_roleplay:NotifyRight", _source, message, 3000)
 
         elseif Config.Framework == "rsg" then
             TriggerClientEvent('RSGCore:Notify', _source, message, 'primary')
@@ -77,8 +77,8 @@ function SendNotification(source, message, messageType)
 
             TriggerEvent("gum:TipRight", message, 3000)
 
-        elseif Config.Framework == "redmrp" then
-            TriggerEvent("redemrp_notification:start", message, 3, "success")
+        elseif Config.Framework == "redemrp" then
+            TriggerEvent("redem_roleplay:NotifyRight", message, 3000)
 
         elseif Config.Framework == "rsg" then
             TriggerEvent('RSGCore:Notify', message, 'primary')
