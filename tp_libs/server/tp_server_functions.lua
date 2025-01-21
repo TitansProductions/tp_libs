@@ -535,15 +535,16 @@ function GetItemWeight(targetItem)
 
         return 0
 
-    elseif Config.Framework == "rsg" then
-		
-        return 0
+    elseif Config.Framework == "rsg" or Config.Framework == "rsgv2" then
 
-    elseif Config.Framework == "rsgv2" then
+        local weight = 0
 
-        local weight = exports['rsg-inventory']:GetItemWeight(targetItem)
+        if CoreAPI.Shared.Items[targetItem] then
 
-        return weight or 0
+            weight = CoreAPI.Shared.Items[targetItem].weight
+        end
+
+        return weight
         
     elseif Config.Framework == "redemrp" then
 
