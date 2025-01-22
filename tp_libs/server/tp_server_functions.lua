@@ -537,11 +537,12 @@ function GetItemWeight(targetItem)
 
     elseif Config.Framework == "rsg" or Config.Framework == "rsgv2" then
 
+	local RSGAPI = exports['rsg-core']:GetCoreObject()
         local weight = 0
 
-        if CoreAPI.Shared.Items[targetItem] then
+        if RSGAPI.Shared.Items[targetItem] then
 
-            weight = CoreAPI.Shared.Items[targetItem].weight
+            weight = RSGAPI.Shared.Items[targetItem].weight
         end
 
         return weight
