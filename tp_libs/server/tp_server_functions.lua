@@ -562,7 +562,11 @@ function GetItemWeight(targetItem)
             Wait(1)
         end
 
-        return ItemData.weight
+	if ItemData.weight == nil then
+	    return 0
+	else
+            return ItemData.weight
+	end
 
     elseif Config.Framework == "tpzcore" then
 
