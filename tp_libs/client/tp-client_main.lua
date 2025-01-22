@@ -59,6 +59,11 @@ RegisterNetEvent('RSGCore:Client:OnJobUpdate', function(job)
     TriggerEvent("tp_libs:getPlayerJob", job)
 end)
 
+ -- REDEM:RP
+RegisterNetEvent('redem_roleplay:JobChange', function(job)
+    TriggerEvent("tp_libs:getPlayerJob", job)
+end)
+
 -- TPZ Core
 RegisterNetEvent("tpz_core:getPlayerJob")
 AddEventHandler("tpz_core:getPlayerJob", function(data)
