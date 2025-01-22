@@ -562,7 +562,7 @@ function GetItemWeight(targetItem)
             Wait(1)
         end
 
-	if ItemData.weight == nil then
+	if ItemData == nil then
 	    return 0
 	else
             return ItemData.weight
