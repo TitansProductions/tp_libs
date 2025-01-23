@@ -631,7 +631,18 @@ function GetGold(_source)
 
 	return 0
 end
+
+function GetCents(_source)
     
+    local xPlayer = GetPlayer(_source)
+
+	if Config.Framework == "tpzcore" then
+        return xPlayer.getAccount(0)
+	end
+
+	return 0
+end
+
 function CanCarryItem(_source, item, amount)
 
     if Config.Framework == "vorp" then
@@ -765,6 +776,16 @@ function AddGold(_source, amount)
 
 end
 
+function AddCents(_source, amount)
+
+    local xPlayer = GetPlayer(_source)
+
+    if Config.Framework == "tpzcore" then
+        xPlayer.addAccount(0, amount)
+    end
+
+end
+
 function RemoveMoney(_source, amount)
 
     local xPlayer = GetPlayer(_source)
@@ -816,6 +837,16 @@ function RemoveGold(_source, amount)
 
     elseif Config.Framework == "tpzcore" then
         xPlayer.removeAccount(1, amount)
+    end
+
+end
+
+function RemoveCents(_source, amount)
+
+    local xPlayer = GetPlayer(_source)
+
+    if Config.Framework == "tpzcore" then
+        xPlayer.removeAccount(0, amount)
     end
 
 end
