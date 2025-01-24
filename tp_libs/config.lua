@@ -57,7 +57,7 @@ function SendNotification(source, message, messageType)
         elseif Config.Framework == "redmrp" then
             TriggerClientEvent("redem_roleplay:NotifyRight", _source, message, 3000)
 
-        elseif Config.Framework == "rsg" then
+        elseif Config.Framework == "rsg" or Config.Framework == 'rsgv2' then
             TriggerClientEvent('RSGCore:Notify', _source, message, 'primary')
 
         elseif Config.Framework == "qbcore" then
@@ -80,7 +80,7 @@ function SendNotification(source, message, messageType)
         elseif Config.Framework == "redemrp" then
             TriggerEvent("redem_roleplay:NotifyRight", message, 3000)
 
-        elseif Config.Framework == "rsg" then
+        elseif Config.Framework == "rsg" or Config.Framework == 'rsgv2' then
             TriggerEvent('RSGCore:Notify', message, 'primary')
 
         elseif Config.Framework == "qbcore" then
