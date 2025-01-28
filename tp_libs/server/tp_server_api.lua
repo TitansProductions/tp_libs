@@ -31,15 +31,15 @@ AddEventHandler('getTPAPI', function(cb)
         TriggerEvent('tp_libs:sendNotification', source, message, type)
     end
 
-    apiData.SendToDiscord = function(webhook, title, description, color)
+    apiData.sendToDiscord = function(webhook, title, description, color)
         SendToDiscordWebhook(webhook, title, description, color)
     end
 
-    apiData.SendImageUrlToDiscord = function(webhook, title, description, url, color)
+    apiData.sendImageUrlToDiscord = function(webhook, title, description, url, color)
         SendImageUrlToDiscordWebhook(webhook, title, description, url, color)
     end
     
-    apiData.SendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
+    apiData.sendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
         local message = string.format("**Online Player ID:** `%s`\n**Steam Name:** `%s`\n**First & Last Name**: `%s`\n**Steam Identifier:** `%s`\n**Character Id:** `%s`\n\n**Description:**\n" .. description, source, steamName, username, identifier, charidentifier)
         SendToDiscordWebhook(webhook, title, message, color)
     end
@@ -195,15 +195,15 @@ exports('rServerAPI', function()
         TriggerEvent('tp_libs:sendNotification', source, message, type)
     end
         
-    self.SendToDiscord = function(webhook, title, description, color)
+    self.sendToDiscord = function(webhook, title, description, color)
         SendToDiscordWebhook(webhook, title, description, color)
     end
 
-    self.SendImageUrlToDiscord = function(webhook, title, description, url, color)
+    self.sendImageUrlToDiscord = function(webhook, title, description, url, color)
         SendImageUrlToDiscordWebhook(webhook, title, description, url, color)
     end
     
-    self.SendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
+    self.sendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
         local message = string.format("**Online Player ID:** `%s`\n**Steam Name:** `%s`\n**First & Last Name**: `%s`\n**Steam Identifier:** `%s`\n**Character Id:** `%s`\n\n**Description:**\n" .. description, source, steamName, username, identifier, charidentifier)
         SendToDiscordWebhook(webhook, title, message, color)
     end
