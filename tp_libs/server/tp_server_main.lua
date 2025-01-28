@@ -77,9 +77,9 @@ end
    Framework Events
 ]]---------------------------------------------------
 
-AddEventHandler("vorp:playerJobChange", function(source, job)
+AddEventHandler("vorp:playerJobChange", function(source, newjob, oldjob)
     local _source = source
-    TriggerClientEvent("tp_libs:getPlayerJob", _source, job)
+    TriggerClientEvent("tp_libs:getPlayerJob", _source, newjob)
 end)
 
 -----------------------------------------------------------
