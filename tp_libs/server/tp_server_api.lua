@@ -194,13 +194,18 @@ exports('rServerAPI', function()
     self.sendNotification = function(source, message, type)
         TriggerEvent('tp_libs:sendNotification', source, message, type)
     end
-
-    self.sendToDiscord = function(webhook, name, description, color)
-        TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
+        
+    self.SendToDiscord = function(webhook, title, description, color)
+        SendToDiscordWebhook(webhook, title, description, color)
     end
 
-    self.sendImageUrlToDiscord = function(webhook, name, description, url, color)
-        TriggerEvent('tp_libs:sendImageUrlToDiscord', webhook, name, description, url, color)
+    self.SendImageUrlToDiscord = function(webhook, title, description, url, color)
+        SendImageUrlToDiscordWebhook(webhook, title, description, url, color)
+    end
+    
+    self.SendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
+        local message = string.format("**Online Player ID:** `%s`\n**Steam Name:** `%s`\n**First & Last Name**: `%s`\n**Steam Identifier:** `%s`\n**Character Id:** `%s`\n\n**Description:**\n" .. description, source, steamName, username, identifier, charidentifier)
+        SendToDiscordWebhook(webhook, title, message, color)
     end
 
     -- Framework Functions
