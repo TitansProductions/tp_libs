@@ -31,12 +31,17 @@ AddEventHandler('getTPAPI', function(cb)
         TriggerEvent('tp_libs:sendNotification', source, message, type)
     end
 
-    apiData.sendToDiscord = function(webhook, name, description, color)
-        TriggerEvent('tp_libs:sendToDiscord', webhook, name, description, color)
+    apiData.SendToDiscord = function(webhook, title, description, color)
+        SendToDiscordWebhook(webhook, title, description, color)
     end
 
-    apiData.sendImageUrlToDiscord = function(webhook, name, description, url, color)
-        TriggerEvent('tp_libs:sendImageUrlToDiscord', webhook, name, description, url, color)
+    apiData.SendImageUrlToDiscord = function(webhook, title, description, url, color)
+        SendImageUrlToDiscordWebhook(webhook, title, description, url, color)
+    end
+    
+    apiData.SendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
+        local message = string.format("**Online Player ID:** `%s`\n**Steam Name:** `%s`\n**First & Last Name**: `%s`\n**Steam Identifier:** `%s`\n**Character Id:** `%s`\n\n**Description:**\n" .. description, source, steamName, username, identifier, charidentifier)
+        SendToDiscordWebhook(webhook, title, message, color)
     end
 
     -- Framework Functions
