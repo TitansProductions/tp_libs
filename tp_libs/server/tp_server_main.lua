@@ -14,8 +14,7 @@ AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
     SendNotification(_source, message, type)
 end)
 
-RegisterServerEvent("tp_libs:sendToDiscord")
-AddEventHandler("tp_libs:sendToDiscord", function(webhook, name, description, color)
+SendToDiscordWebhook = function(webhook, name, description, color)
     local data = Config.DiscordWebhooking
 
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({
@@ -40,10 +39,9 @@ AddEventHandler("tp_libs:sendToDiscord", function(webhook, name, description, co
     }), {
         ['Content-Type'] = 'application/json'
     })
-end)
+end
 
-RegisterServerEvent("tp_libs:sendImageUrlToDiscord")
-AddEventHandler("tp_libs:sendImageUrlToDiscord", function(webhook, name, description, url, color)
+SendImageUrlToDiscordWebhook = function(webhook, name, description, url, color)
     local data = Config.DiscordWebhooking
 
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({
@@ -73,7 +71,7 @@ AddEventHandler("tp_libs:sendImageUrlToDiscord", function(webhook, name, descrip
     }), {
         ['Content-Type'] = 'application/json'
     })
-end)
+end
 
 --[[ ------------------------------------------------
    Framework Events
