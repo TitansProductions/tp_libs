@@ -96,16 +96,16 @@ addNewCallBack("tp_libs:getPlayerData", function(source, cb)
     return cb(
         { 
             source          = tonumber(_source),
-            identifier      = API.getIdentifier(_source),
-            charIdentifier  = API.getChar(_source),
+            identifier      = GetIdentifier(_source),
+            charIdentifier  = GetChar(_source),
 
-            firstname       = API.getFirstName(_source),
-            lastname        = API.getLastName(_source),
+            firstname       = GetFirstName(_source),
+            lastname        = GetLastName(_source),
 
-            job             = API.getJob(_source),
-            jobGrade        = API.getJobGrade(_source),
+            job             = GetJob(_source),
+            jobGrade        = GetJobGrade(_source),
 
-            group          = API.getGroup(_source),
+            group           = GetGroup(_source),
         } 
     ) 
 end)
