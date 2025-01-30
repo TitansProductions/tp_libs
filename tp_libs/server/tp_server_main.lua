@@ -86,8 +86,12 @@ end)
 --[[ Player Data Callback  ]]--
 -----------------------------------------------------------
 
-addNewCallBack("tp_libs:getPlayerData", function(source, cb)
+addNewCallBack("tp_libs:getPlayerData", function(source, cb, data)
     local _source = source
+
+    if data and data.source ~= nil then
+        _source = tonumber(data.source)
+    end
 
     if not IsPlayerCharacterSelected(_source) then 
         return nil
