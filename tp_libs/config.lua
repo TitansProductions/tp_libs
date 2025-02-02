@@ -36,6 +36,15 @@ Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 -- DO NOT SET TO false if you don't want a command to open the Documents NUI.
 -- Set it to something unknown.
 Config.DocumentsCommand = 'documents'
+
+---------------------------------------------------------------
+--[[ General ]]--
+---------------------------------------------------------------
+
+-- (!) ONLY FOR RSG V1 AND RSG V2.
+-- RSG DOES NOT PROVIDE INVENTORY MAX WEIGHT!
+Config.InventoryMaxWeight = 30000
+
 ---------------------------------------------------------------
 --[[ Notifications ]]--
 ---------------------------------------------------------------
