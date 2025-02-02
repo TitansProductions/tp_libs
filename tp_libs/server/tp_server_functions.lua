@@ -675,7 +675,7 @@ function CanCarryItem(_source, item, amount)
         local inventoryWeight = GetInventoryTotalWeight(_source)
         local itemWeight      = GetItemWeight(item)
 
-        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+        if (Config.InventoryMaxWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
             return true
         end
 
@@ -686,7 +686,7 @@ function CanCarryItem(_source, item, amount)
         local inventoryWeight = GetInventoryTotalWeight(_source)
         local itemWeight      = GetItemWeight(item)
 
-        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+        if (Config.InventoryMaxWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
             return true
         end
 
@@ -728,7 +728,7 @@ function CanCarryWeapons(_source, item, amount)
         local inventoryWeight = GetInventoryTotalWeight(_source)
         local itemWeight      = GetItemWeight(item)
 
-        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+        if (Config.InventoryMaxWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
             return true
         end
 
@@ -739,7 +739,7 @@ function CanCarryWeapons(_source, item, amount)
         local inventoryWeight = GetInventoryTotalWeight(_source)
         local itemWeight      = GetItemWeight(item)
 
-        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+        if (Config.InventoryMaxWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
             return true
         end
 
