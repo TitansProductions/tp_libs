@@ -41,8 +41,8 @@ Config.DocumentsCommand = 'documents'
 --[[ General ]]--
 ---------------------------------------------------------------
 
--- (!) ONLY FOR RSG V1 AND RSG V2.
--- RSG DOES NOT PROVIDE INVENTORY MAX WEIGHT!
+-- (!) ONLY FOR QBCORE, RSG V1 AND RSG V2.
+-- RSG & QBCORE DOES NOT PROVIDE INVENTORY MAX WEIGHT!
 Config.InventoryMaxWeight = 30000
 
 ---------------------------------------------------------------
