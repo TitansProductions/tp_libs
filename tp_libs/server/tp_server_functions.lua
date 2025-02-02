@@ -670,8 +670,27 @@ function CanCarryItem(_source, item, amount)
 
         if not ItemData.AddItem(amount) then return false else return true end
 
-    elseif Config.Framework == "qbcore" or Config.Framework == "rsg" or Config.Framework == "rsgv2" then
-        return true
+    elseif Config.Framework == "qbcore" then
+
+        local inventoryWeight = GetInventoryTotalWeight(_source)
+        local itemWeight      = GetItemWeight(item)
+
+        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+            return true
+        end
+
+        return false
+        
+    elseif Config.Framework == "rsg" or Config.Framework == "rsgv2" then
+
+        local inventoryWeight = GetInventoryTotalWeight(_source)
+        local itemWeight      = GetItemWeight(item)
+
+        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+            return true
+        end
+
+        return false
 
     elseif Config.Framework == "tpzcore" then
 
@@ -703,6 +722,28 @@ function CanCarryWeapons(_source, item, amount)
         local ItemData = CoreInventoryAPI.getItem(_source, item)
 
         if not ItemData.AddItem(amount) then return false else return true end
+
+    elseif Config.Framework == "qbcore" then
+
+        local inventoryWeight = GetInventoryTotalWeight(_source)
+        local itemWeight      = GetItemWeight(item)
+
+        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+            return true
+        end
+
+        return false
+        
+    elseif Config.Framework == "rsg" or Config.Framework == "rsgv2" then
+
+        local inventoryWeight = GetInventoryTotalWeight(_source)
+        local itemWeight      = GetItemWeight(item)
+
+        if (inventoryWeight) < ( inventoryWeight + ( itemWeight * amount ) ) then
+            return true
+        end
+
+        return false
 
     elseif Config.Framework == "tpzcore" then
         
