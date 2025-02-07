@@ -36,15 +36,6 @@ Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 -- DO NOT SET TO false if you don't want a command to open the Documents NUI.
 -- Set it to something unknown.
 Config.DocumentsCommand = 'documents'
-
----------------------------------------------------------------
---[[ General ]]--
----------------------------------------------------------------
-
--- (!) ONLY FOR QBCORE, RSG V1 AND RSG V2.
--- RSG & QBCORE DOES NOT PROVIDE INVENTORY MAX WEIGHT!
-Config.InventoryMaxWeight = 30000
-
 ---------------------------------------------------------------
 --[[ Notifications ]]--
 ---------------------------------------------------------------
