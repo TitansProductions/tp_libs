@@ -672,26 +672,22 @@ function CanCarryItem(_source, item, amount)
 
     elseif Config.Framework == "qbcore" then
 
-        local inventoryWeight = GetInventoryTotalWeight(_source)
-        local itemWeight      = GetItemWeight(item)
-
-        if (inventoryWeight + ( itemWeight * amount ) ) <= ( Config.InventoryMaxWeight) then
-            return true
+	if _source == nil then return false end
+        if not exports['qbr-inventory']:CanAddItem(_source, item, amount) then
+            return false
         end
 
-        return false
+        return true
         
     elseif Config.Framework == "rsg" or Config.Framework == "rsgv2" then
 
-        local inventoryWeight = GetInventoryTotalWeight(_source)
-        local itemWeight      = GetItemWeight(item)
-
-        if (inventoryWeight + ( itemWeight * amount ) ) <= ( Config.InventoryMaxWeight) then
-            return true
+	if _source == nil then return false end
+        if not exports['rsg-inventory']:CanAddItem(_source, item, amount) then
+            return false
         end
 
-        return false
-
+        return true
+		
     elseif Config.Framework == "tpzcore" then
 
         return CoreInventoryAPI.canCarryItem(_source, item, amount)
@@ -725,25 +721,21 @@ function CanCarryWeapons(_source, item, amount)
 
     elseif Config.Framework == "qbcore" then
 
-        local inventoryWeight = GetInventoryTotalWeight(_source)
-        local itemWeight      = GetItemWeight(item)
-
-        if (inventoryWeight + ( itemWeight * amount ) ) <= ( Config.InventoryMaxWeight) then
-            return true
+	if _source == nil then return false end
+        if not exports['qbr-inventory']:CanAddItem(_source, item, amount) then
+            return false
         end
 
-        return false
-        
+        return true
+		
     elseif Config.Framework == "rsg" or Config.Framework == "rsgv2" then
 
-        local inventoryWeight = GetInventoryTotalWeight(_source)
-        local itemWeight      = GetItemWeight(item)
-
-        if (inventoryWeight + ( itemWeight * amount ) ) <= ( Config.InventoryMaxWeight) then
-            return true
+	if _source == nil then return false end
+        if not exports['rsg-inventory']:CanAddItem(_source, item, amount) then
+            return false
         end
 
-        return false
+        return true
 
     elseif Config.Framework == "tpzcore" then
         
