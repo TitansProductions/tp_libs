@@ -42,10 +42,7 @@ Citizen.CreateThread(function ()
 
     elseif Config.Framework == "tpzcore" then
 
-        TriggerEvent("getTPZCore", function(cb) 
-            CoreAPI = cb 
-        end)
-
+		CoreAPI = exports.tpz_core:getCoreAPI()
 		CoreInventoryAPI = exports.tpz_inventory:getInventoryAPI()
 
     end
