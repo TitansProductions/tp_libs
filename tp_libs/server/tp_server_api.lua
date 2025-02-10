@@ -44,6 +44,64 @@ AddEventHandler('getTPAPI', function(cb)
         SendToDiscordWebhook(webhook, title, message, color)
     end
 
+        apiData.GetSeparatedPlayersByDistance = function(coords, radius)
+        local nearbyPlayers, farPlayers = {}, {}
+
+        local players = GetPlayers()
+
+        for _, playerId in ipairs(players) do
+
+            playerId = tonumber(playerId)
+
+            local playerCoords = GetEntityCoords(GetPlayerPed(playerId)) -- Get the player's coordinates
+    
+            -- Calculate the distance between the player and the center
+            local distance = #(coords - playerCoords)
+    
+            -- Categorize players based on their distance
+            if distance <= radius then
+                table.insert(nearbyPlayers, playerId)
+            else
+                table.insert(farPlayers, playerId)
+            end
+        end
+    
+        return nearbyPlayers, farPlayers
+    end
+
+    apiData.TriggerClientEventAsyncByCoords = function(eventName, data, coords, radius, delay, multiplyDelay, multiplyMinPlayers)
+        -- Separate players into nearby and far based on the radius
+        local nearbyPlayers, farPlayers = apiData.GetSeparatedPlayersByDistance(coords, radius)
+
+        -- Update nearby players immediately
+        for _, playerId in ipairs(nearbyPlayers) do
+            TriggerClientEvent(eventName, playerId, data)
+        end
+
+        -- An extra option to multiply the delay if the far players are less than the minimum input.
+        -- Example: If multiplyMinPlayers input is 40, it will multiply the update delay but if the players
+        -- are more than 40, it will not multiply but use the default delay input.
+        -- The multiply feature is for the 40 players to take the same time to be updated as it should in 80 players.
+        -- If delay is 200 (WITHOUT MULTIPLY), it would take with 80 players 16 seconds to be updated, but in 40 players, it would take 8 seconds
+        -- but this if option is multiplying, it will take 16 seconds to be updated for 40 players and not 8 seconds, we prefer that for better performance.
+        if multiplyDelay and GetTableLength(farPlayers) <= multiplyMinPlayers then
+            delay = delay * 2
+        end
+
+        -- Update far players in batches with a delay
+        Citizen.CreateThread(function()
+    
+            -- Send the event to each player in the batch
+            for _, playerId in ipairs(farPlayers) do
+                TriggerClientEvent(eventName, playerId, data)
+                -- Wait for the specified delay before the next update loop.
+                Citizen.Wait(delay)
+            end
+
+        end)
+
+    end
+
     -- Framework Functions
         
     apiData.isPlayerCharacterSelected = function(source)
@@ -206,6 +264,64 @@ exports('rServerAPI', function()
     self.sendToDiscordWithPlayerParameters = function(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
         local message = string.format("**Online Player ID:** `%s`\n**Steam Name:** `%s`\n**First & Last Name**: `%s`\n**Steam Identifier:** `%s`\n**Character Id:** `%s`\n\n**Description:**\n" .. description, source, steamName, username, identifier, charidentifier)
         SendToDiscordWebhook(webhook, title, message, color)
+    end
+
+    self.GetSeparatedPlayersByDistance = function(coords, radius)
+        local nearbyPlayers, farPlayers = {}, {}
+
+        local players = GetPlayers()
+
+        for _, playerId in ipairs(players) do
+
+            playerId = tonumber(playerId)
+
+            local playerCoords = GetEntityCoords(GetPlayerPed(playerId)) -- Get the player's coordinates
+    
+            -- Calculate the distance between the player and the center
+            local distance = #(coords - playerCoords)
+    
+            -- Categorize players based on their distance
+            if distance <= radius then
+                table.insert(nearbyPlayers, playerId)
+            else
+                table.insert(farPlayers, playerId)
+            end
+        end
+    
+        return nearbyPlayers, farPlayers
+    end
+
+    self.TriggerClientEventAsyncByCoords = function(eventName, data, coords, radius, delay, multiplyDelay, multiplyMinPlayers)
+        -- Separate players into nearby and far based on the radius
+        local nearbyPlayers, farPlayers = self.GetSeparatedPlayersByDistance(coords, radius)
+
+        -- Update nearby players immediately
+        for _, playerId in ipairs(nearbyPlayers) do
+            TriggerClientEvent(eventName, playerId, data)
+        end
+
+        -- An extra option to multiply the delay if the far players are less than the minimum input.
+        -- Example: If multiplyMinPlayers input is 40, it will multiply the update delay but if the players
+        -- are more than 40, it will not multiply but use the default delay input.
+        -- The multiply feature is for the 40 players to take the same time to be updated as it should in 80 players.
+        -- If delay is 200 (WITHOUT MULTIPLY), it would take with 80 players 16 seconds to be updated, but in 40 players, it would take 8 seconds
+        -- but this if option is multiplying, it will take 16 seconds to be updated for 40 players and not 8 seconds, we prefer that for better performance.
+        if multiplyDelay and GetTableLength(farPlayers) <= multiplyMinPlayers then
+            delay = delay * 2
+        end
+
+        -- Update far players in batches with a delay
+        Citizen.CreateThread(function()
+    
+            -- Send the event to each player in the batch
+            for _, playerId in ipairs(farPlayers) do
+                TriggerClientEvent(eventName, playerId, data)
+                -- Wait for the specified delay before the next update loop.
+                Citizen.Wait(delay)
+            end
+
+        end)
+
     end
 
     -- Framework Functions
