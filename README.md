@@ -25,9 +25,7 @@ This script can also be used by other developers if they are willing.
 
 SOON - REWORK
 
-**Events**
-
-* Notifications
+## Notifications
   
 ```lua
 
@@ -35,7 +33,7 @@ TriggerServerEvent('tp_libs:sendNotification', source, message, type) -- Client 
 TriggerEvent('tp_libs:sendNotification', source, message, type) -- Server Side to be used.
 ```
 
-* Discord Webhooking
+## Discord Webhooking
 
 Discord Webhooks (Embed)
 
@@ -44,7 +42,7 @@ Discord Webhooks (Embed)
 -- @param title: the title.
 -- @param description: the description.
 -- @param color: All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
-TPZ.sendToDiscord(webhook, title, description, color) -- server to server.
+TP.sendToDiscord(webhook, title, description, color) -- server to server.
 ```
 
 Discord Webhooks (Embed) with player parameters.
@@ -59,7 +57,7 @@ Discord Webhooks (Embed) with player parameters.
 -- @param charidentifier : the player target selected character identifier.
 -- @param description: the description.
 -- @param color: All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
-TPZ.sendToDiscordWithPlayerParameters(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
+TP.sendToDiscordWithPlayerParameters(webhook, title, source, steamName, username, identifier, charidentifier, description, color)
 ```
 
 Discord Webhooks (Embed) with url image support.
@@ -70,7 +68,7 @@ Discord Webhooks (Embed) with url image support.
 -- @param description: the description.
 -- @param url: the url of the image to be used and displayed.
 -- @param color: All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
-TPZ.sendImageUrlToDiscord(webhook, title, description, url, color) -- server to server.
+TP.sendImageUrlToDiscord(webhook, title, description, url, color) -- server to server.
 ```
 
 @Credits to VORP-CORE for the Server Callback & Client Callback files.
