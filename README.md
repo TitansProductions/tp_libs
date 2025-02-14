@@ -33,7 +33,7 @@ TriggerServerEvent('tp_libs:sendNotification', source, message, type) -- Client 
 TriggerEvent('tp_libs:sendNotification', source, message, type) -- Server Side to be used.
 ```
 
-## Discord Webhooking
+## Discord Webhooking (Server Side ONLY)
 
 Discord Webhooks (Embed)
 
