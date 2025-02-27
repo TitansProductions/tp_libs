@@ -368,7 +368,7 @@ function AddItemToInventory(_source, item, amount, label)
         
 		xPlayer.Functions.AddItem(item, amount)
 
-        TriggerClientEvent('inventory:client:ItemBox', _source, CoreAPI.Shared.Items[weapon], "add")
+        TriggerClientEvent('inventory:client:ItemBox', _source, CoreAPI.Shared.Items[item], "add")
 
     elseif Config.Framework == "gum" then
         CoreInventoryAPI.addItem(_source, item, amount)
