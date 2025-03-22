@@ -13,7 +13,7 @@ AddEventHandler("tpz_core:isPlayerReady", function()
 end)
 
 -- VORP
-RegisterNetEvent("vorp:SelectedCharacter", function(charId)
+RegisterNetEvent("vorp:SelectedCharacter", function()
     TriggerEvent("tp_libs:isPlayerReady")
 end)
 
