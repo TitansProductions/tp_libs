@@ -128,7 +128,7 @@ function GetUserRolesInGuild (user, guild)
 	else
         
         if Config.Debug then
-            print("ERROR: Code 200 was not reached... Returning false. [Member Data NOT FOUND] DETAILS: " .. error_codes_defined[member.code])
+            print("INFO: Code 200 was not reached... (TP Libs Configuration, Discord Credentials Missing!) Returning false. [Member Data NOT FOUND] DETAILS: " .. error_codes_defined[member.code])
         end
 
 		return false
