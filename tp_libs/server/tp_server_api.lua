@@ -102,6 +102,33 @@ AddEventHandler('getTPAPI', function(cb)
 
     end
 
+    apiData.TriggerClientEventByJobs = function(eventName, data, jobs) 
+
+        local players = GetPlayers()
+
+        for _, playerId in ipairs(players) do
+
+            playerId = tonumber(playerId)
+
+            if IsPlayerCharacterSelected(playerId) then
+
+                local playerJob = GetJob(playerId)
+
+                for index, job in pairs (jobs) do 
+
+                    if job == playerJob then
+                        TriggerClientEvent(eventName, playerId, data)
+                    end
+
+                end
+
+            end
+
+        end
+
+
+    end
+
     -- Framework Functions
         
     apiData.isPlayerCharacterSelected = function(source)
