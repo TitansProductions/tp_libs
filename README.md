@@ -45,6 +45,26 @@ local charIdentifier = API.getChar(source)
 local group = API.getGroup(source) 
 ```
 
+- `job` returns a string value of the selected character job name.
+```lua
+local job = API.getJob(source) 
+```
+
+- `jobGrade` returns an integer value of the selected character job grade name.
+```lua
+local jobGrade = API.getJobGrade(source) 
+```
+
+- `firstname` returns a string value of the selected character first name.
+```lua
+local firstname = API.getFirstName(source) 
+```
+
+- `lastname` returns a string value of the selected character last name.
+```lua
+local lastname = API.getLastName(source) 
+```
+
 - `money` returns an integer value of the player current money account (dollars).
 ```lua
 local money = API.getMoney(source) 
