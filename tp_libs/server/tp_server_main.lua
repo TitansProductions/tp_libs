@@ -15,12 +15,19 @@ AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
 end)
 
 SendToDiscordWebhook = function(webhook, name, description, color)
+
+    if not webhook or webhook == "" then
+        print("Error: Invalid webhook URL.")
+        return
+    end
+
     local data = Config.DiscordWebhooking
+    local defaultColor = 15105570  -- Define default color as a constant
 
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({
         embeds = {
             {
-                ["color"] = color or 15105570,
+                ["color"] = color or defaultColor,
                 ["author"] = {
                     ["name"] = data.Label,
                     ["icon_url"] = data.ImageUrl,
@@ -42,12 +49,19 @@ SendToDiscordWebhook = function(webhook, name, description, color)
 end
 
 SendImageUrlToDiscordWebhook = function(webhook, name, description, url, color)
+
+    if not webhook or webhook == "" then
+        print("Error: Invalid webhook URL.")
+        return
+    end
+
     local data = Config.DiscordWebhooking
+    local defaultColor = 15105570  -- Define default color as a constant
 
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({
         embeds = {
             {
-                ["color"] = color or 15105570,
+                ["color"] = color or defaultColor,
                 ["author"] = {
                     ["name"] = data.Label,
                     ["icon_url"] = data.ImageUrl,
