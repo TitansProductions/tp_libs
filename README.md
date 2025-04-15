@@ -23,7 +23,7 @@ This script can also be used by other developers if they are willing.
 
 # Developers 
 
-## Player Object & Inventory API
+## Player Object Functions
 
 - `isLoaded` returns a boolean value if the player has selected a character or not.
 ```lua
