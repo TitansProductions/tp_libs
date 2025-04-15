@@ -85,7 +85,6 @@ API.removeMoney(source, money)
 local gold = API.getGold(source) 
 ```
 
-
 - Use `addGold` function to add gold to a player source account.
 ```lua
 API.addGold(source, gold) 
