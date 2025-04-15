@@ -30,6 +30,52 @@ This script can also be used by other developers if they are willing.
 local isLoaded = API.isPlayerCharacterSelected(source)
 ```
 
+- `identifier` returns a string value of the selected character identifier (rsg will return `citizenid`).
+```lua
+local identifier = API.getIdentifier(source) 
+```
+
+- `charIdentifier` returns a string / integer value of the selected character identifier (rsg will return `cid`).
+```lua
+local charIdentifier = API.getChar(source) 
+```
+
+- `group` returns a string value of the selected character group.
+```lua
+local group = API.getGroup(source) 
+```
+
+- `money` returns an integer value of the player current money account (dollars).
+```lua
+local money = API.getMoney(source) 
+```
+
+- Use `addMoney` function to add money (dollars) to a player source account.
+```lua
+API.addMoney(source, money) 
+```
+
+- Use `removeMoney` function to remove money (dollars) from a player source account.
+```lua
+API.removeMoney(source, money) 
+```
+
+- `gold` returns an integer value of the player current gold account (gold).
+```lua
+local gold = API.getGold(source) 
+```
+
+
+- Use `addGold` function to add gold to a player source account.
+```lua
+API.addGold(source, gold) 
+```
+
+- Use `removeGold` function to remove gold from a player source account.
+```lua
+API.removeGold(source, gold) 
+```
+
 ## Notifications
   
 ```lua
