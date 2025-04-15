@@ -195,18 +195,6 @@ AddEventHandler('getTPAPI', function(cb)
         RemoveGold(source, quantity)
     end
 
-    apiData.getCents = function(source)
-        local rv = GetCents(source) return rv
-    end
-
-    apiData.addCents = function(source, quantity)
-        AddCents(source, quantity)
-    end
-
-    apiData.removeCents = function(source, quantity)
-        RemoveCents(source, quantity)
-    end
-
     apiData.canCarryItem = function(source, item, quantity)
         local rv = CanCarryItem(source, item, quantity) return rv
     end
