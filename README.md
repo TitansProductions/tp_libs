@@ -9,11 +9,11 @@ This script can also be used by other developers if they are willing.
 
 1. TPZ-CORE
 2. VORP
-3. GUM
-4. QBCORE
-5. RSG
-6. RSG V2
-7. REDEM:RP
+3. GUM (NOT FULLY SUPPORTED)
+4. RSG
+5. RSG V2
+6. QBCORE (NOT FULLY SUPPORTED)
+7. REDEM:RP (NOT FULLY SUPPORTED)
 
 # Installation
 
