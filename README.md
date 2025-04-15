@@ -23,7 +23,12 @@ This script can also be used by other developers if they are willing.
 
 # Developers 
 
-SOON - REWORK
+## Player Object & Inventory API
+
+- `isLoaded` returns a boolean value if the player has selected a character or not.
+```lua
+local isLoaded = API.isPlayerCharacterSelected(source)
+```
 
 ## Notifications
   
