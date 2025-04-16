@@ -1003,8 +1003,8 @@ function GetJobGrade(_source)
         return xPlayer.jobgrade
 
     elseif Config.Framework == "tpzcore" then
-
-        return 0 -- to-do
+		
+        return xPlayer.getJobGrade()
 
     end
 end
