@@ -95,6 +95,21 @@ API.addGold(source, gold)
 API.removeGold(source, gold) 
 ```
 
+## Player Inventory Functions
+
+- @param item : requires the item name
+- `itemWeight` returns an integer value or float based on the inventory.
+```lua
+local itemWeight = API.getItemWeight(item)
+```
+
+-- @param item : requires the item name.
+-- `itemCount` returns integer value.
+```lua
+local itemCount = API.getItemCount(source, item)
+```
+
+
 ## Notifications
   
 ```lua
