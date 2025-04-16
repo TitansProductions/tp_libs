@@ -97,8 +97,18 @@ API.removeGold(source, gold)
 
 ## Player Inventory Functions
 
+- `totalWeight` returns the total weight of the player's inventory (not current weight) on an integer or float value.
+```lua
+local totalWeight = API.getInventoryTotalWeight(source)
+```
+
+- `inventory` returns the player inventory contents on a table form.
+```lua
+local inventory = API.getUserInventoryContents(source)
+```
+
 - @param item : requires the item name
-- `itemWeight` returns an integer value or float based on the inventory.
+- `itemWeight` returns an integer or float value.
 ```lua
 local itemWeight = API.getItemWeight(item)
 ```
