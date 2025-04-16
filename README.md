@@ -103,12 +103,18 @@ API.removeGold(source, gold)
 local itemWeight = API.getItemWeight(item)
 ```
 
--- @param item : requires the item name.
--- `itemCount` returns integer value.
+- @param item : requires the item name.
+- `itemCount` returns integer value.
 ```lua
 local itemCount = API.getItemCount(source, item)
 ```
 
+- @param item : requires an item name.
+- @param quantity : requires a quantity.
+- `canCarryItem` returns a boolean value.
+```lua
+local canCarryItem = API.canCarryItem(source, item, quantity)
+```
 
 ## Notifications
   
