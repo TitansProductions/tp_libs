@@ -93,8 +93,8 @@ AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
     SendNotification(_source, message, type)
 end)
 
-RegisterServerEvent('tp_libs:server:update')
-AddEventHandler('tp_libs:server:update', function()
+RegisterServerEvent('tp_libs:server:onDataUpdate')
+AddEventHandler('tp_libs:server:onDataUpdate', function()
     -- todo nothing
 end)
 
