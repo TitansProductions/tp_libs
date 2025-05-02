@@ -1,19 +1,22 @@
 Config = {}
 
+Config.Debug = true
+
+---------------------------------------------------------------
+--[[ General Settings ]]--
+---------------------------------------------------------------
+
 -- @Supported Versions: vorp, gum, rsg, rsgv2, qbcore, redemrp, tpzcore
 Config.Framework = "vorp"
 
-Config.Debug = true
----------------------------------------------------------------
---[[ Discord Webhooking ]]--
----------------------------------------------------------------
+-- The following option is saving all the data before server restart hours
+-- (2-3 Minutes atleast before server restart is mostly preferred).
+Config.RestartHours = { "7:57" , "13:57", "19:57", "1:57"}
 
--- All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
-Config.DiscordWebhooking = {
-    Label = "Server Name",
-    ImageUrl = "https://i.imgur.com/xxxxxxxxx.png",
-    Footer = "© Server Name Team",
-}
+-- As default, we save all data every 15 minutes to avoid data loss in case for server crashes.
+-- @param Enabled : Set to false do disable saving every x minutes.
+-- @param Duration : Time in minutes.
+Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 10 }
 
 ---------------------------------------------------------------
 --[[ Discord API Configurations ]]--
@@ -28,6 +31,17 @@ Config.DiscordServerID = 'xxxxxxxxxxxxxxxxxxxx'
 -- Your discord bot token, if does not exist, create a bot in the url below:
 -- https://discord.com/developers/applications
 Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+---------------------------------------------------------------
+--[[ Discord Webhooking ]]--
+---------------------------------------------------------------
+
+-- All colors can be found here: https://gist.github.com/thomasbnt/b6f455e2c7d743b796917fa3c205f812
+Config.DiscordWebhooking = {
+    Label = "Server Name",
+    ImageUrl = "https://i.imgur.com/xxxxxxxxx.png",
+    Footer = "© Server Name Team",
+}
 
 ---------------------------------------------------------------
 --[[ Documents Menu ]]--
