@@ -1,18 +1,9 @@
 
+local CurrentTime = 0
+
 --[[ ------------------------------------------------
-   Events
+   Functions
 ]]---------------------------------------------------
-
-RegisterServerEvent('tp_libs:sendNotification')
-AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
-    local _source = tonumber(tsource)
-
-    if tsource == nil then
-        _source = source
-    end
-
-    SendNotification(_source, message, type)
-end)
 
 SendToDiscordWebhook = function(webhook, name, description, color)
 
@@ -88,6 +79,26 @@ SendImageUrlToDiscordWebhook = function(webhook, name, description, url, color)
 end
 
 --[[ ------------------------------------------------
+   Events
+]]---------------------------------------------------
+
+RegisterServerEvent('tp_libs:sendNotification')
+AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
+    local _source = tonumber(tsource)
+
+    if tsource == nil then
+        _source = source
+    end
+
+    SendNotification(_source, message, type)
+end)
+
+RegisterServerEvent('tp_libs:server:update')
+AddEventHandler('tp_libs:server:update', function()
+    -- todo nothing
+end)
+
+--[[ ------------------------------------------------
    Framework Events
 ]]---------------------------------------------------
 
@@ -126,4 +137,49 @@ addNewCallBack("tp_libs:getPlayerData", function(source, cb, data)
             group           = GetGroup(_source),
         } 
     ) 
+end)
+
+--[[ ------------------------------------------------
+   Events
+]]---------------------------------------------------
+
+Citizen.CreateThread(function()
+	while true do
+		Wait(60000)
+
+    local time        = os.date("*t") 
+    local currentTime = table.concat({time.hour, time.min}, ":")
+
+    local finished    = false
+    local shouldSave  = false
+
+    for index, restartHour in pairs (Config.RestartHours) do
+
+      if currentTime == restartHour then
+        shouldSave = true
+      end
+
+      if next(Config.RestartHours, index) == nil then
+        finished = true
+      end
+
+    end
+
+    while not finished do
+      Wait(1000)
+    end
+
+    CurrentTime = CurrentTime + 1
+
+    if Config.SaveDataRepeatingTimer.Enabled and CurrentTime == Config.SaveDataRepeatingTimer.Duration then
+      CurrentTime = 0
+      shouldSave  = true
+    end
+
+    if shouldSave then
+      TriggerEvent("tp_libs:server:update")
+    end
+
+  end
+
 end)
