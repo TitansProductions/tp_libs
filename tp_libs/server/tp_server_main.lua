@@ -177,7 +177,7 @@ Citizen.CreateThread(function()
     end
 
     if shouldSave then
-      TriggerEvent("tp_libs:server:update")
+      TriggerEvent("tp_libs:server:onDataUpdate")
     end
 
   end
