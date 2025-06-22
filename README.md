@@ -26,7 +26,7 @@ This script can also be used by other developers if they are willing.
 ## Player Object Functions
 
 - Get API
-- 
+
 ```
 local API = exports.tp_libs:getAPI()
 ```
