@@ -23,13 +23,13 @@ This script can also be used by other developers if they are willing.
 
 # Developers 
 
-## Player Object Functions
+## GET API FUNCTION
 
-- Get API
-
-```
+```lua
 local API = exports.tp_libs:getAPI()
 ```
+
+## Player Object Functions
 
 - `isLoaded` returns a boolean value if the player has selected a character or not.
 ```lua
