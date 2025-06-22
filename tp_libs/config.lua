@@ -16,7 +16,7 @@ Config.RestartHours = { "7:57" , "13:57", "19:57", "1:57"}
 -- As default, we save all data every 15 minutes to avoid data loss in case for server crashes.
 -- @param Enabled : Set to false do disable saving every x minutes.
 -- @param Duration : Time in minutes.
-Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 10 }
+Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 20 }
 
 ---------------------------------------------------------------
 --[[ Discord API Configurations ]]--
