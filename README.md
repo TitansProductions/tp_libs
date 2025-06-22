@@ -25,6 +25,9 @@ This script can also be used by other developers if they are willing.
 
 ## Player Object Functions
 
+Get API:
+```local API = exports.tp_libs:getAPI()```
+
 - `isLoaded` returns a boolean value if the player has selected a character or not.
 ```lua
 local isLoaded = API.isPlayerCharacterSelected(source)
