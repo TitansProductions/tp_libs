@@ -172,7 +172,7 @@ if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             return canCarryWeapon
         end
     
-        AddFunctionsList(Functions)
+        AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
         print("^2Sucessfully loaded - [^1GUM^2] Framework.")
