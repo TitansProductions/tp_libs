@@ -189,7 +189,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         end
     
-        AddFunctionsList(Functions)
+        AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
         print("^2Sucessfully loaded - [^1RSG^2] Framework.")
