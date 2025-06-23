@@ -177,7 +177,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
             return canCarryWeapon
         end
     
-        AddFunctionsList(Functions)
+        AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
         print("^2Sucessfully loaded - [^1VORP-CORE^2] Framework.")
