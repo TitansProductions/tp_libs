@@ -172,7 +172,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
             return canCarryWeapon
         end
     
-        AddFunctionsList(Functions)
+        AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
         print("^2Sucessfully loaded - [^1VORP-CORE^2] Framework.")
