@@ -108,8 +108,8 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     
         Functions.GetUserInventory = function(source)
 
-            local items   = VORPInv.getInventoryItems(source)
-            local weapons = VORPInv.getUserInventoryWeapons(source)
+            local items   = VORPInv:getInventoryItems(source)
+            local weapons = VORPInv:getUserInventoryWeapons(source)
     
             for k, v in pairs (weapons) do
     
@@ -129,18 +129,18 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
         end
     
         Functions.AddItemToInventory = function(source, item, amount)
-            VORPInv.addItem(source, item, amount)
+            VORPInv:addItem(source, item, amount)
         end
 
         Functions.RemoveItemFromInventory = function(source, item, amount)
-            VORPInv.subItem(source, item, amount)
+            VORPInv:subItem(source, item, amount)
         end
     
         Functions.GetItemCount = function(source, item)
 
             local itemCount, await = 0, true
 
-            VORPInv.getItemCount(source, function(count) itemCount = count await = false end, item)
+            VORPInv:getItemCount(source, function(count) itemCount = count await = false end, item)
 
             while await do
                 Wait(100)
@@ -150,25 +150,25 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
         end
     
         Functions.GetItemWeight = function(item)
-            local item = VORPInv.getInventoryItem(item)
+            local item = VORPInv:getInventoryItem(item)
             return item.weight or 0
         end
     
         Functions.CanCarryItem = function(source, item, amount)
-            local canCarryItem = VORPInv.canCarryItem(source, item, amount)
+            local canCarryItem = VORPInv:canCarryItem(source, item, amount)
             return canCarryItem
         end
     
         Functions.AddWeaponToInventory = function(source, weapon)
             local hours, minutes, seconds = os.date('%H'), os.date('%M'), os.date('%S')
             local serialNumber = tonumber(hours) .. tonumber(minutes) .. tonumber(seconds)  .. math.random(1, 9).. math.random(1, 9).. math.random(1, 9)
-            VORPInv.createWeapon(source, weapon, "0", {}, {} , nil, serialNumber)
+            VORPInv:createWeapon(source, weapon, "0", {}, {} , nil, serialNumber)
         end
     
         Functions.CanCarryWeapons = function(source, weapon)
             local canCarryWeapon, await = false, true
 
-            VORPInv.canCarryWeapons(source, 1, function(canCarry) canCarryWeapon = canCarry await = false end, weapom)
+            VORPInv:canCarryWeapons(source, 1, function(canCarry) canCarryWeapon = canCarry await = false end, weapom)
 
             while await do
                 Wait(100)
