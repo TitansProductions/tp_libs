@@ -6,7 +6,15 @@ Config.Debug = true
 --[[ General Settings ]]--
 ---------------------------------------------------------------
 
--- @Supported Versions: old_vorp, latest_vorp, gum, rsg, rsgv2, qbcore, redemrp, tpzcore
+-- @Supported Versions: 
+-- old_vorp (suggested for vorp, most stable).
+-- latest_vorp
+-- gum
+-- rsg
+-- rsgv2
+-- qbcore 
+-- redemrp
+-- tpzcore
 Config.Framework = "tpzcore"
 
 -- The following option is saving all the data before server restart hours
