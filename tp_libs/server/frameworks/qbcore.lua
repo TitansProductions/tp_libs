@@ -163,7 +163,7 @@ if Config.Framework == 'qbocore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     
         end
     
-        AddFunctionsList(Functions)
+        AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
         print("^2Sucessfully loaded - [^1QBCORE^2] Framework.")
