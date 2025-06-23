@@ -13,7 +13,14 @@ exports('getAPI', function()
     end
 
     self.getFramework = function()
-        return Config.Framework
+
+        local frameworkSelected = Config.Framework
+
+        if frameworkSelected == 'old_vorp' or frameworkSelected == 'latest_vorp' then
+            frameworkSelected = 'vorp'
+        end
+
+        return frameworkSelected
     end
 
     -- GENERAL UTILITY API FUNCTIONS
