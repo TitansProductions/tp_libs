@@ -193,7 +193,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
-        print("^2Sucessfully loaded - [^1RSG^2] Framework.")
+        print("^2Sucessfully loaded - [^1RSG V2^2] Framework.")
 
     end)
 
