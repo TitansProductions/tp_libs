@@ -150,8 +150,8 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.canCarryWeapon(weapon)
         end
-    
-        AddFunctionsList(Functions)
+
+        AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
         print("^2Sucessfully loaded - [^1TPZ-CORE^2] Framework.")
