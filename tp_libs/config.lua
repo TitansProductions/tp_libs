@@ -70,7 +70,8 @@ function SendNotification(source, message, messageType)
     -- Server Side
     if _source then
 
-        if Config.Framework == "vorp" then
+        if Config.Framework == "latest_vorp" or Config.Framework == "old_vorp" then
+            
             TriggerClientEvent("vorp:TipRight", _source, message, 3000)
 
         elseif Config.Framework == "gum" then
@@ -92,7 +93,8 @@ function SendNotification(source, message, messageType)
     -- Client Side
     else
 
-        if Config.Framework == "vorp" then
+        if Config.Framework == "latest_vorp" or Config.Framework == "old_vorp" then
+            
             TriggerEvent("vorp:TipRight", message, 3000)
 
         elseif Config.Framework == "gum" then
