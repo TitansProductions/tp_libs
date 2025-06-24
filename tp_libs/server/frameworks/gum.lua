@@ -157,7 +157,7 @@ if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         Functions.AddWeaponToInventory = function(source, weapon)
             local emptyComponent = {["nothing"] = 0}
-            CoreInventoryAPI.createWeapon(source, weapon, emptyComponent, emptyComponent)
+            GUMInv.createWeapon(source, weapon, emptyComponent, emptyComponent)
         end
     
         Functions.CanCarryWeapons = function(source, weapon)
