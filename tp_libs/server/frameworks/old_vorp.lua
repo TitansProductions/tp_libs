@@ -157,7 +157,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     
         Functions.AddWeaponToInventory = function(source, weapon)
             local emptyComponent = {["nothing"] = 0}
-            CoreInventoryAPI.createWeapon(source, weapon, emptyComponent, emptyComponent)
+            VORPInv.createWeapon(source, weapon, emptyComponent, emptyComponent)
         end
     
         Functions.CanCarryWeapons = function(source, weapon)
