@@ -108,8 +108,11 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     
         Functions.GetUserInventory = function(source)
 
-            local items   = VORPInv:getInventoryItems(source)
-            local weapons = VORPInv:getUserInventoryWeapons(source)
+            local items   = exports.vorp_inventory:vorp_inventoryApi().getUserInventory(source)
+            local weapons = exports.vorp_inventory:vorp_inventoryApi().getUserWeapons(source)
+                
+            --local items   = VORPInv:getInventoryItems(source)
+            --local weapons = VORPInv:getUserInventoryWeapons(source)
     
             for k, v in pairs (weapons) do
     
