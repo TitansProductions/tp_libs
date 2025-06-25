@@ -188,6 +188,10 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             return true
     
         end
+            
+        Functions.GetItems = function() -- returns all server items in a table
+            return RSG.Shared.Items
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
