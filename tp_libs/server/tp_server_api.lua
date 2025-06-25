@@ -247,6 +247,10 @@ exports('getAPI', function()
         return cb
     end
 
+    self.getItems = function()
+        return Functions.GetItems()
+    end
+
     return self
 
 end)
