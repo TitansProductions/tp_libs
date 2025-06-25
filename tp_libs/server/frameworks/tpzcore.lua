@@ -151,6 +151,10 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             return xPlayer.canCarryWeapon(weapon)
         end
 
+        Functions.GetItems = function() -- returns all server items in a table
+            return TPZInv.getSharedItems()
+        end
+            
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
