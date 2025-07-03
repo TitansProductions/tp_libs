@@ -1,6 +1,6 @@
 
 ------------------------------------------
--- Webhooks
+-- Webhooks (ADD ALL YOUR WEBHOOKS HERE)
 ------------------------------------------
 
 local WEBHOOKS = {
@@ -8,7 +8,7 @@ local WEBHOOKS = {
 }
 
 ------------------------------------------
--- Functions
+-- Functions (DONT TOUCH WITHOUT EXPERIENCE)
 ------------------------------------------
 
 GetWebhookUrlByName = function(webhook)
