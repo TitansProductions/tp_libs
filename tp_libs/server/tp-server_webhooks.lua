@@ -1,4 +1,3 @@
--- local webhook = exports.tp_webhooks:GetWebhookUrl("TP_MAILBOX")
 
 ------------------------------------------
 -- Webhooks
