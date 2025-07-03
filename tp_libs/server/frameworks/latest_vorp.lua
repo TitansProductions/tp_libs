@@ -180,8 +180,20 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
             return canCarryWeapon
         end
 
-        Functions.GetItems = function() -- returns all server items in a table
-            return {}
+        Functions.GetItems = function()
+            local await = true
+            local items = {}
+
+            exports.ghmattimysql:execute("SELECT * FROM `items`", {}, function(result)
+                items = result
+                await = false
+            end)
+
+            while wait do
+                Wait(10)
+            end
+
+            return items
         end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
