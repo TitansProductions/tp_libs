@@ -134,27 +134,33 @@ end)
 addNewCallBack("tp_libs:getPlayerData", function(source, cb, data)
     local _source = source
 
+    while not HasLoadedFunctions() do
+        Wait(500)
+    end
+
     if data and data.source ~= nil then
         _source = tonumber(data.source)
     end
 
-    if not IsPlayerCharacterSelected(_source) then 
+    local Functions = GetFunctions()
+
+    if not Functions.IsPlayerCharacterSelected(_source) then 
         return nil
     end
 
     return cb(
         { 
             source          = tonumber(_source),
-            identifier      = GetIdentifier(_source),
-            charIdentifier  = GetChar(_source),
+            identifier      = Functions.GetIdentifier(_source),
+            charIdentifier  = Functions.GetCharacterId(_source),
 
-            firstname       = GetFirstName(_source),
-            lastname        = GetLastName(_source),
+            firstname       = Functions.GetFirstName(_source),
+            lastname        = Functions.GetLastName(_source),
 
-            job             = GetJob(_source),
-            jobGrade        = GetJobGrade(_source),
+            job             = Functions.GetJob(_source),
+            jobGrade        = Functions.GetJobGrade(_source),
 
-            group           = GetGroup(_source),
+            group           = Functions.GetGroup(_source),
         } 
     ) 
 end)
