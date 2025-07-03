@@ -181,7 +181,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
                 await = false
             end)
 
-            while wait do
+            while await do
                 Wait(10)
             end
 
