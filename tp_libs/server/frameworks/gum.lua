@@ -171,6 +171,22 @@ if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
 
             return canCarryWeapon
         end
+
+        Functions.GetItems = function()
+            local await = true
+            local items = {}
+
+            exports.ghmattimysql:execute("SELECT * FROM `items`", {}, function(result)
+                items = result
+                await = false
+            end)
+
+            while wait do
+                Wait(10)
+            end
+
+            return items
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
