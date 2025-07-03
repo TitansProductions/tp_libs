@@ -23,4 +23,4 @@ GetWebhookUrlByName = function(webhook)
     end
     
     return WEBHOOKS[webhook]
-end)
+end
