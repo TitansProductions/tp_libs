@@ -23,6 +23,10 @@ exports('getAPI', function()
         return frameworkSelected
     end
 
+    self.GetWebhookUrl = function(webhook)
+        return GetWebhookUrlByName(webhook)
+    end
+
     -- GENERAL UTILITY API FUNCTIONS
 
     self.sendNotification = function(source, message, type)
