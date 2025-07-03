@@ -181,7 +181,7 @@ if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
                 await = false
             end)
 
-            while wait do
+            while await do
                 Wait(10)
             end
 
