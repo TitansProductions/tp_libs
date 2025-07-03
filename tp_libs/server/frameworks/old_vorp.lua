@@ -171,6 +171,10 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
 
             return canCarryWeapon
         end
+
+        Functions.GetItems = function() -- returns all server items in a table
+            return {}
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
