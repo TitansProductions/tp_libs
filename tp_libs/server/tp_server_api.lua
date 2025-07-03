@@ -1,5 +1,4 @@
-
-local Functions = {}
+local Functions, LoadedFunctions = {}, false
 
 exports('getAPI', function()
     local self = {}
@@ -261,4 +260,13 @@ end)
 
 AddFunctionsList = function(list)
     Functions = list
+    LoadedFunctions = true
+end
+
+GetFunctions = function()
+    return Functions
+end
+
+HasLoadedFunctions = function()
+    return LoadedFunctions
 end
