@@ -189,7 +189,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
                 await = false
             end)
 
-            while wait do
+            while await do
                 Wait(10)
             end
 
