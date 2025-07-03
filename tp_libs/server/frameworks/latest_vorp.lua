@@ -179,7 +179,11 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
 
             return canCarryWeapon
         end
-    
+
+        Functions.GetItems = function() -- returns all server items in a table
+            return {}
+        end
+            
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
