@@ -23,7 +23,7 @@ exports('getAPI', function()
         return frameworkSelected
     end
 
-    self.GetWebhookUrl = function(webhook)
+    self.getWebhookUrl = function(webhook)
         return GetWebhookUrlByName(webhook)
     end
 
