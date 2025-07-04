@@ -153,7 +153,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
         end
     
         Functions.GetItemWeight = function(item)
-            local item = VORPInv:getInventoryItem(item)
+            local item = VORPInv.getDBItem(nil, item)
             return item.weight or 0
         end
     
