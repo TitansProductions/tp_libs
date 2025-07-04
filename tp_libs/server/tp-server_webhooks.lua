@@ -12,7 +12,7 @@ local WEBHOOKS = {
 ----------------------------------------------
 
 GetWebhookUrlByName = function(webhook)
-    if webhook = nil then
+    if webhook == nil then
         print("The webhook input seems to be null (invalid).")
         return "n/a"
     end
