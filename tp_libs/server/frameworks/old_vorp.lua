@@ -146,7 +146,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         end
     
         Functions.GetItemWeight = function(item)
-            local item = VORPInv.getInventoryItem(item)
+            local item = VORPInv.getDBItem(item)
             return item.weight or 0
         end
     
