@@ -156,9 +156,9 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
         Functions.GetItemWeight = function(item)
             local weight = 0
 
-            if RSGAPI.Shared.Items[item] then
+            if RSG.Shared.Items[item] then
     
-                weight = RSGAPI.Shared.Items[item].weight
+                weight = RSG.Shared.Items[item].weight
             end
     
             return weight
