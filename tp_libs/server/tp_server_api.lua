@@ -111,7 +111,7 @@ exports('getAPI', function()
 
             playerId = tonumber(playerId)
 
-            if IsPlayerCharacterSelected(playerId) then
+            if Functions.IsPlayerCharacterSelected(playerId) then
 
                 local playerJob = GetJob(playerId)
 
