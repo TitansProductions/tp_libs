@@ -113,7 +113,7 @@ exports('getAPI', function()
 
             if Functions.IsPlayerCharacterSelected(playerId) then
 
-                local playerJob = GetJob(playerId)
+                local playerJob = Functions.GetJob(playerId)
 
                 for index, job in pairs (jobs) do 
 
