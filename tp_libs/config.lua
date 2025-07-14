@@ -15,7 +15,7 @@ Config.Debug = true
 -- qbcore 
 -- redemrp
 -- tpzcore
-Config.Framework = "tpzcore"
+Config.Framework = "old_vorp"
 
 -- The following option is saving all the data before server restart hours
 -- (2-3 Minutes atleast before server restart is mostly preferred).
