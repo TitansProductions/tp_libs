@@ -115,6 +115,11 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.getInventoryTotalWeight()
         end
+
+        Functions.GetInventoryMaxWeight = function(source)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.getInventoryWeightCapacity()
+        end
     
         Functions.AddItemToInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
