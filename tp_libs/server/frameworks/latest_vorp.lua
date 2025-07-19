@@ -130,7 +130,12 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.invCapacity
         end
-    
+            
+        Functions.GetInventoryMaxWeight = function(source)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.invCapacity
+        end
+            
         Functions.AddItemToInventory = function(source, item, amount)
             VORPInv:addItem(source, item, amount)
         end
