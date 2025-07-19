@@ -134,7 +134,12 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             xPlayer.Functions.AddItem(item, amount)
             TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[item], "add")
         end
-    
+            
+        Functions.GetInventoryMaxWeight = function(source)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.PlayerData.weight
+        end
+            
         Functions.RemoveItemFromInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.RemoveItem(item, amount)
