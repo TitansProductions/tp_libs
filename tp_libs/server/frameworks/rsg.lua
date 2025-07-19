@@ -127,6 +127,11 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             local xPlayer = Functions.GetPlayer(source)
             return RSG.Player.GetTotalWeight(xPlayer.PlayerData.items)
         end
+
+        Functions.GetInventoryMaxWeight = function(source)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.PlayerData.weight
+        end
     
         Functions.AddItemToInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
