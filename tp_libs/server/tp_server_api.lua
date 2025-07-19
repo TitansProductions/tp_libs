@@ -217,7 +217,12 @@ exports('getAPI', function()
         local cb = Functions.GetInventoryTotalWeight(source)
         return cb
     end
-
+            
+    self.getInventoryMaxWeight = function(source)
+        local cb = Functions.GetInventoryMaxWeight(source)
+        return cb
+    end
+        
     self.addItemToInventory = function(source, item, quantity, label)
         Functions.AddItemToInventory(source, item, quantity, label)
     end
