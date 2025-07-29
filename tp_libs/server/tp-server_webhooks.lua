@@ -18,7 +18,7 @@ GetWebhookUrlByName = function(webhook)
     end
     
     if WEBHOOKS[webhook] == nil then
-        print(string.format("The webhook input %s is not registered on WEBHOOKS table."), webhook )
+        print(string.format("The webhook input %s is not registered on WEBHOOKS table.", webhook ))
         return "n/a"
     end
     
