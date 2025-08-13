@@ -57,6 +57,11 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             return xPlayer.getJob()
         end
     
+        Functions.SetJob = function(source, job)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.setJob(job)
+        end
+    
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.getJobGrade()
@@ -168,3 +173,4 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
