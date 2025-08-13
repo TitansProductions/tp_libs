@@ -65,7 +65,12 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             local xPlayer = Functions.GetPlayer(source)
             return tostring(xPlayer.PlayerData.job.name)
         end
-    
+        
+        Functions.SetJob = function(source, job)
+            local xPlayer = Functions.GetPlayer(source)
+            xPlayer.Functions.SetJob(job, 0)
+        end
+            
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
             local grade = xPlayer.PlayerData.job.grade.level or PlayerData.job.grade or PlayerData.job.level or 0
@@ -206,3 +211,4 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
