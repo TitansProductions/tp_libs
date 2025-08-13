@@ -52,7 +52,12 @@ if Config.Framework == 'qbocore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             local xPlayer = Functions.GetPlayer(source)
             return tostring(xPlayer.PlayerData.job.name)
         end
-    
+            
+        Functions.SetJob = function(source, job)
+            local xPlayer = Functions.GetPlayer(source)
+            xPlayer.Functions.SetJob(job, 0)
+        end
+            
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
             local grade = xPlayer.PlayerData.job.grade.level or PlayerData.job.grade or PlayerData.job.level or 0
@@ -171,3 +176,4 @@ if Config.Framework == 'qbocore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
