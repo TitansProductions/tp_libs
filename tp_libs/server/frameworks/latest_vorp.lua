@@ -56,7 +56,12 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.job
         end
-    
+            
+        Functions.SetJob = function(source, job)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.setJob(job)
+        end
+
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.jobGrade
@@ -209,3 +214,4 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     end)
 
 end
+
