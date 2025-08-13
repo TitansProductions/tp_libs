@@ -59,7 +59,12 @@ if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.job
         end
-    
+                 
+        Functions.SetJob = function(source, job)
+            local xPlayer = Functions.GetPlayer(source)
+            xPlayer.setJob(job)
+        end
+            
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.jobGrade
@@ -196,3 +201,4 @@ if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
