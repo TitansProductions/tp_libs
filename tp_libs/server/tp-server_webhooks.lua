@@ -21,6 +21,10 @@ GetWebhookUrlByName = function(webhook)
         print(string.format("The webhook input %s is not registered on WEBHOOKS table.", webhook ))
         return "n/a"
     end
-    
-    return WEBHOOKS[webhook]
+
+    webhook = WEBHOOKS[webhook]
+
+    local encoded = EncodeHexString(webhook, "0x0x0-")
+    return tostring(encoded)
 end
+

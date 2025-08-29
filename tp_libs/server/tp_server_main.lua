@@ -5,11 +5,58 @@ local CurrentTime = 0
    Functions
 ]]---------------------------------------------------
 
+-- Convert to hex
+local toHex = function(str)
+    return (str:gsub('.', function(c)
+        return string.format('%02X', string.byte(c))
+    end))
+end
+
+-- Convert back from hex
+local fromHex = function(hex)
+    return (hex:gsub('..', function(cc)
+        local n = tonumber(cc, 16)
+        if not n then
+            error("Invalid hex sequence: '" .. cc .. "' in [" .. hex .. "]")
+        end
+        return string.char(n)
+    end))
+end
+
+-- Encode/Decode wrapper
+EncodeHexString = function(str, key)
+    local res = {}
+    for i = 1, #str do
+        local c = str:byte(i)
+        local k = key:byte((i - 1) % #key + 1)
+        res[#res+1] = string.char((c ~ k) & 0xFF)
+    end
+    return "0x0x0-" .. toHex(table.concat(res))
+end
+
+DecodeHexString = function(hexStr, key)
+
+    hexStr = hexStr:gsub("^0x0x0%-", "")  -- remove prefix only at the start
+    
+    local str = fromHex(hexStr)
+    local res = {}
+    for i = 1, #str do
+        local c = str:byte(i)
+        local k = key:byte((i - 1) % #key + 1)
+        res[#res+1] = string.char((c ~ k) & 0xFF)
+    end
+    return table.concat(res)
+end
+
 SendToDiscordWebhook = function(webhook, name, description, color)
 
     if not webhook or webhook == "" then
         print("Error: Invalid webhook URL.")
         return
+    end
+
+    if string.sub(webhook, 1, 6) == "0x0x0-" then
+        webhook = DecodeHexString(webhook, "0x0x0-")
     end
 
     local data = Config.DiscordWebhooking
@@ -44,6 +91,10 @@ SendImageUrlToDiscordWebhook = function(webhook, name, description, url, color)
     if not webhook or webhook == "" then
         print("Error: Invalid webhook URL.")
         return
+    end
+
+    if string.sub(webhook, 1, 6) == "0x0x0-" then
+        webhook = DecodeHexString(webhook, "0x0x0-")
     end
 
     local data = Config.DiscordWebhooking
@@ -130,6 +181,11 @@ end)
 -----------------------------------------------------------
 --[[ Player Data Callback  ]]--
 -----------------------------------------------------------
+
+addNewCallBack("tp_libs:getWebhookUrl", function(source, cb, data)
+    local webhook = GetWebhookUrlByName(data.webhook)
+    return cb(webhook)
+end)
 
 addNewCallBack("tp_libs:getPlayerData", function(source, cb, data)
     local _source = source
