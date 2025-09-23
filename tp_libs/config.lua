@@ -30,15 +30,21 @@ Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 20 }
 --[[ Discord API Configurations ]]--
 ---------------------------------------------------------------
 
--- The specified feature is for advanced permissions which are based on the
--- discord roles of your discord server.
+/*
+    [ABOUT]:
+    The specified feature is for advanced permissions which are based on the discord roles of your discord server,
+    we not only support group roles but also discord roles. 
+
+    [HOW TO INSERT DISCORD BOT TOKEN]:
+    1. Your discord bot token, if does not exist, create a bot in the url below:
+    https://discord.com/developers/applications
+
+    2. For inserting the discord bot token, go to server/tp-server_discordapi.lua on the line: (1), called local TOKEN = "tokenhere"
+
+*/
 
 -- Your discord server ID.
 Config.DiscordServerID = 'xxxxxxxxxxxxxxxxxxxx'
-
--- Your discord bot token, if does not exist, create a bot in the url below:
--- https://discord.com/developers/applications
-Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 ---------------------------------------------------------------
 --[[ Discord Webhooking ]]--
@@ -116,3 +122,4 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
