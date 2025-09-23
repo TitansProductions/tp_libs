@@ -1,4 +1,5 @@
-local FormattedToken = "Bot " .. Config.DiscordBotToken
+local TOKEN = "tokenhere" -- REPLACE 0 TO THE DESIRED BOT TOKEN. 
+local FormattedToken = "Bot " .. TOKEN
 
 local error_codes_defined = {
 	[200] = 'OK - The request was completed successfully..!',
@@ -134,4 +135,5 @@ function GetUserRolesInGuild (user, guild)
 		return false
 	end
 end
+
 
