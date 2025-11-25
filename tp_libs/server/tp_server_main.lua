@@ -1,5 +1,6 @@
 
 local CurrentTime = 0
+UserHeartbeats    = {}
 
 --[[ ------------------------------------------------
    Functions
@@ -169,6 +170,22 @@ AddEventHandler('tp_libs:server:onDataUpdate', function()
     -- todo nothing
 end)
 
+RegisterNetEvent("tp_libs:server:heartbeat")
+AddEventHandler("tp_libs:server:heartbeat", function() 
+    local _source = source
+
+    if UserHeartbeats[_source] == nil then
+
+        UserHeartbeats[_source] = { 
+            timer = 0, 
+            connection_lost = 0,
+        }
+
+    end
+    
+    UserHeartbeats[_source].timer = GetGameTimer() 
+end)
+
 --[[ ------------------------------------------------
    Framework Events
 ]]---------------------------------------------------
@@ -263,5 +280,31 @@ Citizen.CreateThread(function()
     end
 
   end
+
+end)
+
+Citizen.CreateThread(function()
+    
+    while true do
+        Wait(1000)
+
+        local now = GetGameTimer()
+
+        for source, user in pairs(UserHeartbeats) do
+
+            source = tonumber(source)
+
+            local diff  = now - user.timer
+            local state = diff > 2000 and 1 or 0 
+
+            user.connection_lost = state
+
+            if GetPlayerName(tonumber(source)) == nil then 
+                UserHeartbeats[source] = nil
+            end
+
+        end
+
+    end
 
 end)
