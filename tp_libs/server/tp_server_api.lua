@@ -134,6 +134,12 @@ exports('getAPI', function()
         local cb = GetUserDiscordRoles(source)
         return cb
     end
+        
+    self.hasLostConnection = function(source)
+        if UserHeartbeats[source] == nil then return 0 end 
+
+        return UserHeartbeats[source]
+    end
 
     -- FRAMEWORK RELATED API FUNCTIONS
 
