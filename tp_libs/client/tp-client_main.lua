@@ -4,7 +4,14 @@
 
 RegisterNetEvent("tp_libs:isPlayerReady")
 AddEventHandler("tp_libs:isPlayerReady", function()
-
+        
+    Citizen.CreateThread(function()
+        while true do
+            TriggerServerEvent("tp_libs:server:heartbeat")
+            Wait(500)
+        end
+    end)
+        
 end)
 
 -- TPZ CORE
