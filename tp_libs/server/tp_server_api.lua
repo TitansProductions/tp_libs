@@ -136,7 +136,7 @@ exports('getAPI', function()
     end
         
     self.hasLostConnection = function(source)
-        if UserHeartbeats[source] == nil then return 0 end 
+        if UserHeartbeats[source] == nil then return false end 
 
         return UserHeartbeats[source] == 1 and true or false
     end
