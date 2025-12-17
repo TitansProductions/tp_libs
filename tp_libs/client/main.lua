@@ -78,6 +78,7 @@ AddEventHandler("tpz_core:getPlayerJob", function(data)
     TriggerEvent("tp_libs:getPlayerJob", data.job)
 end)
 
+-- VORP
 AddEventHandler("vorp:playerJobChange", function(source, newjob,oldjob) 
     TriggerEvent("tp_libs:getPlayerJob", newjob)
 end)
