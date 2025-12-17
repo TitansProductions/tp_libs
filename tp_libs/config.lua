@@ -26,6 +26,8 @@ Config.RestartHours = { "7:57" , "13:57", "19:57", "1:57"}
 -- @param Duration : Time in minutes.
 Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 20 }
 
+Config.VersionChecker = true
+
 ---------------------------------------------------------------
 --[[ Discord API Configurations ]]--
 ---------------------------------------------------------------
@@ -122,4 +124,5 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
 
