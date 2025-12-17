@@ -33,9 +33,8 @@ if Config.VersionChecker then
            Wait(5000)
           
            -- We print ONLY if the version is outdated.
- 
            if tostring(currentVersion) ~= tostring(text) then
-              local log = string.format("(!) Outdated Resource Version - Current Version: %s | Required Version: %s", currentVersion, text)
+              local log = string.format("(!) Outdated version - current: %s | required: %s", currentVersion, text)
               print(('^5['.. resourceName..']%s %s^7'):format('^1', log))
            end
      
