@@ -6,6 +6,34 @@ local function startsWith(String,Start)
    return string.sub(String,1,string.len(Start))==Start
 end
 
+local function compareVersions(v1, v2)
+   local function splitVersion(v)
+       local t = {}
+       for num in string.gmatch(v, "%d+") do
+           table.insert(t, tonumber(num))
+       end
+       return t
+   end
+
+   local a = splitVersion(v1)
+   local b = splitVersion(v2)
+
+   local maxLen = math.max(#a, #b)
+
+   for i = 1, maxLen do
+       local x = a[i] or 0
+       local y = b[i] or 0
+
+       if x < y then return -1 end
+       if x > y then return 1 end
+   end
+
+   return 0
+end
+
+local function isOutdated(current, latest)
+   return compareVersions(current, latest) == -1
+end
 -----------------------------------------------------------
 --[[ Base Events  ]]--
 -----------------------------------------------------------
@@ -31,10 +59,12 @@ if Config.VersionChecker then
            end
      
            Wait(5000)
-          
-           -- We print ONLY if the version is outdated.
-           if tostring(currentVersion) ~= tostring(text) then
-              local log = string.format("(!) Outdated version - current: %s | required: %s", currentVersion, text)
+
+           currentVersion = tostring(currentVersion)
+           text = tostring(text)
+
+           if isOutdated(currentVersion, text) then
+              local log = string.format("(!) Outdated Resource Version - Current Version: %s | Required Version: %s", currentVersion, text)
               print(('^5['.. resourceName..']%s %s^7'):format('^1', log))
            end
      
