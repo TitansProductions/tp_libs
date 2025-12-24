@@ -241,7 +241,7 @@ addNewCallBack("tp_libs:getPlayerData", function(source, cb, data)
     ) 
 end)
 
-addNewCallBack("tp_libs:getPlayerJob", function(source, cb, data)
+addNewCallBack("tp_libs:getPlayerJob", function(source, cb)
     local _source   = source
 	local Functions = GetFunctions()
 		
@@ -322,4 +322,5 @@ Citizen.CreateThread(function()
     end
 
 end)
+
 
