@@ -78,10 +78,14 @@ end)
 
 if Config.Framework == "old_vorp" or Config.Framework == "latest_vorp" then
 
-    Citizen.CreateThread(function(),
+    Citizen.CreateThread(function()
 
         while true do
             Wait(60000)
+
+            TriggerEvent("tp_libs:ExecuteServerCallBack", "tp_libs:getPlayerJob", function(job)
+                TriggerEvent("tp_libs:getPlayerJob", job)
+            end)
 
         end
 
