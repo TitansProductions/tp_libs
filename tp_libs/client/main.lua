@@ -71,11 +71,8 @@ AddEventHandler("tpz_core:getPlayerJob", function(data)
     TriggerEvent("tp_libs:getPlayerJob", data.job)
 end)
 
--- VORP
-AddEventHandler("vorp:playerJobChange", function(source, newjob,oldjob) 
-    TriggerEvent("tp_libs:getPlayerJob", newjob)
-end)
-
+-- Vorp related only for updaring job every minute
+-- it seems that the jobUpdate event does not trigger on vorp most of the times. 
 if Config.Framework == "old_vorp" or Config.Framework == "latest_vorp" then
 
     Citizen.CreateThread(function()
