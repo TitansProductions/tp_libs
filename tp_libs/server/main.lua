@@ -241,6 +241,17 @@ addNewCallBack("tp_libs:getPlayerData", function(source, cb, data)
     ) 
 end)
 
+addNewCallBack("tp_libs:getPlayerJob", function(source, cb, data)
+    local _source   = source
+	local Functions = GetFunctions()
+		
+	if not Functions.IsPlayerCharacterSelected(_source) then 
+        return cb(nil)
+    end
+
+    return cb(Functions.GetJob(_source))
+
+end)
 --[[ ------------------------------------------------
    Events
 ]]---------------------------------------------------
@@ -311,3 +322,4 @@ Citizen.CreateThread(function()
     end
 
 end)
+
