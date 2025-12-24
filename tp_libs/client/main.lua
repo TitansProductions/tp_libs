@@ -75,3 +75,16 @@ end)
 AddEventHandler("vorp:playerJobChange", function(source, newjob,oldjob) 
     TriggerEvent("tp_libs:getPlayerJob", newjob)
 end)
+
+if Config.Framework == "old_vorp" or Config.Framework == "latest_vorp" then
+
+    Citizen.CreateThread(function(),
+
+        while true do
+            Wait(60000)
+
+        end
+
+    end)
+end
+
