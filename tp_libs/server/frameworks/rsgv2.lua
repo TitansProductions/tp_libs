@@ -211,7 +211,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
                 maxweight = maxWeight,
                 slots = nil
             })
-
+            
             exports["ghmattimysql"]:execute(
                 "INSERT INTO inventories (identifier) VALUES (@identifier)",
                 {
@@ -223,10 +223,10 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
 
         Functions.UnRegisterContainer = function(containerId) 
 
-            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+            exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE id = ?', { containerId }, function(result)
                 
                 if not result or not result[1] then
-                    print('[ERROR] Container not found:', containerId)
+                    print('[ERROR] UnRegisterContainer - Container not found:', containerId)
                     return
                 end
 
@@ -239,8 +239,18 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
         Functions.GetContainerIdByName = function(containerName)
-            local containerId = exports["ghmattimysql"]:execute('SELECT id FROM inventories WHERE id = ?', { containerName })
-            return containerId
+
+            exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE identifier = ?', { containerName }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] GetContainerIdByName - Container not found:', containerName)
+                    return
+                end
+
+                return tonumber(result[1].id)
+
+            end)
+
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -255,7 +265,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
                 
                 if not result or not result[1] then
-                    print('[ERROR] Container not found:', containerId)
+                    print('[ERROR] DoesContainerExistById - Container not found:', containerId)
                     return
                 end
 
@@ -295,7 +305,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
                 
                 if not result or not result[1] then
-                    print('[ERROR] Container not found:', containerId)
+                    print('[ERROR] OpenContainerInventory - Container not found:', containerId)
                     return
                 end
                 
@@ -323,6 +333,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
