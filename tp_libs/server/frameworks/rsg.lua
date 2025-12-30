@@ -1,6 +1,6 @@
 local Functions = {} -- DO NOT TOUCH
 
-if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
+if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
     local RSG = exports['rsg-core']:GetCoreObject() -- Core Getter
 
@@ -65,7 +65,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             local xPlayer = Functions.GetPlayer(source)
             return tostring(xPlayer.PlayerData.job.name)
         end
-            
+        
         Functions.SetJob = function(source, job)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.SetJob(job, 0)
@@ -73,7 +73,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
-            local grade = xPlayer.PlayerData.job.grade.level or 0
+            local grade = xPlayer.PlayerData.job.grade.level or PlayerData.job.grade or PlayerData.job.level or 0
 
             return grade
         end
@@ -130,25 +130,24 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     
         Functions.GetInventoryTotalWeight = function(source)
             local xPlayer = Functions.GetPlayer(source)
-            local totalWeight = exports['rsg-inventory']:GetTotalWeight(xPlayer.PlayerData.items)
-            return totalWeight
+            return RSG.Player.GetTotalWeight(xPlayer.PlayerData.items)
+        end
+
+        Functions.GetInventoryMaxWeight = function(source)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.PlayerData.weight
         end
     
         Functions.AddItemToInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.AddItem(item, amount)
-            TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[item], "add")
+            TriggerClientEvent('inventory:client:ItemBox', source, RSG.Shared.Items[item], "add")
         end
-            
-        Functions.GetInventoryMaxWeight = function(source)
-            local xPlayer = Functions.GetPlayer(source)
-            return xPlayer.PlayerData.weight
-        end
-            
+    
         Functions.RemoveItemFromInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.RemoveItem(item, amount)
-            TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[item], "remove")
+            TriggerClientEvent('inventory:client:ItemBox', source, RSG.Shared.Items[item], "remove")
         end
 
         Functions.GetItemCount = function(source, item, amount)
@@ -187,7 +186,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         Functions.AddWeaponToInventory = function(source, weapon)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.AddItem(weapon, 1)
-            TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[weapon], "add", 1)
+            TriggerClientEvent('inventory:client:ItemBox', source, RSG.Shared.Items[weapon], "add", 1)
         end
     
         Functions.CanCarryWeapons = function(source, weapon)
@@ -199,7 +198,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             return true
     
         end
-                
+            
         Functions.GetItems = function() -- returns all server items in a table
             return RSG.Shared.Items
         end
@@ -318,13 +317,11 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
-        print("^2Sucessfully loaded - [^1RSG V2^2] Framework.")
+        print("^2Sucessfully loaded - [^1RSG^2] Framework.")
 
     end)
 
 end
-
-
 
 
 
