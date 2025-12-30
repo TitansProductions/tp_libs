@@ -196,6 +196,35 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
 
             return false
         end
+
+                Functions.RegisterContainerInventory = function(containerName, maxWeight, data)
+            REDEMInv.createLocker(containerName, "empty")
+        end
+
+        Functions.UnRegisterContainer = function(containerId)
+            -- n/a
+        end
+
+        Functions.GetContainerIdByName = function(containerName)
+            return 0
+        end
+
+        Functions.UpgradeContainerWeight = function(containerId, extraWeight)
+            -- n/a
+        end
+
+        Functions.DoesContainerExistById = function(containerId)
+            return false
+        end
+
+        Functions.DoesContainerExistByName = function(containerName)
+            return false
+        end
+
+        Functions.OpenContainerInventory = function(source, containerName, title) -- requires name not id as rsg
+            TriggerClientEvent("redemrp_inventory:OpenLocker", source, containerName)
+        end
+        
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -205,3 +234,4 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
