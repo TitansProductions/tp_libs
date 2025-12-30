@@ -204,11 +204,11 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
         end
 
 
-Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
+        Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
         
             exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE identifier = ?', { containerName }, function(result)
                 
-                if not result or not result[1] then
+                if not result or result and not result[1] then
 
                     exports['rsg-inventory']:CreateInventory(containerName, {
                         label = invConfig.title or "",
@@ -359,6 +359,7 @@ Functions.RegisterContainerInventory = function(containerName, maxWeight, invCon
     end)
 
 end
+
 
 
 
