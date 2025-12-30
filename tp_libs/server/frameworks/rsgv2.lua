@@ -209,9 +209,9 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             exports['rsg-inventory']:CreateInventory(containerName, {
                 label = data.title or "",
                 maxweight = maxWeight,
-                slots = data.slots or 150
+                slots = nil
             })
-                
+
         end
 
         Functions.UnRegisterContainer = function(containerName) -- requires name for rsg
