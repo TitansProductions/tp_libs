@@ -214,7 +214,7 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
         end
 
         Functions.DoesContainerExistById = function(containerId)
-            local exist = exports["ghmattimysql"]:execute('SELECT stashid FROM stashes WHERE id = ?', { containerId })
+            local exist = exports["ghmattimysql"]:execute('SELECT id FROM stashes WHERE stashid = ?', { containerId })
 
             if exist == nil then
                 exist = false
@@ -245,6 +245,7 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
