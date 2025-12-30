@@ -201,12 +201,13 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             REDEMInv.createLocker(containerName, "empty")
         end
 
-        Functions.UnRegisterContainer = function(containerId)
-            -- n/a
+        Functions.UnRegisterContainer = function(containerName)
+            exports["ghmattimysql"]:execute("DELETE FROM stashes WHERE stashid = @stashid", { ["@stashid"] = containerName })
         end
 
-        Functions.GetContainerIdByName = function(containerName)
-            return 0
+        Functions.GetContainerIdByName = function(containerId) -- we get the name not the id, same as rsg
+            local containerName = exports["ghmattimysql"]:execute('SELECT stashid FROM stashes WHERE id = ?', { containerId })
+            return containerName
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -214,18 +215,29 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
         end
 
         Functions.DoesContainerExistById = function(containerId)
-            return false
+            local exist = exports["ghmattimysql"]:execute('SELECT stashid FROM stashes WHERE id = ?', { containerId })
+
+            if exist == nil then
+                exist = false
+            end
+
+            return exist ~= nil and true or false
         end
 
         Functions.DoesContainerExistByName = function(containerName)
-            return false
+            local exist = exports["ghmattimysql"]:execute('SELECT id FROM stashes WHERE stashid = ?', { containerName })
+
+            if exist == nil then
+                exist = false
+            end
+
+            return exist ~= nil and true or false
         end
 
         Functions.OpenContainerInventory = function(source, containerName, title) -- requires name not id as rsg
             TriggerClientEvent("redemrp_inventory:OpenLocker", source, containerName)
         end
-        
-    
+       
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
@@ -234,4 +246,5 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
