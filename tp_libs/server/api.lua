@@ -269,15 +269,15 @@ exports('getAPI', function()
         return Functions.GetItems()
     end
 
-    self.RegisterContainerInventory = function(containerName, maxWeight, data)
+    self.registerContainerInventory = function(containerName, maxWeight, data)
         Functions.RegisterContainerInventory(containerName, maxWeight, data)
     end
 
-    self.UnRegisterContainer = function(containerId)
+    self.unRegisterContainer = function(containerId)
         Functions.UnRegisterContainer(containerId)
     end
 
-    self.GetContainerIdByName = function(containerName)
+    self.getContainerIdByName = function(containerName)
         local containerId = Functions.GetContainerIdByName(containerName)
         local count = 0
             
@@ -295,7 +295,7 @@ exports('getAPI', function()
         return containerId
     end
 
-    self.UpgradeContainerWeight = function(containerId, extraWeight)
+    self.upgradeContainerWeight = function(containerId, extraWeight)
         Functions.UpgradeContainerWeight(containerId, extraWeight)
     end
 
