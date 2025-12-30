@@ -72,6 +72,10 @@ Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 20 }
 
 -- Your discord server ID.
 Config.DiscordServerID = 'xxxxxxxxxxxxxxxxxxxx'
+                
+-- Your discord bot token, if does not exist, create a bot in the url below:
+-- https://discord.com/developers/applications
+Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 ---------------------------------------------------------------
 --[[ Discord Webhooking ]]--
@@ -149,6 +153,7 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
 
 
 
