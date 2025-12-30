@@ -1,5 +1,6 @@
 Config = {}
 
+-- Set to false to disable any kind of console prints / warnings
 Config.Debug = true
 
 ---------------------------------------------------------------
@@ -148,6 +149,7 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
 
 
 
