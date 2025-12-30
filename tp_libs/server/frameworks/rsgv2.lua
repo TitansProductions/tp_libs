@@ -218,9 +218,9 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             exports['rsg-inventory']:DeleteInventory(containerName)
         end
 
-        Functions.GetContainerIdByName = function(containerName)
-            local containerId = exports["ghmattimysql"]:execute('SELECT id FROM inventories WHERE identifier = ?', { containerName })
-            return containerId
+        Functions.GetContainerIdByName = function(containerId) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
+            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
+            return containerName
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -249,6 +249,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
