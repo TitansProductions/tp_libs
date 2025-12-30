@@ -16,6 +16,29 @@ Config.Debug = true
 -- redemrp
 -- tpzcore
 Config.Framework = "old_vorp"
+Config.VersionChecker = true
+
+---------------------------------------------------------------
+--[[ Scripts Saving ]]--
+---------------------------------------------------------------
+
+/*
+    [README]:
+
+    All of our scripts do not save data on every single SQL update or in-game change.
+    If we followed the approach used by many developers—saving on every change—it would result in significant performance degradation.
+
+    Instead, all in-game changes and updates are saved at scheduled intervals, either every @RestartHours or every @SaveDataRepeatingTimer.
+    These are controlled, properly scheduled saves designed to ensure stability and efficiency.
+
+    What does this mean?
+
+    If the server or a script is manually restarted or unexpectedly shut down, the data will roll back to the last scheduled save.
+    This behavior is normal and well-known, and it also exists in many large-scale games, including MMOs, especially during crashes, DDoS attacks, or forced shutdowns.
+
+    This saving system provides optimal server performance while avoiding excessive and unnecessary SQL operations, making it the most reliable and efficient approach for long-running servers.
+
+*/
 
 -- The following option is saving all the data before server restart hours
 -- (2-3 Minutes atleast before server restart is mostly preferred).
@@ -25,8 +48,6 @@ Config.RestartHours = { "7:57" , "13:57", "19:57", "1:57"}
 -- @param Enabled : Set to false do disable saving every x minutes.
 -- @param Duration : Time in minutes.
 Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 20 }
-
-Config.VersionChecker = true
 
 ---------------------------------------------------------------
 --[[ Discord API Configurations ]]--
@@ -124,5 +145,6 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
 
 
