@@ -24,3 +24,21 @@ This script can also be used by other developers if they are willing.
 # README
 
 The specified Libs script requires a Framework as dependency, **DO NOT** ensure it before the Framework scripts, especially the Framework Base scripts but ensure it **LAST**. 
+
+__example:__
+
+```lua
+ensure [Framework]
+...
+...
+...
+
+ensure tp_libs -- depedency
+ensure tp_versions -- (no depedency, but correct order for its ensuring)
+ensure tpz_menu_base -- depedency (standalone, can also be ensured before tp_libs)
+ensure tp_inputs -- depedency
+ensure tp_notify -- depedency
+ensure tp_containers -- depedency
+```
+
+
