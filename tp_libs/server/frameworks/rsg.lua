@@ -203,9 +203,13 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             return RSG.Shared.Items
         end
 
-        Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
+       Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
             
-
+            exports['rsg-inventory']:CreateInventory(containerName, {
+                label = data.title or "",
+                maxweight = maxWeight,
+                slots = data.slots or 150
+            })
                 
         end
 
@@ -236,17 +240,16 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             return exist
         end
 
+
         Functions.OpenContainerInventory = function(source, containerName, title) -- name for rsg not id
             local stash = exports['rsg-inventory']:GetInventory(containerName)
 
             if stash then
-
                 exports['rsg-inventory']:OpenInventory(source, containerName, {
                     label = title,
                     maxweight = stash.maxweight,
                     slots = stash.slots
                 })
-                
             end
             
         end
