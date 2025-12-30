@@ -204,22 +204,30 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
         end
 
        Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
-            if data == nil then data = {} end
-                
+            
             exports['rsg-inventory']:CreateInventory(containerName, {
                 label = data.title or "",
                 maxweight = maxWeight,
-                slots = data.slots or 150
+                slots = nil
             })
-                
+
+            exports["ghmattimysql"]:execute(
+                "INSERT INTO inventories (identifier) VALUES (@identifier)",
+                {
+                    ["@identifier"] = containerName
+                }
+            )
+
         end
 
-        Functions.UnRegisterContainer = function(containerName) -- requires name for rsg
+        Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
+            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
             exports['rsg-inventory']:DeleteInventory(containerName)
         end
 
         Functions.GetContainerIdByName = function(containerId) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
             local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
+           
             return containerName
         end
 
@@ -263,6 +271,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
 
 
 
