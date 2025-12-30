@@ -25,7 +25,7 @@ This script can also be used by other developers if they are willing.
 
 The specified Libs script requires a Framework as dependency, **DO NOT** ensure it before the Framework scripts, especially the Framework Base scripts but ensure it **LAST**. 
 
-__example:__
+example:
 
 ```lua
 ensure [Framework]
