@@ -6,6 +6,16 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
 
     local VORP    = exports.vorp_core:GetCore() -- Core Getter
     local VORPInv = exports.vorp_inventory -- Core Inv Getter
+
+    local function GetValue(value, default)
+        if default == nil then
+            return value
+        end
+        if default == false then
+            return value or false
+        end
+        return value == nil and default or value
+    end
     
     Citizen.CreateThread(function () 
         
@@ -295,6 +305,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     end)
 
 end
+
 
 
 
