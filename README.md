@@ -19,4 +19,8 @@ This script can also be used by other developers if they are willing.
 
 1. When opening the zip file, open `tp_libs-main` directory folder and inside there will be another directory folder which is called as `tp_libs`, this directory folder is the one that should be exported to your resources (The folder which contains `fxmanifest.lua`).
 
-2. Add `ensure tp_libs` after your core essentials (core, characters & inventory) in the resources.cfg or server.cfg, depends where your scripts are located. 
+2. Add `ensure tp_libs` after your core essentials (core, characters & inventory) in the resources.cfg or server.cfg, depends where your scripts are located.
+
+# README
+
+The specified Libs script requires a Framework as dependency, **DO NOT** ensure it before the Framework scripts, especially the Framework Base scripts but ensure it **LAST**. 
