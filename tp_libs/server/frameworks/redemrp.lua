@@ -205,8 +205,8 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             exports["ghmattimysql"]:execute("DELETE FROM stashes WHERE stashid = @stashid", { ["@stashid"] = containerName })
         end
 
-        Functions.GetContainerIdByName = function(containerId) -- we get the name not the id, same as rsg
-            return containerId
+        Functions.GetContainerIdByName = function(containerName) -- we get the name not the id, same as rsg
+            return containerName
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -245,6 +245,7 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
