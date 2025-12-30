@@ -269,6 +269,36 @@ exports('getAPI', function()
         return Functions.GetItems()
     end
 
+    self.RegisterContainerInventory = function(containerName, maxWeight, data)
+        Functions.RegisterContainerInventory(containerName, maxWeight, data)
+    end
+
+    self.UnRegisterContainer = function(containerId)
+        Functions.UnRegisterContainer(containerId)
+    end
+
+    self.GetContainerIdByName = function(containerName)
+        local containerId = Functions.GetContainerIdByName(containerName)
+        local count = 0
+            
+        while (containerId == nil or containerId == 0) do 
+            Wait(100)
+
+            count = count + 1
+            containerId = Functions.GetContainerIdByName(containerName)
+
+            if count == 10 then
+                break
+            end
+        end
+            
+        return containerId
+    end
+
+    self.UpgradeContainerWeight = function(containerId, extraWeight)
+        Functions.UpgradeContainerWeight(containerId, extraWeight)
+    end
+
     return self
 
 end)
