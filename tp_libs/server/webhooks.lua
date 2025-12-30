@@ -58,13 +58,13 @@ local WEBHOOKS = {
 
     ["tp_medical_archives"] = {
 
-        ['MEDICAL'] = {
-            ['REGISTER']                = "",
-            ['NEW_FORM']                = "",
-            ['PATIENT_INFO']            = "",
-            ['DELETED_FORM']            = "",
-            ['DELETED_PATIENT']         = "",
-        },
+        -- MEDICAL_ IS THE DEPARTMENT FROM CONFIG
+        -- IN CASE YOU CREATE MORE DEPARTMENTS, YOU MUST ALSO ADD THEM BELOW.
+        ['MEDICAL_REGISTER']                = "",
+        ['MEDICAL_NEW_FORM']                = "",
+        ['MEDICAL_PATIENT_INFO']            = "",
+        ['MEDICAL_DELETED_FORM']            = "",
+        ['MEDICAL_DELETED_PATIENT']         = "",
     },
 
     ["tp_mydog"] = {
