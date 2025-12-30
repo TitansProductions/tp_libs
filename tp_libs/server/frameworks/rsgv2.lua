@@ -205,7 +205,8 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
        Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
-            
+            if data == nil then data = {} end
+                
             exports['rsg-inventory']:CreateInventory(containerName, {
                 label = data.title or "",
                 maxweight = maxWeight,
@@ -262,6 +263,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
