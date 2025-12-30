@@ -203,6 +203,10 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             return containerExist
         end
 
+        Functions.OpenContainerInventory = function(source, containerId, title)
+            TriggerClientEvent("tpz_inventory:openInventoryContainerById", source, containerId, title, false, false, nil)
+        end
+
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
@@ -211,6 +215,7 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
