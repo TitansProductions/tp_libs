@@ -165,14 +165,17 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             return TPZInv.getSharedItems()
         end
 
-        Functions.RegisterContainerInventory = function(containerName, maxWeight, items)
+        Functions.RegisterContainerInventory = function(containerName, maxWeight, data)
             -- @param containerName: requires a container name.
             -- @param containerWeight: requires the maximum container weight.
             -- @param insert : requires a boolean value (false / true) to insert to the containers database the new registered container inventory / not
             -- @param contents: a non-required parameter which requires a table form (only experienced developers).
             -- @param data : a non-required parameter which allows your container to have unique data.
             -- For example: { allowlisted = 1 } - this data allows this container to not remove any durability from food items.
-            TriggerEvent("tpz_inventory:registerContainerInventory", containerName, maxWeight, true, items)
+
+            if data == nil then data = {} end
+                
+            TriggerEvent("tpz_inventory:registerContainerInventory", containerName, maxWeight, data.insert, data.contents, data.data)
         end
 
         Functions.UnRegisterContainer = function(containerId)
@@ -190,8 +193,6 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             TriggerEvent("tpz_inventory:upgradeContainerInventoryWeight", containerId, extraWeight)
         end
 
-        
-            
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
@@ -200,6 +201,7 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
