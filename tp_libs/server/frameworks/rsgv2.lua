@@ -205,8 +205,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
        Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
-            if data == nil then data = {} end
-                
+            
             exports['rsg-inventory']:CreateInventory(containerName, {
                 label = data.title or "",
                 maxweight = maxWeight,
@@ -220,7 +219,8 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
         Functions.GetContainerIdByName = function(containerId) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
-            return containerId
+            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
+            return containerName
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -241,7 +241,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             return exist
         end
 
-        Functions.OpenContainerInventory = function(source, containerName, title) -- name for rsg not id
+        Functions.OpenContainerInventory(source, containerName, title) -- name for rsg not id
             local stash = exports['rsg-inventory']:GetInventory(containerName)
 
             if stash then
@@ -262,8 +262,6 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
-
-
 
 
 
