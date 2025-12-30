@@ -219,6 +219,8 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
                 }
             )
 
+            print('created new sql')
+
         end
 
         Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
@@ -226,16 +228,14 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             exports['rsg-inventory']:DeleteInventory(containerName)
         end
 
-        Functions.GetContainerIdByName = function(containerId) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-           
-            return containerName
+        Functions.GetContainerIdByName = function(containerName) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
+            local containerId = exports["ghmattimysql"]:execute('SELECT id FROM inventories WHERE id = ?', { containerName })
+            return containerId
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
             -- n/a
         end
-
 
         Functions.DoesContainerExistById = function(containerId) -- name only for rsg
 
@@ -243,7 +243,6 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
            
             local exist = exports['rsg-inventory']:GetInventory(containerName)
             if exist == nil then exist = false end
-
 
             if not exist then 
                 local exist = exports['rsg-inventory']:GetInventory(containerId)
@@ -260,7 +259,9 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             return exist
         end
 
-        Functions.OpenContainerInventory(source, containerName, title) -- name for rsg not id
+        Functions.OpenContainerInventory(source, containerId, title) -- name for rsg not id
+            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
+           
             local stash = exports['rsg-inventory']:GetInventory(containerName)
 
             if stash then
@@ -281,8 +282,6 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
-
-
 
 
 
