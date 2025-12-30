@@ -242,7 +242,16 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
         Functions.OpenContainerInventory(source, containerName, title) -- name for rsg not id
-            exports['rsg-inventory']:OpenInventory(source, containerName)
+            local stash = exports['rsg-inventory']:GetInventory(containerName)
+
+            if stash then
+                exports['rsg-inventory']:OpenInventory(source, containerName, {
+                    label = title,
+                    maxweight = stash.maxweight,
+                    slots = stash.slots
+                })
+            end
+            
         end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
@@ -253,6 +262,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
