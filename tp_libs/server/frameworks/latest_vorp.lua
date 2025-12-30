@@ -219,6 +219,10 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
         Functions.RegisterContainerInventory = function(name, maxWeight, invConfig)
             local id = os.time()
             id = tostring(id)
+
+            if invConfig == nil then
+                invConfig = {}
+            end
                 
             local invData = {
                 id = id,
@@ -309,6 +313,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     end)
 
 end
+
 
 
 
