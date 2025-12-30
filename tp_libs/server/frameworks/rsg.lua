@@ -235,9 +235,18 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             -- n/a
         end
 
-        Functions.DoesContainerExistById = function(containerName) -- name only for rsg
+        Functions.DoesContainerExistById = function(containerId) -- name only for rsg
+
+            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
+           
             local exist = exports['rsg-inventory']:GetInventory(containerName)
             if exist == nil then exist = false end
+
+
+            if not exist then 
+                local exist = exports['rsg-inventory']:GetInventory(containerId)
+                if exist == nil then exist = false end
+            end
 
             return exist
         end
@@ -271,6 +280,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
 
 
 
