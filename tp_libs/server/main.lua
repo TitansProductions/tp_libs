@@ -170,7 +170,7 @@ AddEventHandler('tp_libs:server:onDataUpdate', function()
     -- todo nothing
 end)
 
-RegisterNetEvent("tp_libs:server:heartbeat")
+RegisterServerEvent("tp_libs:server:heartbeat")
 AddEventHandler("tp_libs:server:heartbeat", function() 
     local _source = source
 
@@ -186,6 +186,12 @@ AddEventHandler("tp_libs:server:heartbeat", function()
     UserHeartbeats[_source].timer = GetGameTimer() 
 end)
 
+
+RegisterServerEvent("tp_libs:server:openContainerInventory")
+AddEventHandler("tp_libs:server:openContainerInventory", function(containerId, title)
+	Functions.OpenContainerInventory(source, containerId, title)
+end)
+	
 --[[ ------------------------------------------------
    Framework Events
 ]]---------------------------------------------------
@@ -322,5 +328,6 @@ Citizen.CreateThread(function()
     end
 
 end)
+
 
 
