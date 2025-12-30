@@ -206,8 +206,7 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
         end
 
         Functions.GetContainerIdByName = function(containerId) -- we get the name not the id, same as rsg
-            local containerName = exports["ghmattimysql"]:execute('SELECT stashid FROM stashes WHERE id = ?', { containerId })
-            return containerName
+            return containerId
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -246,6 +245,7 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
