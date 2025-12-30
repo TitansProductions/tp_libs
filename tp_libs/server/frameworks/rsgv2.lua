@@ -224,8 +224,20 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
         Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-            exports['rsg-inventory']:DeleteInventory(containerName)
+
+            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] Container not found:', containerId)
+                    return
+                end
+
+                local containerName = result[1].identifier
+                
+                exports['rsg-inventory']:DeleteInventory(containerName)
+
+            end)
+
         end
 
         Functions.GetContainerIdByName = function(containerName) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
@@ -239,17 +251,36 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
 
         Functions.DoesContainerExistById = function(containerId) -- name only for rsg
 
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-           
-            local exist = exports['rsg-inventory']:GetInventory(containerName)
-            if exist == nil then exist = false end
+            local exist = false
+            local await = true
 
-            if not exist then 
-                local exist = exports['rsg-inventory']:GetInventory(containerId)
+            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] Container not found:', containerId)
+                    return
+                end
+
+                local containerName = result[1].identifier
+                
+                local exist = exports['rsg-inventory']:GetInventory(containerName)
                 if exist == nil then exist = false end
+    
+                if not exist then 
+                    local exist = exports['rsg-inventory']:GetInventory(containerId)
+                    if exist == nil then exist = false end
+                end
+
+                await = false
+    
+            end)
+
+            while await do 
+                Wait(10)
             end
 
-            return exist
+            return exist 
+
         end
 
         Functions.DoesContainerExistByName = function(containerName)
@@ -259,18 +290,28 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             return exist
         end
 
-        Functions.OpenContainerInventory(source, containerId, title) -- name for rsg not id
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-           
-            local stash = exports['rsg-inventory']:GetInventory(containerName)
-
-            if stash then
-                exports['rsg-inventory']:OpenInventory(source, containerName, {
-                    label = title,
-                    maxweight = stash.maxweight,
-                    slots = stash.slots
-                })
-            end
+        Functions.OpenContainerInventory = function(source, containerId, title) -- name for rsg not id
+        
+            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] Container not found:', containerId)
+                    return
+                end
+                
+                local containerName = result[1].identifier
+                local stash = exports['rsg-inventory']:GetInventory(containerName)
+    
+                if stash then
+                    exports['rsg-inventory']:OpenInventory(source, containerName, {
+                        label = title,
+                        maxweight = stash.maxweight,
+                        slots = stash.slots
+                    })
+                else
+                    print('[ERROR] Inventory does not exist:', containerName)
+                end
+            end)
             
         end
             
