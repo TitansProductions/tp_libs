@@ -167,7 +167,7 @@ local WEBHOOKS = {
 GetWebhookUrlByName = function(script, webhooktype)
 
     if WEBHOOKS[script][webhooktype] == nil then 
-        print(string.format('Attempted to retrieve GetWebhookUrlByName from an non valid webhook type of the mentioned script: { script: %s, type: %s}', script, webhooktype))
+        print(string.format('Attempted to retrieve GetWebhookUrlByName from an non valid webhook type of the mentioned script: { script: %s, type: %s }', script, webhooktype))
         return "N/A"
     end
    
