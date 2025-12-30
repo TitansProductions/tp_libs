@@ -35,8 +35,8 @@ ensure [Framework]
 ... etc. 
 ensure tp_libs -- depedency
 ensure tpz_menu_base -- depedency (standalone, can also be ensured before tp_libs)
-ensure tp_inputs -- depedency
-ensure tp_notify -- depedency
+ensure tp_inputs -- depedency (standalone, can also be ensured before tp_libs)
+ensure tp_notify -- depedency (standalone, can also be ensured before tp_libs)
 ensure tp_containers -- depedency
 ```
 
