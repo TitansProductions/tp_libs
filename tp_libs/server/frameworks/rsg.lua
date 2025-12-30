@@ -1,6 +1,6 @@
 local Functions = {} -- DO NOT TOUCH
 
-if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
+if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
     local RSG = exports['rsg-core']:GetCoreObject() -- Core Getter
 
@@ -65,7 +65,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             local xPlayer = Functions.GetPlayer(source)
             return tostring(xPlayer.PlayerData.job.name)
         end
-        
+            
         Functions.SetJob = function(source, job)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.SetJob(job, 0)
@@ -73,7 +73,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
-            local grade = xPlayer.PlayerData.job.grade.level or PlayerData.job.grade or PlayerData.job.level or 0
+            local grade = xPlayer.PlayerData.job.grade.level or 0
 
             return grade
         end
@@ -130,24 +130,25 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         Functions.GetInventoryTotalWeight = function(source)
             local xPlayer = Functions.GetPlayer(source)
-            return RSG.Player.GetTotalWeight(xPlayer.PlayerData.items)
-        end
-
-        Functions.GetInventoryMaxWeight = function(source)
-            local xPlayer = Functions.GetPlayer(source)
-            return xPlayer.PlayerData.weight
+            local totalWeight = exports['rsg-inventory']:GetTotalWeight(xPlayer.PlayerData.items)
+            return totalWeight
         end
     
         Functions.AddItemToInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.AddItem(item, amount)
-            TriggerClientEvent('inventory:client:ItemBox', source, RSG.Shared.Items[item], "add")
+            TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[item], "add")
         end
-    
+            
+        Functions.GetInventoryMaxWeight = function(source)
+            local xPlayer = Functions.GetPlayer(source)
+            return xPlayer.PlayerData.weight
+        end
+            
         Functions.RemoveItemFromInventory = function(source, item, amount)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.RemoveItem(item, amount)
-            TriggerClientEvent('inventory:client:ItemBox', source, RSG.Shared.Items[item], "remove")
+            TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[item], "remove")
         end
 
         Functions.GetItemCount = function(source, item, amount)
@@ -186,7 +187,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
         Functions.AddWeaponToInventory = function(source, weapon)
             local xPlayer = Functions.GetPlayer(source)
             xPlayer.Functions.AddItem(weapon, 1)
-            TriggerClientEvent('inventory:client:ItemBox', source, RSG.Shared.Items[weapon], "add", 1)
+            TriggerClientEvent('rsg-inventory:client:ItemBox', source, RSG.Shared.Items[weapon], "add", 1)
         end
     
         Functions.CanCarryWeapons = function(source, weapon)
@@ -198,12 +199,12 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             return true
     
         end
-            
+                
         Functions.GetItems = function() -- returns all server items in a table
             return RSG.Shared.Items
         end
 
-Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
+       Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
             
             exports['rsg-inventory']:CreateInventory(containerName, {
                 label = data.title or "",
@@ -223,8 +224,20 @@ Functions.RegisterContainerInventory = function(containerName, maxWeight, invCon
         end
 
         Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-            exports['rsg-inventory']:DeleteInventory(containerName)
+
+            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] Container not found:', containerId)
+                    return
+                end
+
+                local containerName = result[1].identifier
+                
+                exports['rsg-inventory']:DeleteInventory(containerName)
+
+            end)
+
         end
 
         Functions.GetContainerIdByName = function(containerName) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
@@ -238,17 +251,36 @@ Functions.RegisterContainerInventory = function(containerName, maxWeight, invCon
 
         Functions.DoesContainerExistById = function(containerId) -- name only for rsg
 
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-           
-            local exist = exports['rsg-inventory']:GetInventory(containerName)
-            if exist == nil then exist = false end
+            local exist = false
+            local await = true
 
-            if not exist then 
-                local exist = exports['rsg-inventory']:GetInventory(containerId)
+            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] Container not found:', containerId)
+                    return
+                end
+
+                local containerName = result[1].identifier
+                
+                local exist = exports['rsg-inventory']:GetInventory(containerName)
                 if exist == nil then exist = false end
+    
+                if not exist then 
+                    local exist = exports['rsg-inventory']:GetInventory(containerId)
+                    if exist == nil then exist = false end
+                end
+
+                await = false
+    
+            end)
+
+            while await do 
+                Wait(10)
             end
 
-            return exist
+            return exist 
+
         end
 
         Functions.DoesContainerExistByName = function(containerName)
@@ -258,33 +290,39 @@ Functions.RegisterContainerInventory = function(containerName, maxWeight, invCon
             return exist
         end
 
-        Functions.OpenContainerInventory(source, containerId, title) -- name for rsg not id
-            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
-           
-            local stash = exports['rsg-inventory']:GetInventory(containerName)
-
-            if stash then
-                exports['rsg-inventory']:OpenInventory(source, containerName, {
-                    label = title,
-                    maxweight = stash.maxweight,
-                    slots = stash.slots
-                })
-            end
+        Functions.OpenContainerInventory = function(source, containerId, title) -- name for rsg not id
+        
+            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] Container not found:', containerId)
+                    return
+                end
+                
+                local containerName = result[1].identifier
+                local stash = exports['rsg-inventory']:GetInventory(containerName)
+    
+                if stash then
+                    exports['rsg-inventory']:OpenInventory(source, containerName, {
+                        label = title,
+                        maxweight = stash.maxweight,
+                        slots = stash.slots
+                    })
+                else
+                    print('[ERROR] Inventory does not exist:', containerName)
+                end
+            end)
             
         end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
-        print("^2Sucessfully loaded - [^1RSG^2] Framework.")
+        print("^2Sucessfully loaded - [^1RSG V2^2] Framework.")
 
     end)
 
 end
-
-
-
-
 
 
 
