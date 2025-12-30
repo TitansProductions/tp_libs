@@ -189,7 +189,7 @@ end)
 
 RegisterServerEvent("tp_libs:server:openContainerInventory")
 AddEventHandler("tp_libs:server:openContainerInventory", function(containerId, title)
-	Functions.OpenContainerInventory(source, containerId, title)
+	GetFunctions().OpenContainerInventory(source, containerId, title)
 end)
 	
 --[[ ------------------------------------------------
@@ -328,6 +328,7 @@ Citizen.CreateThread(function()
     end
 
 end)
+
 
 
 
