@@ -22,8 +22,8 @@ exports('getAPI', function()
         return frameworkSelected
     end
 
-    self.getWebhookUrl = function(webhook)
-        return GetWebhookUrlByName(webhook)
+    self.getWebhookUrl = function(script, webhooktype)
+        return GetWebhookUrlByName(script, webhooktype)
     end
 
     -- GENERAL UTILITY API FUNCTIONS
