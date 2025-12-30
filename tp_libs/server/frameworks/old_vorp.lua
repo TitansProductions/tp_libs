@@ -209,7 +209,11 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         end
 
         Functions.RegisterContainerInventory = function(name, maxWeight, invConfig)
+            local id = os.time()
+            id = tostring(id)
+                
             local invData = {
+                id = id,
                 name = name,
                 limit = maxWeight,
                 acceptWeapons = GetValue(invConfig.acceptWeapons, false),
@@ -273,5 +277,6 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
