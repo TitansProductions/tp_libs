@@ -239,6 +239,10 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
 
             return exist
         end
+
+        Functions.OpenContainerInventory(source, containerName, title) -- name for rsg not id
+            exports['rsg-inventory']:OpenInventory(source, containerName)
+        end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -248,6 +252,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
 
 
 
