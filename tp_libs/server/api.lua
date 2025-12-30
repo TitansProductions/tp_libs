@@ -299,6 +299,14 @@ exports('getAPI', function()
         Functions.UpgradeContainerWeight(containerId, extraWeight)
     end
 
+    self.doesContainerExistById = function(containerId)
+        return Functions.DoesContainerExistById(containerId)
+    end
+
+    self.doesContainerExistByName = function(containerName)
+        return Functions.DoesContainerExistByName(containerName)
+    end
+
     return self
 
 end)
