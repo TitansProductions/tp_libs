@@ -8,7 +8,7 @@ Config.Debug = true
 
 -- @Supported Versions: 
 -- old_vorp (suggested for vorp, most stable).
--- latest_vorp
+-- latest_vorp (do not use for now - the last api is still broken by vorp side)
 -- gum
 -- rsg
 -- rsgv2
@@ -145,6 +145,7 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
 
 
 
