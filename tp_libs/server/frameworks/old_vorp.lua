@@ -9,6 +9,16 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     TriggerEvent("getCore", function(cb) VORP = cb end)
 
     local VORPInv = exports.vorp_inventory:vorp_inventoryApi() -- Core Inv Getter
+
+    local function GetValue(value, default)
+        if default == nil then
+            return value
+        end
+        if default == false then
+            return value or false
+        end
+        return value == nil and default or value
+    end
     
     Citizen.CreateThread(function () 
         
@@ -197,6 +207,63 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
 
             return items
         end
+
+        Functions.RegisterContainerInventory = function(name, maxWeight, invConfig)
+            local invData = {
+                name = name,
+                limit = maxWeight,
+                acceptWeapons = GetValue(invConfig.acceptWeapons, false),
+                shared = GetValue(invConfig.shared, true),
+                ignoreItemStackLimit = GetValue(invConfig.ignoreStackLimit, true),
+                whitelistItems = GetValue(invConfig.useWhitelist, invConfig.whitelist and true or false),
+                UseBlackList = GetValue(invConfig.useBlackList, invConfig.blacklist and true or false),
+                whitelistWeapons = GetValue(invConfig.useWeaponlist, invConfig.weaponlist and true or false),
+            }
+                
+            local inventory = exports.vorp_inventory:registerInventory(invData)
+
+            if invConfig.permissions then
+                for _, permission in ipairs(invConfig.permissions.allowedJobsTakeFrom or {}) do
+                    exports.vorp_inventory:AddPermissionTakeFromCustom(id, permission.name or permission.job, permission.grade)
+                end
+                for _, permission in ipairs(invConfig.permissions.allowedJobsMoveTo or {}) do
+                    exports.vorp_inventory:AddPermissionMoveToCustom(id, permission.name or permission.job, permission.grade)
+                end
+            end
+
+            if invData.whitelistItems then
+                for _, item in ipairs(invConfig.whitelist or {}) do
+                    exports.vorp_inventory:setCustomInventoryItemLimit(id, item.name or item.item, item.limit)
+                end
+            end
+
+            if invData.whitelistWeapons then
+                for _, weapon in ipairs(invConfig.weaponlist or {}) do
+                    exports.vorp_inventory:setCustomInventoryWeaponLimit(id, weapon.name or weapon.weapon, weapon.limit)
+                end
+            end
+
+            if invData.UseBlackList then
+                for _, item in ipairs(invConfig.blacklist or {}) do
+                    exports.vorp_inventory:BlackListCustomAny(id, item)
+                end
+            end
+
+            return inventory
+        end
+
+        Functions.UnRegisterContainer = function(containerId)
+            VORPInv:removeInventory(containerId)
+        end
+
+        Functions.GetContainerIdByName = function(containerName)
+            -- requires sql select
+            return 0
+        end
+
+        Functions.UpgradeContainerWeight = function(containerId, extraWeight)
+            -- n/a
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -206,4 +273,5 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
