@@ -29,12 +29,11 @@ __example:__
 
 ```lua
 ensure [Framework]
-...
-...
-...
-
+... (core)
+... (characters)
+... (inventory)
+... etc. 
 ensure tp_libs -- depedency
-ensure tp_versions -- (no depedency, but correct order for its ensuring)
 ensure tpz_menu_base -- depedency (standalone, can also be ensured before tp_libs)
 ensure tp_inputs -- depedency
 ensure tp_notify -- depedency
