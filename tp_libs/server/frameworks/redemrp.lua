@@ -197,7 +197,7 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             return false
         end
 
-                Functions.RegisterContainerInventory = function(containerName, maxWeight, data)
+        Functions.RegisterContainerInventory = function(containerName, maxWeight, data)
             REDEMInv.createLocker(containerName, "empty")
         end
 
@@ -246,5 +246,6 @@ if Config.Framework == 'redemrp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
