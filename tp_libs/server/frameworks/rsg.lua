@@ -218,8 +218,6 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
                 }
             )
 
-            print('created new sql')
-
         end
 
         Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
@@ -322,6 +320,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
 
 
 
