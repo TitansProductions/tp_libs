@@ -16,6 +16,9 @@ Config.Debug = true
 -- redemrp
 -- tpzcore
 Config.Framework = "old_vorp"
+
+-- Set it to false if you dont want to get informed when starting the server
+-- about outdated scripts. 
 Config.VersionChecker = true
 
 ---------------------------------------------------------------
@@ -145,6 +148,7 @@ function SendNotification(source, message, messageType)
     end
 
 end
+
 
 
 
