@@ -205,40 +205,40 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
        Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
-            local id = os.time()
-            id = tostring(id)
             
-            local config = {
-                id = tonumber(id),
-                label = containerName,
-                name = containerName, 
-                maxweight = maxWeight and (maxWeight * 1000), --convert kg to g
-                slots = invConfig.maxSlots
-            }
-
-            exports['rsg-inventory']:CreateInventory(id, config)
+            exports['rsg-inventory']:CreateInventory(containerName, {
+                label = data.title or "",
+                maxweight = maxWeight,
+                slots = data.slots or 150
+            })
                 
         end
 
-        Functions.UnRegisterContainer = function(containerId)
-            MySQL.update("DELETE FROM inventories WHERE identifier = ?", { containerId })
-            return exports['rsg-inventory'].DeleteInventory(containerId)
+        Functions.UnRegisterContainer = function(containerName) -- requires name for rsg
+            exports['rsg-inventory']:DeleteInventory(containerName)
         end
 
         Functions.GetContainerIdByName = function(containerName)
-            return 0
+            local containerId = exports.oxmysql:scalarSync('SELECT id FROM inventories WHERE identifier = ?', { containerName })
+            return containerId
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
             -- n/a
         end
 
-        Functions.DoesContainerExistById = function(containerId)
-            return false
+        Functions.DoesContainerExistById = function(containerName) -- name only for rsg
+            local exist = exports['rsg-inventory']:GetInventory(containerName)
+            if exist == nil then exist = false end
+
+            return exist
         end
 
         Functions.DoesContainerExistByName = function(containerName)
-            return false
+            local exist = exports['rsg-inventory']:GetInventory(containerName)
+            if exist == nil then exist = false end
+
+            return exist
         end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
@@ -249,5 +249,6 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
