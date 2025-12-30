@@ -242,16 +242,28 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
 
         Functions.GetContainerIdByName = function(containerName)
 
+            local await = true
+            local containerId = 0
+
             exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE identifier = ?', { containerName }, function(result)
                 
                 if not result or not result[1] then
                     print('[ERROR] GetContainerIdByName - Container not found:', containerName)
-                    return
+                    containerId = 0
+                else
+
+                    containerId = tonumber(result[1].id)
                 end
 
-                return tonumber(result[1].id)
-
+                await = false
+                
             end)
+
+            while await do 
+                Wait(10)
+            end
+
+            return containerId
 
         end
 
@@ -339,6 +351,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
