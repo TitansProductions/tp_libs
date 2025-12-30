@@ -193,6 +193,16 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             TriggerEvent("tpz_inventory:upgradeContainerInventoryWeight", containerId, extraWeight)
         end
 
+        Functions.DoesContainerExistById = function(containerId)
+            local containerExist = TPZInv.doesContainerExistById(containerId)
+            return containerExist
+        end
+
+        Functions.DoesContainerExistByName = function(containerName)
+            local containerExist = TPZInv.doesContainerExistByName(containerName)
+            return containerExist
+        end
+
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
         Wait(5000)
@@ -201,6 +211,7 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
