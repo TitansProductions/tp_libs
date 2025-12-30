@@ -40,4 +40,7 @@ ensure tp_notify -- depedency (standalone, can also be ensured before tp_libs)
 ensure tp_containers -- depedency
 ```
 
+# WEBHOOKS
 
+All webhooks management of Titans Productions script are located on `tp_libs/server/webhooks.lua` file and not through the script's config, the configuration file is shared,
+and since it is shared, a RedM Executer can find all of your script webhooks easily and spam or share them to others.
