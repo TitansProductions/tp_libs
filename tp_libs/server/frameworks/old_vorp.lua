@@ -268,6 +268,26 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
             -- n/a
         end
+
+        Functions.DoesContainerExistById = function(containerId)
+            local exist = exports.vorp_inventory:isCustomInventoryRegistered(containerId)
+
+            if exist == nil then
+                exist = VORPInv:isCustomInventoryRegistered(containerId)
+            end
+
+            return exist
+        end
+
+        Functions.DoesContainerExistByName = function(containerId) -- no name available, id only. 
+            local exist = exports.vorp_inventory:isCustomInventoryRegistered(containerId)
+
+            if exist == nil then
+                exist = VORPInv:isCustomInventoryRegistered(containerId)
+            end
+
+            return exist
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -277,6 +297,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
 
