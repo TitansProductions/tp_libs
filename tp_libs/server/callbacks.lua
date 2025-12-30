@@ -1,3 +1,5 @@
+-- credits to VORP Framework for providing callbacks utility. 
+
 ---@class ServerRPC @Callback class
 ---@field name string callback name
 ---@field _callback fun(source: number, cb: fun(data: any), ...) callback function
@@ -150,3 +152,4 @@ exports("ServerRpcCall", function()
 end)
 
 return ServerRPC
+
