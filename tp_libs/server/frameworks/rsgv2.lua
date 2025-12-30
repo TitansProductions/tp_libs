@@ -240,6 +240,10 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
 
             return exist
         end
+
+        Functions.OpenContainerInventory(source, containerName, title) -- name for rsg not id
+            exports['rsg-inventory']:OpenInventory(source, containerName)
+        end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -249,6 +253,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
