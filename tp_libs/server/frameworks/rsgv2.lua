@@ -203,6 +203,43 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         Functions.GetItems = function() -- returns all server items in a table
             return RSG.Shared.Items
         end
+
+       Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
+            local id = os.time()
+            id = tostring(id)
+            
+            local config = {
+                id = tonumber(id),
+                label = containerName,
+                name = containerName, 
+                maxweight = maxWeight and (maxWeight * 1000), --convert kg to g
+                slots = invConfig.maxSlots
+            }
+
+            exports['rsg-inventory']:CreateInventory(id, config)
+                
+        end
+
+        Functions.UnRegisterContainer = function(containerId)
+            MySQL.update("DELETE FROM inventories WHERE identifier = ?", { containerId })
+            return exports['rsg-inventory'].DeleteInventory(containerId)
+        end
+
+        Functions.GetContainerIdByName = function(containerName)
+            return 0
+        end
+
+        Functions.UpgradeContainerWeight = function(containerId, extraWeight)
+            -- n/a
+        end
+
+        Functions.DoesContainerExistById = function(containerId)
+            return false
+        end
+
+        Functions.DoesContainerExistByName = function(containerName)
+            return false
+        end
             
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -212,4 +249,5 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
