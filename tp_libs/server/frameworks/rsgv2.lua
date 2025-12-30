@@ -241,7 +241,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             return exist
         end
 
-        Functions.OpenContainerInventory(source, containerName, title) -- name for rsg not id
+        Functions.OpenContainerInventory = function(source, containerName, title) -- name for rsg not id
             local stash = exports['rsg-inventory']:GetInventory(containerName)
 
             if stash then
