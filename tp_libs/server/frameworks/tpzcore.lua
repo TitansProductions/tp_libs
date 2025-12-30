@@ -174,8 +174,12 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             -- For example: { allowlisted = 1 } - this data allows this container to not remove any durability from food items.
 
             if data == nil then data = {} end
+
+            local insert = data.insert or true
+            local contents = data.contents or nil
+            local _data = data.data or nil
                 
-            TriggerEvent("tpz_inventory:registerContainerInventory", containerName, maxWeight, data.insert, data.contents, data.data)
+            TriggerEvent("tpz_inventory:registerContainerInventory", containerName, maxWeight, insert, contents, _data)
         end
 
         Functions.UnRegisterContainer = function(containerId)
@@ -215,6 +219,7 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
     end)
 
 end
+
 
 
 
