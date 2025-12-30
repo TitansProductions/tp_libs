@@ -219,7 +219,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
         Functions.GetContainerIdByName = function(containerName)
-            local containerId = exports.oxmysql:scalarSync('SELECT id FROM inventories WHERE identifier = ?', { containerName })
+            local containerId = exports["ghmattimysql"]:execute('SELECT id FROM inventories WHERE identifier = ?', { containerName })
             return containerId
         end
 
@@ -249,6 +249,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
