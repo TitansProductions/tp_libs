@@ -1,3 +1,5 @@
+-- credits to VORP Framework for providing callbacks utility. 
+
 ---@class ClientRPC @Callback class
 ---@field name string callback name
 ---@field _callback fun(any) | fun(cb: fun(data: any), ...) trigger or register
@@ -134,4 +136,5 @@ end
 -- Export
 exports("ClientRpcCall", function()
     return ClientRPC
+
 end)
