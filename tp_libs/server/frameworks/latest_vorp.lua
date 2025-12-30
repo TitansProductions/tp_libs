@@ -296,6 +296,10 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
 
             return exist
         end
+
+        Functions.OpenContainerInventory = function(source, containerId, title)
+            exports.vorp_inventory:openInventory(source, containerId)
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -305,6 +309,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     end)
 
 end
+
 
 
 
