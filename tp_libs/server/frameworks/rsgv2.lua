@@ -222,6 +222,8 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
 
         Functions.UnRegisterContainer = function(containerId) 
+            
+            containerId = tonumber(containerId)
 
             exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE id = ?', { containerId }, function(result)
                 
@@ -262,7 +264,9 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             local exist = false
             local await = true
 
-            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+            containerId = tonumber(containerId)
+
+            exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE id = ?', { containerId }, function(result)
                 
                 if not result or not result[1] then
                     print('[ERROR] DoesContainerExistById - Container not found:', containerId)
@@ -300,9 +304,11 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
 
         Functions.OpenContainerInventory = function(source, containerId, title)
                 
-           local _source = source
+            local _source = source
                 
-            exports["ghmattimysql"]:execute( 'SELECT identifier FROM inventories WHERE id = ?', { containerId }, function(result)
+            containerId = tonumber(containerId)
+
+            exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE id = ?', { containerId }, function(result)
                 
                 if not result or not result[1] then
                     print('[ERROR] OpenContainerInventory - Container not found:', containerId)
@@ -333,6 +339,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
