@@ -204,20 +204,28 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             return RSG.Shared.Items
         end
 
-       Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
-            
-            exports['rsg-inventory']:CreateInventory(containerName, {
-                label = data.title or "",
-                maxweight = maxWeight,
-                slots = nil
-            })
-            
-            exports["ghmattimysql"]:execute(
-                "INSERT INTO inventories (identifier) VALUES (@identifier)",
-                {
-                    ["@identifier"] = containerName
-                }
-            )
+Functions.RegisterContainerInventory = function(containerName, maxWeight, invConfig)
+        
+            exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE identifier = ?', { containerName }, function(result)
+                
+                if not result or not result[1] then
+
+                    exports['rsg-inventory']:CreateInventory(containerName, {
+                        label = invConfig.title or "",
+                        maxweight = maxWeight,
+                        slots = nil
+                    })
+                    
+                    exports["ghmattimysql"]:execute(
+                        "INSERT IGNORE INTO inventories (identifier) VALUES (@identifier)",
+                        {
+                            ["@identifier"] = containerName
+                        }
+                    )
+    
+                end
+
+            end)
 
         end
 
@@ -351,6 +359,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
