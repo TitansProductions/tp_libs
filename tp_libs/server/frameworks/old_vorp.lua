@@ -288,6 +288,10 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
 
             return exist
         end
+
+        Functions.OpenContainerInventory = function(source, containerId, title)
+            exports.vorp_inventory:openInventory(source, containerId)
+        end
     
         AddFunctionsList(Functions) -- DO NOT MODIFY!
     
@@ -297,6 +301,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
 
