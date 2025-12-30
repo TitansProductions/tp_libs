@@ -219,8 +219,6 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
                 }
             )
 
-            print('created new sql')
-
         end
 
         Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
@@ -323,6 +321,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
