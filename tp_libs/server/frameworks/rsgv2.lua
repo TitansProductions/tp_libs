@@ -212,14 +212,23 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
                 slots = nil
             })
 
+            exports["ghmattimysql"]:execute(
+                "INSERT INTO inventories (identifier) VALUES (@identifier)",
+                {
+                    ["@identifier"] = containerName
+                }
+            )
+
         end
 
-        Functions.UnRegisterContainer = function(containerName) -- requires name for rsg
+        Functions.UnRegisterContainer = function(containerId) -- requires name for rsg
+            local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
             exports['rsg-inventory']:DeleteInventory(containerName)
         end
 
         Functions.GetContainerIdByName = function(containerId) -- on rsg we do the opposite, we need the identifier which is the used id for rsg, the real id is pointless. 
             local containerName = exports["ghmattimysql"]:execute('SELECT identifier FROM inventories WHERE id = ?', { containerId })
+           
             return containerName
         end
 
@@ -262,6 +271,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
