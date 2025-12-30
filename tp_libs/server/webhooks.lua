@@ -34,8 +34,6 @@ local WEBHOOKS = {
         ['ALL']                     = "",
     },
 
-    ["tp_containers"]               = "",
-
     ["tp_crayfish"] = {
         ['CRAYFISH_CATCH_SUCCESS']  = "",
         ['CHEAT']                   = "",
@@ -59,11 +57,14 @@ local WEBHOOKS = {
     },
 
     ["tp_medical_archives"] = {
-        ['REGISTER']                = "",
-        ['NEW_FORM']                = "",
-        ['PATIENT_INFO']            = "",
-        ['DELETED_FORM']            = "",
-        ['DELETED_PATIENT']         = "",
+
+        ['MEDICAL'] = {
+            ['REGISTER']                = "",
+            ['NEW_FORM']                = "",
+            ['PATIENT_INFO']            = "",
+            ['DELETED_FORM']            = "",
+            ['DELETED_PATIENT']         = "",
+        },
     },
 
     ["tp_mydog"] = {
