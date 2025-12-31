@@ -52,7 +52,7 @@ and since it is shared, a RedM Executer can find all of your script webhooks eas
 Add the following code on `vorp_inventory/server/services/inventoryApiService.lua` after all the default script's code. 
 
 ```lua
-function InventoryAPI.getCustomInventoryIdByName = function(name)
+function InventoryAPI.getCustomInventoryIdByName(name)
 
     for _, data in pairs (CustomInventoryInfos) do
         if data.name == name then
