@@ -237,8 +237,8 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         end
 
         Functions.GetContainerIdByName = function(containerName)
-            -- requires sql select
-            return 0
+            local containerId = exports.vorp_inventory:getCustomInventoryIdByName(containerName)
+            return containerId
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
@@ -277,6 +277,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
 
