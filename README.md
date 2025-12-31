@@ -21,7 +21,7 @@ This script can also be used by other developers if they are willing.
 
 2. Add `ensure tp_libs` after your core essentials (core, characters & inventory) in the resources.cfg or server.cfg, depends where your scripts are located.
 
-# README
+# Readme
 
 The specified Libs script requires a Framework as dependency, **DO NOT** ensure it before the Framework scripts, especially the Framework Base scripts but ensure it **LAST**. 
 
@@ -40,12 +40,12 @@ ensure tp_notify -- depedency (standalone, can also be ensured before tp_libs)
 ensure tp_containers -- depedency
 ```
 
-# WEBHOOKS
+# Webhooks
 
 All webhooks management of Titans Productions script are located on `tp_libs/server/webhooks.lua` file and not through the script's config, the configuration file is shared,
 and since it is shared, a RedM Executer can find all of your script webhooks easily and spam or share them to others.
 
-# STORAGES
+# Storages
 
 ## RSG
 
