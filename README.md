@@ -66,6 +66,15 @@ end
 
 exports("getCustomInventoryIdByName", InventoryAPI.getCustomInventoryIdByName)
 
+function InventoryAPI.setCustomInventoryLimit(id, limit)
+    if CustomInventoryInfos[id] == nil then return end
+
+    CustomInventoryInfos[id].limit = limit
+
+end
+
+exports("setCustomInventoryLimit", InventoryAPI.setCustomInventoryLimit)
+
 ```
 ## RSG
 
