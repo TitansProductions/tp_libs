@@ -253,7 +253,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
         end
 
         Functions.UpgradeContainerWeight = function(containerId, limit) -- vorp does not support it, we use limit replacement only
-            setCustomInventoryLimit(containerId, limit)
+            exports.vorp_inventory:setCustomInventoryLimit(containerId, limit)
         end
 
         Functions.DoesContainerExistById = function(containerId)
@@ -288,6 +288,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
     end)
 
 end
+
 
 
 
