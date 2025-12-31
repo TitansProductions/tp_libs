@@ -276,7 +276,22 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
         end
 
         Functions.UpgradeContainerWeight = function(containerId, extraWeight)
-            -- n/a
+
+            exports["ghmattimysql"]:execute( 'SELECT * FROM `inventories` WHERE id = ?', { containerId }, function(result)
+                
+                if not result or not result[1] then
+                    print('[ERROR] DoesContainerExistById - Container not found:', containerId)
+                    return
+                end
+
+                local containerName = result[1].identifier
+                local stash = exports['rsg-inventory']:GetInventory(containerName)
+
+                local maxweight = stash.maxweight + (extraWeight * 1000)
+                exports['rsg-inventory']:SetInventoryWeight(containerName, maxweight)
+        
+            end)
+
         end
 
         Functions.DoesContainerExistById = function(containerId)
@@ -359,6 +374,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     end)
 
 end
+
 
 
 
