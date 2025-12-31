@@ -44,3 +44,21 @@ ensure tp_containers -- depedency
 
 All webhooks management of Titans Productions script are located on `tp_libs/server/webhooks.lua` file and not through the script's config, the configuration file is shared,
 and since it is shared, a RedM Executer can find all of your script webhooks easily and spam or share them to others.
+
+# STORAGES
+
+## RSG
+
+Add the following code on `rsg-inventory/server/exports.lua`.
+
+```lua
+Inventory.SetInventoryWeight = function(identifier, maxweight)
+    if not identifier then return end
+    local inventory = Inventories[identifier]
+    if not inventory then return end
+
+    Inventories[identifier].maxweight = maxweight
+end
+
+exports("SetInventoryWeight", Inventory.SetInventoryWeight)
+```
