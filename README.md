@@ -47,7 +47,9 @@ and since it is shared, a RedM Executer can find all of your script webhooks eas
 
 # Storages
 
-## VORP
+The code we provide below is required for storages to work properly on our scripts. Unfortunately VORP and RSG does not provide some basic code that we need, so we made them for you to add them manually on the mentioned paths. 
+
+### VORP
 
 Add the following code on `vorp_inventory/server/services/inventoryApiService.lua` after all the default script's code. 
 
@@ -76,7 +78,7 @@ end
 exports("setCustomInventoryLimit", InventoryAPI.setCustomInventoryLimit)
 
 ```
-## RSG
+### RSG
 
 Add the following code on `rsg-inventory/server/exports.lua` after all the default script's code.
 
