@@ -49,9 +49,10 @@ and since it is shared, a RedM Executer can find all of your script webhooks eas
 
 ## RSG
 
-Add the following code on `rsg-inventory/server/exports.lua`.
+Add the following code on `rsg-inventory/server/exports.lua` after all the default script's code.
 
 ```lua
+-- The specified export is used for upgrading the max weight of an inventory stash. 
 Inventory.SetInventoryWeight = function(identifier, maxweight)
     if not identifier then return end
     local inventory = Inventories[identifier]
