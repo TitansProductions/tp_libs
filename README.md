@@ -47,6 +47,26 @@ and since it is shared, a RedM Executer can find all of your script webhooks eas
 
 # Storages
 
+## VORP
+
+Add the following code on `vorp_inventory/server/services/inventoryApiService.lua` after all the default script's code. 
+
+```lua
+function InventoryAPI.getCustomInventoryIdByName = function(name)
+
+    for _, data in pairs (CustomInventoryInfos) do
+        if data.name == name then
+            return data.id
+        end
+    end
+
+    return 0
+
+end
+
+exports("getCustomInventoryIdByName", InventoryAPI.getCustomInventoryIdByName)
+
+```
 ## RSG
 
 Add the following code on `rsg-inventory/server/exports.lua` after all the default script's code.
