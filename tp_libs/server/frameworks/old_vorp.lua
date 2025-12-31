@@ -209,27 +209,30 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         end
 
         Functions.RegisterContainerInventory = function(name, maxWeight, invConfig)
-            local id = os.time()
-            id = tostring(id)
+            local containerId = exports.vorp_inventory:getCustomInventoryIdByName(name)
 
-            if invConfig == nil then
-                invConfig = {}
+            if not containerId or containerId == 0 then
+                local id = os.time()
+                id = tostring(id)
+
+                if invConfig == nil then
+                    invConfig = {}
+                end
+                
+                local invData = {
+                    id = id,
+                    name = name,
+                    limit = maxWeight,
+                    acceptWeapons = GetValue(invConfig.acceptWeapons, false),
+                    shared = GetValue(invConfig.shared, true),
+                    ignoreItemStackLimit = GetValue(invConfig.ignoreStackLimit, true),
+                    whitelistItems = GetValue(invConfig.useWhitelist, invConfig.whitelist and true or false),
+                    UseBlackList = GetValue(invConfig.useBlackList, invConfig.blacklist and true or false),
+                    whitelistWeapons = GetValue(invConfig.useWeaponlist, invConfig.weaponlist and true or false),
+                }
+                
+                VORPInv:registerInventory(invData)
             end
-                
-            local invData = {
-                id = id,
-                name = name,
-                limit = maxWeight,
-                acceptWeapons = GetValue(invConfig.acceptWeapons, false),
-                shared = GetValue(invConfig.shared, true),
-                ignoreItemStackLimit = GetValue(invConfig.ignoreStackLimit, true),
-                whitelistItems = GetValue(invConfig.useWhitelist, invConfig.whitelist and true or false),
-                UseBlackList = GetValue(invConfig.useBlackList, invConfig.blacklist and true or false),
-                whitelistWeapons = GetValue(invConfig.useWeaponlist, invConfig.weaponlist and true or false),
-            }
-                
-            local inventory = VORPInv:registerInventory(invData)
-            return inventory
         end
 
         Functions.UnRegisterContainer = function(containerId)
@@ -277,6 +280,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
 
