@@ -244,8 +244,8 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
             return containerId
         end
 
-        Functions.UpgradeContainerWeight = function(containerId, extraWeight)
-            -- n/a
+        Functions.UpgradeContainerWeight = function(containerId, limit) -- vorp does not support it, we use limit replacement only
+            exports.vorp_inventory:setCustomInventoryLimit(containerId, limit)
         end
 
         Functions.DoesContainerExistById = function(containerId)
@@ -280,6 +280,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
 
