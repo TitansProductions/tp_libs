@@ -228,35 +228,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
                 whitelistWeapons = GetValue(invConfig.useWeaponlist, invConfig.weaponlist and true or false),
             }
                 
-            local inventory = exports.vorp_inventory:registerInventory(invData)
-
-            if invConfig.permissions then
-                for _, permission in ipairs(invConfig.permissions.allowedJobsTakeFrom or {}) do
-                    exports.vorp_inventory:AddPermissionTakeFromCustom(id, permission.name or permission.job, permission.grade)
-                end
-                for _, permission in ipairs(invConfig.permissions.allowedJobsMoveTo or {}) do
-                    exports.vorp_inventory:AddPermissionMoveToCustom(id, permission.name or permission.job, permission.grade)
-                end
-            end
-
-            if invData.whitelistItems then
-                for _, item in ipairs(invConfig.whitelist or {}) do
-                    exports.vorp_inventory:setCustomInventoryItemLimit(id, item.name or item.item, item.limit)
-                end
-            end
-
-            if invData.whitelistWeapons then
-                for _, weapon in ipairs(invConfig.weaponlist or {}) do
-                    exports.vorp_inventory:setCustomInventoryWeaponLimit(id, weapon.name or weapon.weapon, weapon.limit)
-                end
-            end
-
-            if invData.UseBlackList then
-                for _, item in ipairs(invConfig.blacklist or {}) do
-                    exports.vorp_inventory:BlackListCustomAny(id, item)
-                end
-            end
-
+            local inventory = VORPInv:registerInventory(invData)
             return inventory
         end
 
@@ -305,6 +277,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     end)
 
 end
+
 
 
 
