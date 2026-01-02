@@ -307,7 +307,7 @@ exports('getAPI', function()
         return Functions.DoesContainerExistByName(containerName)
     end
 
-    self.OpenContainerInventory = function(source, containerId, title)
+    self.openContainerInventory = function(source, containerId, title)
         Functions.OpenContainerInventory(source, containerId, title)
     end
 
