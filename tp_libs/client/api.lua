@@ -38,7 +38,7 @@ AddEventHandler('getTPAPI', function(cb)
         TriggerServerEvent('tp_libs:sendNotification', source, message, type)
     end
 
-    apiData.OpenContainerInventory = function(containerId, title)
+    apiData.openContainerInventory = function(containerId, title)
         TriggerServerEvent("tp_libs:server:openContainerInventory", containerId, title)
     end
 
@@ -102,11 +102,12 @@ exports('getAPI', function()
     
     end
 
-    self.OpenContainerInventory = function(containerId, title)
+    self.openContainerInventory = function(containerId, title)
         TriggerServerEvent("tp_libs:server:openContainerInventory", containerId, title)
     end
 
     return self
 end)
+
 
 
