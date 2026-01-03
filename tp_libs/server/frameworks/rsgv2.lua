@@ -212,7 +212,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
 
                     exports['rsg-inventory']:CreateInventory(containerName, {
                         label = invConfig.title or "",
-                        maxweight = maxWeight,
+                        maxweight = maxWeight * 1000,
                         slots = nil
                     })
                     
@@ -374,6 +374,7 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     end)
 
 end
+
 
 
 
