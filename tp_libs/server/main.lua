@@ -303,6 +303,14 @@ Citizen.CreateThread(function()
 
 end)
 
+AddEventHandler("txAdmin:events:scheduledRestart", function(eventData)
+    if eventData.secondsRemaining == 60 then
+        TriggerEvent("tp_libs:server:onDataUpdate")
+    end
+end)
+
+
+
 Citizen.CreateThread(function()
     
     while true do
