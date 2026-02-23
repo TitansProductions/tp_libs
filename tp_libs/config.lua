@@ -44,9 +44,11 @@ Config.VersionChecker = true
 
 */
 
--- The following option is saving all the data before server restart hours
--- (2-3 Minutes atleast before server restart is mostly preferred).
-Config.RestartHours = { "7:57" , "13:57", "19:57", "1:57"}
+-- The following option is saving all the data before a scheduled restart, this is to avoid data loss in case of a server restart.
+-- This Event triggers [30, 15, 10, 5, 4, 3, 2, 1] Minutes before the restart.
+Config.SaveXMinutesBeforeRestart = 2
+
+Config.WaitBeforeSavingDataOnRestart = 0 -- Additional delay in seconds before saving data on restart, if u want more control over the timing. Set it to 0 if you don't want any additional delay. Example: SaveXMinutesBeforeRestart = 2 and WaitBeforeSavingDataOnRestart = 30, the data will be saved at 1:30 minutes before the restart.
 
 -- As default, we save all data every 15 minutes to avoid data loss in case for server crashes.
 -- @param Enabled : Set to false do disable saving every x minutes.
