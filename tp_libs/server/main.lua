@@ -263,45 +263,22 @@ end)
 ]]---------------------------------------------------
 
 Citizen.CreateThread(function()
-	while true do
-		Wait(60000)
+	while Config.SaveDataRepeatingTimer.Enabled do
+		Wait(Config.SaveDataRepeatingTimer.Duration * 60000)
 
-    local time        = os.date("*t") 
-    local currentTime = table.concat({time.hour, time.min}, ":")
-
-    local finished    = false
-    local shouldSave  = false
-
-    for index, restartHour in pairs (Config.RestartHours) do
-
-      if currentTime == restartHour then
-        shouldSave = true
-      end
-
-      if next(Config.RestartHours, index) == nil then
-        finished = true
-      end
-
+        TriggerEvent("tp_libs:server:onDataUpdate")
     end
-
-    while not finished do
-      Wait(1000)
-    end
-
-    CurrentTime = CurrentTime + 1
-
-    if Config.SaveDataRepeatingTimer.Enabled and CurrentTime == Config.SaveDataRepeatingTimer.Duration then
-      CurrentTime = 0
-      shouldSave  = true
-    end
-
-    if shouldSave then
-      TriggerEvent("tp_libs:server:onDataUpdate")
-    end
-
-  end
 
 end)
+
+AddEventHandler("txAdmin:events:scheduledRestart", function(eventData)
+    if eventData.secondsRemaining == Config.SaveXMinutesBeforeRestart*60 then
+        Wait(Config.WaitBeforeSavingDataOnRestart * 1000)
+        TriggerEvent("tp_libs:server:onDataUpdate")
+    end
+end)
+
+
 
 Citizen.CreateThread(function()
     
