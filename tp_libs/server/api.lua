@@ -262,7 +262,7 @@ exports('getAPI', function()
         end
                 
         _functions.canCarryWeapons = function(weapon, quantity)
-            local cb = Functions.CanCarryWeapons(weapon, quantity)
+            local cb = Functions.CanCarryWeapons(_source, weapon, quantity)
             return cb
         end
                 
