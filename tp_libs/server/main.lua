@@ -261,47 +261,66 @@ end)
 --[[ ------------------------------------------------
    Events
 ]]---------------------------------------------------
+if Config.UseTxAdminRestartEvent then
+    
+    Citizen.CreateThread(function()
+        while Config.SaveDataRepeatingTimer.Enabled do
+            Wait(Config.SaveDataRepeatingTimer.Duration * 60000)
+            TriggerEvent("tp_libs:server:onDataUpdate")
+        end
 
-Citizen.CreateThread(function()
-	while true do
-		Wait(60000)
+    end)
 
-    local time        = os.date("*t") 
-    local currentTime = table.concat({time.hour, time.min}, ":")
+    AddEventHandler("txAdmin:events:scheduledRestart", function(eventData)
+        if eventData.secondsRemaining == Config.SaveXMinutesBeforeRestart*60 then
+            Wait(Config.WaitBeforeSavingDataOnRestart * 1000)
+            TriggerEvent("tp_libs:server:onDataUpdate")
+        end
+    end)
+else
+    Citizen.CreateThread(function()
+        while true do
+            Wait(60000)
 
-    local finished    = false
-    local shouldSave  = false
+            local time        = os.date("*t") 
+            local currentTime = table.concat({time.hour, time.min}, ":")
 
-    for index, restartHour in pairs (Config.RestartHours) do
+            local finished    = false
+            local shouldSave  = false
 
-      if currentTime == restartHour then
-        shouldSave = true
-      end
+            for index, restartHour in pairs (Config.RestartHours) do
 
-      if next(Config.RestartHours, index) == nil then
-        finished = true
-      end
+            if currentTime == restartHour then
+                shouldSave = true
+            end
 
-    end
+            if next(Config.RestartHours, index) == nil then
+                finished = true
+            end
 
-    while not finished do
-      Wait(1000)
-    end
+            end
 
-    CurrentTime = CurrentTime + 1
+            while not finished do
+                Wait(1000)
+            end
 
-    if Config.SaveDataRepeatingTimer.Enabled and CurrentTime == Config.SaveDataRepeatingTimer.Duration then
-      CurrentTime = 0
-      shouldSave  = true
-    end
+            CurrentTime = CurrentTime + 1
 
-    if shouldSave then
-      TriggerEvent("tp_libs:server:onDataUpdate")
-    end
+            if Config.SaveDataRepeatingTimer.Enabled and CurrentTime == Config.SaveDataRepeatingTimer.Duration then
+                CurrentTime = 0
+                shouldSave  = true
+            end
 
-  end
+            if shouldSave then
+                TriggerEvent("tp_libs:server:onDataUpdate")
+            end
 
-end)
+        end
+
+    end)
+end
+
+
 
 Citizen.CreateThread(function()
     
