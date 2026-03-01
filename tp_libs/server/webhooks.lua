@@ -13,6 +13,13 @@
 
 local WEBHOOKS = {
 
+   ["tp_trash"] = {
+
+        ['TRASHBIN_PLACEMENT']              = "",
+        ['LOCK_PLACEMENT']                  = "",
+        ['LOCKPICKED']                      = "",
+    },
+      
     ["tp_backpacks"] = {
 
         ['DELETE_ALL']              = "",
