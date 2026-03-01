@@ -234,7 +234,7 @@ exports('getAPI', function()
             return cb
         end
         
-        _functions.addItemToInventory = function(item, quantity, label)
+        _functions.addItem = function(item, quantity, label)
             Functions.AddItemToInventory(_source, item, quantity, label)
         end
 
@@ -253,11 +253,11 @@ exports('getAPI', function()
             return cb
         end
 
-        _functions.removeItemFromInventory = function(item, quantity, label)
+        _functions.removeItem = function(item, quantity, label)
             Functions.RemoveItemFromInventory(_source, item, quantity, label)
         end
 
-        _functions.addWeaponToInventory = function(weapon)
+        _functions.addWeapon = function(weapon)
             Functions.AddWeaponToInventory(_source, weapon)
         end
                 
