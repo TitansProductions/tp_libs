@@ -170,7 +170,7 @@ exports('getAPI', function()
             end
             
         _functions.getJob = function()
-            local cb = Functions.GetJob(_source
+            local cb = Functions.GetJob(_source)
             return cb
         end
 
