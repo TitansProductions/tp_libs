@@ -148,138 +148,6 @@ exports('getAPI', function()
         return cb
     end
 
-    self.GetPlayerObject = function(source)
-        local _source = source
-        local _functions = {}
-
-        _functions.loaded = function()
-            return Functions.IsPlayerCharacterSelected(_source)
-        end
-
-        _functions.getDiscordRoles = function()
-            local cb = GetUserDiscordRoles(_source)
-            return cb
-        end
-        
-        _functions.hasLostConnection = function()
-            if UserHeartbeats[_source] == nil then return false end 
-
-            return UserHeartbeats[_source] == 1 and true or false
-        end
-
-        _functions.getIdentifier = function()
-            return Functions.getIdentifier(_source)
-        end
-
-        _functions.getCharIdentifier = function()
-            return Functions.GetCharacterId(_source)
-        end
-
-        _functions.getGroup = function()
-            local cb = Functions.GetGroup(_source)
-            return cb
-            end
-            
-        _functions.getJob = function()
-            local cb = Functions.GetJob(_source)
-            return cb
-        end
-
-       _functions.setJob = function(job)
-            Functions.SetJob(_source, job)
-        end
-        
-        _functions.getJobGrade = function()
-            local cb = Functions.GetJobGrade(_source)
-            return cb
-        end
-        
-        _functions.getFirstName = function()
-            local cb = Functions.GetFirstName(_source)
-            return cb
-        end
-
-        _functions.getLastName = function()
-            local cb = Functions.GetLastName(_source)
-            return cb
-        end
-    
-        _functions.getMoney = function()
-            local cb = Functions.GetMoney(_source)
-            return cb
-        end
-
-        _functions.getGold = function()
-            local cb = Functions.GetGold(_source)
-            return cb
-        end
- 
-        _functions.addMoney = function(quantity)
-            Functions.AddMoney(_source, quantity)
-        end
-
-        _functions.addGold = function(quantity)
-            Functions.AddGold(_source, quantity)
-        end
-
-        _functions.removeMoney = function(quantity)
-            Functions.RemoveMoney(_source, quantity)
-        end
-
-        _functions.removeGold = function(quantity)
-            Functions.RemoveGold(_source, quantity)
-        end
-
-        _functions.getUserInventoryContents = function()
-            local cb = Functions.GetUserInventory(_source)
-            return cb
-        end
-
-       _functions.getInventoryTotalWeight = function() 
-           local cb = Functions.GetInventoryTotalWeight(_source) 
-           return cb
-        end
-            
-        _functions.getInventoryMaxWeight = function()
-            local cb = Functions.GetInventoryMaxWeight(_source)
-            return cb
-        end
-        
-        _functions.addItem = function(item, quantity, label)
-            Functions.AddItemToInventory(_source, item, quantity, label)
-        end
-
-        _functions.getItemCount = function(item)
-            local cb = Functions.GetItemCount(_source, item)
-            return cb
-        end
-        
-        _functions.getItemWeight = function(item)
-            local cb = Functions.GetItemWeight(item)
-            return cb
-        end
-
-        _functions.canCarryItem = function(item, quantity)
-            local cb = Functions.CanCarryItem(_source, item, quantity)
-            return cb
-        end
-
-        _functions.removeItem = function(item, quantity, label)
-            Functions.RemoveItemFromInventory(_source, item, quantity, label)
-        end
-
-        _functions.addWeapon = function(weapon)
-            Functions.AddWeaponToInventory(_source, weapon)
-        end
-                
-        _functions.canCarryWeapons = function(weapon, quantity)
-            local cb = Functions.CanCarryWeapons(_source, weapon, quantity)
-            return cb
-        end
-                
-        return _functions
-    end
-
     self.isPlayerCharacterSelected = function(source)
         local cb = Functions.IsPlayerCharacterSelected(source)
         return cb
@@ -442,7 +310,142 @@ exports('getAPI', function()
     self.openContainerInventory = function(source, containerId, title)
         Functions.OpenContainerInventory(source, containerId, title)
     end
+        
+    self.GetPlayerObject = function(source)
+        local _source = source
+        local _functions = {}
 
+        _functions.loaded = function()
+            local cb = Functions.IsPlayerCharacterSelected(_source)
+            return cb
+        end
+
+        _functions.getIdentifier = function()
+            local cb = Functions.GetIdentifier(_source)
+            return cb
+        end
+
+        _functions.getCharIdentifier = function()
+            local cb = Functions.GetCharacterId(_source)
+            return cb
+        end
+
+        _functions.getGroup = function()
+            local cb = Functions.GetGroup(_source)
+            return cb
+            end
+            
+        _functions.getJob = function()
+            local cb = Functions.GetJob(_source)
+            return cb
+        end
+
+       _functions.setJob = function(job)
+            Functions.SetJob(_source, job)
+        end
+        
+        _functions.getJobGrade = function()
+            local cb = Functions.GetJobGrade(_source)
+            return cb
+        end
+        
+        _functions.getFirstName = function()
+            local cb = Functions.GetFirstName(_source)
+            return cb
+        end
+
+        _functions.getLastName = function()
+            local cb = Functions.GetLastName(_source)
+            return cb
+        end
+    
+        _functions.getMoney = function()
+            local cb = Functions.GetMoney(_source)
+            return cb
+        end
+
+        _functions.getGold = function()
+            local cb = Functions.GetGold(_source)
+            return cb
+        end
+ 
+        _functions.addMoney = function(quantity)
+            Functions.AddMoney(_source, quantity)
+        end
+
+        _functions.addGold = function(quantity)
+            Functions.AddGold(_source, quantity)
+        end
+
+        _functions.removeMoney = function(quantity)
+            Functions.RemoveMoney(_source, quantity)
+        end
+
+        _functions.removeGold = function(quantity)
+            Functions.RemoveGold(_source, quantity)
+        end
+
+        _functions.getUserInventoryContents = function()
+            local cb = Functions.GetUserInventory(_source)
+            return cb
+        end
+
+       _functions.getInventoryTotalWeight = function() 
+           local cb = Functions.GetInventoryTotalWeight(_source) 
+           return cb
+        end
+            
+        _functions.getInventoryMaxWeight = function()
+            local cb = Functions.GetInventoryMaxWeight(_source)
+            return cb
+        end
+        
+        _functions.addItem = function(item, quantity, label)
+            Functions.AddItemToInventory(_source, item, quantity, label)
+        end
+
+        _functions.getItemCount = function(item)
+            local cb = Functions.GetItemCount(_source, item)
+            return cb
+        end
+        
+        _functions.getItemWeight = function(item)
+            local cb = Functions.GetItemWeight(item)
+            return cb
+        end
+
+        _functions.canCarryItem = function(item, quantity)
+            local cb = Functions.CanCarryItem(_source, item, quantity)
+            return cb
+        end
+
+        _functions.removeItem = function(item, quantity, label)
+            Functions.RemoveItemFromInventory(_source, item, quantity, label)
+        end
+
+        _functions.addWeapon = function(weapon)
+            Functions.AddWeaponToInventory(_source, weapon)
+        end
+                
+        _functions.canCarryWeapons = function(weapon, quantity)
+            local cb = Functions.CanCarryWeapons(_source, weapon, quantity)
+            return cb
+        end
+
+        _functions.getDiscordRoles = function()
+            local cb = GetUserDiscordRoles(_source)
+            return cb
+        end
+            
+        _functions.hasLostConnection = function()
+            if UserHeartbeats[_source] == nil then return false end 
+    
+            return UserHeartbeats[_source] == 1 and true or false
+        end
+                
+        return _functions
+    end
+        
     return self
 
 end)
