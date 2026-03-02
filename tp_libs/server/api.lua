@@ -156,6 +156,17 @@ exports('getAPI', function()
             return Functions.IsPlayerCharacterSelected(_source)
         end
 
+        _functions.getDiscordRoles = function()
+            local cb = GetUserDiscordRoles(_source)
+            return cb
+        end
+        
+        _functions.hasLostConnection = function()
+            if UserHeartbeats[_source] == nil then return false end 
+
+            return UserHeartbeats[_source] == 1 and true or false
+        end
+
         _functions.getIdentifier = function()
             return Functions.getIdentifier(_source)
         end
