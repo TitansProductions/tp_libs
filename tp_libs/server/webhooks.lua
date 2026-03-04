@@ -15,9 +15,7 @@ local WEBHOOKS = {
 
    ["tp_trash"] = {
 
-        ['TRASHBIN_PLACEMENT']              = "",
-        ['LOCK_PLACEMENT']                  = "",
-        ['LOCKPICKED']                      = "",
+        ['ALL']                     = "",
     },
       
     ["tp_backpacks"] = {
