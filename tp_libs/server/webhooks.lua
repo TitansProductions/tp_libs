@@ -15,6 +15,7 @@ local WEBHOOKS = {
 
    ["tp_ranch"] = {
         ['STORES']                  = "",
+        ['LEDGER_TRANSACTIONS']     = "",
         ['CHEAT']                   = "",
    },
       
