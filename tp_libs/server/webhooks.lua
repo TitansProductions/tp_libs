@@ -13,8 +13,12 @@
 
 local WEBHOOKS = {
 
+   ["tp_ranch"] = {
+        ['ALL']                     = "",
+        ['CHEAT']                   = "",
+   },
+      
    ["tp_trash"] = {
-
         ['ALL']                     = "",
     },
       
