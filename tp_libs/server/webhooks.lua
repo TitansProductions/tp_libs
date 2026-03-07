@@ -19,9 +19,7 @@ local WEBHOOKS = {
     },
       
     ["tp_backpacks"] = {
-
-        ['DELETE_ALL']              = "",
-        ['RENTED']                  = "",
+        ['ALL']                     = "",
     },
 
     ["tp_bandits"] = {
