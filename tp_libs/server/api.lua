@@ -55,7 +55,7 @@ exports('getAPI', function()
   
             local roll = CurvedRoll(curve)
   
-            for _,loot in ipairs(lootTable) do
+            for _,loot in ipairs(inputTable) do
                 local chance = loot.chance and loot.chance or loot.Chance
                 if roll <= chance then
                    return loot
