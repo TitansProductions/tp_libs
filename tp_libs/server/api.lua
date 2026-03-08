@@ -45,6 +45,40 @@ exports('getAPI', function()
         SendToDiscordWebhook(webhook, title, message, color)
     end
 
+    self.generateLootItemsList = function(inputTable, curve, amount)
+
+        local function CurvedRoll(curve)
+            return math.floor((math.random() ^ curve) * 100) + 1
+        end
+
+        local function GenerateLoot(inputTable, curve)
+  
+            local roll = CurvedRoll(curve)
+  
+            for _,loot in ipairs(lootTable) do
+                local chance = loot.chance and loot.chance or loot.Chance
+                if roll <= chance then
+                   return loot
+                end
+            end
+  
+        end
+            
+        local items = {}
+        local used = {}
+  
+        while #items < amount do
+            local item = GenerateLoot(inputTable, curve)
+    
+           if not used[item] then
+               used[item] = true
+               table.insert(items, item)
+           end
+        end
+  
+        return items
+    end
+
     self.GetSeparatedPlayersByDistance = function(coords, radius)
         local nearbyPlayers, farPlayers = {}, {}
 
