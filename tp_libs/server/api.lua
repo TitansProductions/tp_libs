@@ -50,94 +50,100 @@ exports('getAPI', function()
     -- CURVE = 4   -- very rare drops
     -- CURVE = 5   -- brutal RNG
     self.generateLootItemsList = function(inputTable, curve, amount)
-
-    local function CurvedRoll(curve)
-        return math.floor((math.random() ^ curve) * 100) + 1
-    end
-
-    local function GenerateLoot(inputTable, curve)
-        local roll = CurvedRoll(curve)
+        
+        -- Curved RNG
+        local function CurvedRoll(curve)
+            return math.floor((math.random() ^ curve) * 100) + 1
+        end
+    
+        -- Normalize table keys to lowercase
+        local function normalizeKeys(tbl)
+            local result = {}
+            for k, v in pairs(tbl) do
+                local key = string.lower(k)
+                if type(v) == "table" then
+                    result[key] = normalizeKeys(v)
+                else
+                    result[key] = v
+                end
+            end
+            return result
+        end
+    
+        -- Shuffle table to avoid order bias
+        local function shuffle(tbl)
+            local t = {table.unpack(tbl)}
+            for i = #t, 2, -1 do
+                local j = math.random(i)
+                t[i], t[j] = t[j], t[i]
+            end
+            return t
+        end
+    
+        -- Normalize loot table once
+        local lootTable = {}
         for _, loot in ipairs(inputTable) do
-            local chance = loot.chance or loot.Chance or 0
+            table.insert(lootTable, normalizeKeys(loot))
+        end
+    
+        -- Shuffle once per container
+        lootTable = shuffle(lootTable)
+    
+        local items = {}
+        local used = {}
+    
+        for _, loot in ipairs(lootTable) do
+
+            if #items >= amount then
+                break
+            end
+    
+            local chance = loot.chance or 0
+            local roll = CurvedRoll(curve)
+    
             if roll <= chance then
-                return loot
+    
+                local name = loot.item or loot.name
+                if not name then
+                    goto continue
+                end
+    
+                if not used[name] then
+    
+                    local label = loot.label or name
+                    local weight = loot.weight or 0
+                    local metadata = loot.metadata or {}
+                    local item_type = not loot.isweapon and "item_standard" or "weapon"
+    
+                    -- quantity
+                    local quantity = 1
+                    if tonumber(loot.quantity) then
+                        quantity = loot.quantity
+                    elseif loot.quantity and loot.quantity.min then
+                        quantity = math.random(loot.quantity.min, loot.quantity.max)
+                    end
+    
+                    if quantity > 0 then
+                        used[name] = true
+    
+                        table.insert(items, {
+                            item = name,
+                            label = label,
+                            quantity = quantity,
+                            weight = weight,
+                            metadata = metadata,
+                            type = item_type
+                        })
+                    end
+    
+                end
             end
+    
+            ::continue::
         end
-        return nil
+    
+        return items
     end
-
-    local function normalizeKeys(tbl)
-        local result = {}
-        for k, v in pairs(tbl) do
-            local key = string.lower(k)
-            if type(v) == "table" then
-                result[key] = normalizeKeys(v)
-            else
-                result[key] = v
-            end
-        end
-        return result
-    end
-
-    local items = {}
-    local used = {}
-
-    local attemptsOverall = 0
-    local maxOverallAttempts = amount * 5  -- prevents infinite loops if loot is very rare
-
-    while #items < amount and attemptsOverall < maxOverallAttempts do
-        attemptsOverall = attemptsOverall + 1
-
-        local loot = GenerateLoot(inputTable, curve)
-        if not loot then
-            -- Roll failed, just skip to next iteration
-            goto continue
-        end
-
-        local normalized = normalizeKeys(loot)
-        local name = normalized.item or normalized.name
-        local label = normalized.label or name
-        local weight = normalized.weight or 0
-
-        -- Determine quantity
-        local quantity = 1
-        if tonumber(normalized.quantity) then
-            quantity = normalized.quantity
-        elseif normalized.quantity and normalized.quantity.min then
-            quantity = math.random(normalized.quantity.min, normalized.quantity.max)
-        end
-
-        -- Check duplicates with up to 5 attempts
-        local attempts = 0
-        local maxAttempts = 5
-        while used[name] and attempts < maxAttempts do
-            loot = GenerateLoot(inputTable, curve)
-            if not loot then break end
-
-            normalized = normalizeKeys(loot)
-            name = normalized.item or normalized.name
-            label = normalized.label or name
-            weight = normalized.weight or 0
-
-            if tonumber(normalized.quantity) then
-                quantity = normalized.quantity
-            elseif normalized.quantity and normalized.quantity.min then
-                quantity = math.random(normalized.quantity.min, normalized.quantity.max)
-            end
-
-            attempts = attempts + 1
-        end
-
-        if not used[name] then
-            used[name] = true
-            table.insert(items, { item = name, label = label, quantity = quantity, weight = weight })
-        end
-
-        ::continue::
-    end
-
-    return items
-end
 
     self.GetSeparatedPlayersByDistance = function(coords, radius)
         local nearbyPlayers, farPlayers = {}, {}
