@@ -73,11 +73,27 @@ exports('getAPI', function()
   
         while #items < amount do
             local item = GenerateLoot(inputTable, curve)
-    
+ 
            if not used[item] then
                used[item] = true
                table.insert(items, item)
+           else
+
+               local attempts = 0
+               local maxAttempts = 5
+
+              while used[item] and attempts < maxAttempts do
+                  item = GenerateLoot(inputTable, curve)
+                 attempts = attempts + 1
+              end
+
+             if not used[item] then
+                 used[item] = true
+                 table.insert(items, item)
+             end
+
            end
+                    
         end
   
         return items
