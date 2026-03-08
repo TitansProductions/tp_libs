@@ -45,6 +45,10 @@ exports('getAPI', function()
         SendToDiscordWebhook(webhook, title, message, color)
     end
 
+    -- CURVE = 2   -- mild rarity
+    -- CURVE = 3   -- strong rarity
+    -- CURVE = 4   -- very rare drops
+    -- CURVE = 5   -- brutal RNG
     self.generateLootItemsList = function(inputTable, curve, amount)
 
         local function CurvedRoll(curve)
