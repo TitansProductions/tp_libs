@@ -94,7 +94,7 @@ exports('getAPI', function()
 
             local normalized = normalizeKeys(item)
                 
-            local name = normalized.item 
+            local name = normalized.item and normalized.item or normalized.name
             local label = normalized.label 
             local weight = normalized.weight or 0
 
