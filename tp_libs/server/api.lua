@@ -67,16 +67,55 @@ exports('getAPI', function()
             end
   
         end
+
+        local function normalizeKeys(tbl)
+           local result = {}
+
+           for k, v in pairs(tbl) do
+               local key = string.lower(k)
+
+               if type(v) == "table" then
+                   result[key] = normalizeKeys(v)
+               else
+                   result[key] = v
+               end
+           end
+
+           return result
+                
+          end
             
         local items = {}
         local used = {}
   
         while #items < amount do
+            
             local item = GenerateLoot(inputTable, curve)
+
+            local normalized = normalizeKeys(item)
+                
+            local name = normalized.item 
+            local label = normalized.label 
+            local weight = normalized.weight or 0
+
+            local quantity = 0
+
+            if tonumber(normalized.quantity) ~= nil then
+                quantity = normalized.quantity
+            else
+
+                local randomQuantity
+
+                if normalized.quantity and normalized.quantity.min then
+                    randomQuantity = math.random(normalized.quantity.min, normalized.quantity.max)
+                end
+                    
+                quantity = randomQuantity
+            end    
  
            if not used[item] then
                used[item] = true
-               table.insert(items, item)
+               table.insert(items, { item = name, label = label, quantity = quantity, weight = weight)
            else
 
                local attempts = 0
@@ -89,7 +128,7 @@ exports('getAPI', function()
 
              if not used[item] then
                  used[item] = true
-                 table.insert(items, item)
+                 table.insert(items, { item = name, label = label, quantity = quantity, weight = weight } )
              end
 
            end
