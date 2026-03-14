@@ -106,7 +106,7 @@ exports('getAPI', function()
         TriggerServerEvent("tp_libs:server:openContainerInventory", containerId, title)
     end
 
-    self.functions.PlayAnimation = function(ped, anim)
+    self.PlayAnimation = function(ped, anim)
     
         if not DoesAnimDictExist(anim.dict) then
             return false
