@@ -7,4 +7,5 @@ Locales = {}
 -- local notEnoughMoney = exports.tp_lib:requestAPI().getLocale("NOT_ENOUGH_MONEY")
 Locales = {
     ['NOT_ENOUGH_MONEY'] = "You don't have enough money.",
+    ['NOT_ENOUGH_PERMISSIONS'] = "~e~You don't have the required permissions.",
 }
