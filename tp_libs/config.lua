@@ -81,7 +81,7 @@ Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Config.PermittedAdminGroups = { 'admin' } -- version 2.1.0
 
 -- @param Config.PermittedAdminDiscordRoles : Is used to execute tp_libs commands.
-Config.PermittedAdminDiscordRoles = { } -- version 2.1.0
+Config.PermittedAdminDiscordRoles = { 1111111111111111111, 222222222222222222 } -- version 2.1.0
 
 ---------------------------------------------------------------
 --[[ Discord Webhooking ]]--
