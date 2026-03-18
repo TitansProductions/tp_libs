@@ -258,8 +258,49 @@ addNewCallBack("tp_libs:getPlayerJob", function(source, cb)
     return cb(Functions.GetJob(_source))
 
 end)
+
 --[[ ------------------------------------------------
-   Events
+   Commands
+]]---------------------------------------------------
+
+RegisterCommand("savetpscripts", function(source, args)  -- version 2.1.0
+    local _source = source
+
+    local hasPermissions, await = false, true
+   
+    if _source ~= 0 then
+        hasPermissions = IsPlayerAceAllowed(_source, "titansproductions.save")
+
+        if not hasPermissions then
+            local discord_roles = GetUserDiscordRoles(_source)
+            local group = GetFunctions().GetGroup(_source)
+
+            hasPermissions = IsPlayerAllowlisted(group, discord_roles)
+        end
+    
+        await = false
+
+    else
+        hasPermissions = true -- CONSOLE HAS PERMISSIONS.
+        await = false
+    end
+
+    while await do
+        Wait(100)
+    end
+
+    if not hasPermissions then 
+        TriggerEvent('tp_libs:sendNotification', _source, Locales['NOT_ENOUGH_PERMISSIONS'], "error")
+        return
+    end
+
+    TriggerEvent("tp_libs:server:onDataUpdate")
+
+    print('The save scripts command has been executed. All the scripts have been successfully saved.')
+end)
+
+--[[ ------------------------------------------------
+   Threads
 ]]---------------------------------------------------
 
 Citizen.CreateThread(function()
