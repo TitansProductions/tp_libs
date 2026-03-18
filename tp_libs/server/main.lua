@@ -6,6 +6,49 @@ UserHeartbeats    = {}
    Functions
 ]]---------------------------------------------------
 
+local function IsPlayerAllowlisted(currentGroup, discordRoles) -- version 2.1.0
+
+    if Config.PermittedAdminGroups == nil then 
+        print('The configuration file is missing Config.PermittedAdminGroups configuration option.')
+    end
+
+    -- We first check for groups (if available and not null)
+    if currentGroup and Config.PermittedAdminGroups and GetTableLength(Config.PermittedAdminGroups) > 0 then
+
+        for _, userGroup in pairs (Config.PermittedAdminGroups) do
+        
+            if userGroup == currentGroup then
+                return true
+            end
+      
+        end
+
+    end
+
+    if Config.PermittedAdminDiscordRoles == nil then 
+        print('The configuration file is missing Config.PermittedAdminDiscordRoles configuration option.')
+    end
+
+    -- Secondary we check for discord roles (if available and not null)
+    if ( discordRoles and GetTableLength(discordRoles) > 0 ) and ( Config.PermittedAdminDiscordRoles and GetTableLength(Config.PermittedAdminDiscordRoles) > 0 ) then
+
+        for _, role in pairs (Config.PermittedAdminDiscordRoles) do
+  
+            for _, userRole in pairs (discordRoles) do
+              
+              if tonumber(userRole) == tonumber(role) then
+                return true
+              end
+        
+            end
+
+        end
+
+    end
+
+    return false
+end
+
 -- Convert to hex
 local toHex = function(str)
     return (str:gsub('.', function(c)
@@ -290,7 +333,15 @@ RegisterCommand("savetpscripts", function(source, args)  -- version 2.1.0
     end
 
     if not hasPermissions then 
-        TriggerEvent('tp_libs:sendNotification', _source, Locales['NOT_ENOUGH_PERMISSIONS'], "error")
+
+        local text = Locales['NOT_ENOUGH_PERMISSIONS']
+
+        if text == nil then 
+            print('NOT_ENOUGH_PERMISSIONS locale is missing from locales.lua file.') 
+            text = "N/A"
+        end 
+
+        TriggerEvent('tp_libs:sendNotification', _source, text, "error")
         return
     end
 
