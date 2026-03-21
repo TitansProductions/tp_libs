@@ -53,6 +53,18 @@ Config.RestartHours = { "1:57", "5:57", "9:57", "13:57", "17:57", "21:57"  }
 -- @param Duration : Time in minutes.
 Config.SaveDataRepeatingTimer = { Enabled = true, Duration = 15 }
 
+-- Set to true if you want to use txAdmin restart event, 
+-- this will make sure that the data is saved when a restart is scheduled
+-- from TxAdmin with at least 1 minute notice. 
+-- This will disable the RestartHours option, and the server will rely solely on
+-- TxAdmin restart event to save data before restarts.
+Config.UseTxAdminRestartEvent = false
+
+-- The following option is saving all the data before a scheduled restart, 
+-- this is to avoid data loss in case of a server restart.
+-- This Event triggers [30, 15, 10, 5, 4, 3, 2, 1] Minutes before the restart.
+Config.SaveXMinutesBeforeTxAdminRestartEvent = 2
+
 ---------------------------------------------------------------
 --[[ Discord API Configurations ]]--
 ---------------------------------------------------------------
