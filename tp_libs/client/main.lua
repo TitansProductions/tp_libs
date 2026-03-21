@@ -1,14 +1,27 @@
-
--- Triggered when character has been selected from
--- any framework. 
+---------------------------------------------------------------
+--[[ TP Libs Events ]]--
+---------------------------------------------------------------
 
 RegisterNetEvent("tp_libs:isPlayerReady")
 AddEventHandler("tp_libs:isPlayerReady", function()
 
     TriggerServerEvent("tp_libs:registerChatSuggestions")
-        
+
     Citizen.CreateThread(function() while true do TriggerServerEvent("tp_libs:server:heartbeat") Wait(500) end end)  
 end)
+
+RegisterNetEvent("tp_libs:getPlayerJob")
+AddEventHandler("tp_libs:getPlayerJob", function(job)
+    if Config.Debug then
+        print("Job Updated / Changed To: " .. job)
+    end
+
+    -- todo nothing
+end)
+
+---------------------------------------------------------------
+--[[ Framework Events - Character Select ]]--
+---------------------------------------------------------------
 
 -- TPZ CORE
 AddEventHandler("tpz_core:isPlayerReady", function()
@@ -44,16 +57,8 @@ end)
 
 
 ---------------------------------------------------------------
---[[ Job Update ]]--
+--[[ Framework Events - Job Update ]]--
 ---------------------------------------------------------------
-
-RegisterNetEvent("tp_libs:getPlayerJob")
-AddEventHandler("tp_libs:getPlayerJob", function(job)
-    if Config.Debug then
-        print("Job Updated / Changed To: " .. job)
-    end
-    -- todo nothing
-end)
 
 -- QBCORE
 RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
