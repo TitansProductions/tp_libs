@@ -110,9 +110,9 @@ Config.DiscordWebhooking = {
 --[[ Documents Menu ]]--
 ---------------------------------------------------------------
 
--- DO NOT SET TO false if you don't want a command to open the Documents NUI.
--- Set it to something unknown.
+-- if you don't want a command to open the Documents NUI, set it to false.
 Config.DocumentsCommand = 'documents'
+                
 ---------------------------------------------------------------
 --[[ Notifications ]]--
 ---------------------------------------------------------------
