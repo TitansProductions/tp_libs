@@ -199,6 +199,10 @@ end
 
 AddEventHandler("txAdmin:events:scheduledRestart", function(eventData)
 
+	if not Config.UseTxAdminRestartEvent then
+	    return
+	end
+		
     if eventData.secondsRemaining == ( Config.SaveXMinutesBeforeTxAdminRestartEvent * 60) then
         TriggerEvent("tp_libs:server:onDataUpdate")
     end
@@ -368,6 +372,7 @@ end)
    Threads
 ]]---------------------------------------------------
 
+if not Config.UseTxAdminRestartEvent then
 Citizen.CreateThread(function()
 	while true do
 		Wait(60000)
@@ -408,6 +413,7 @@ Citizen.CreateThread(function()
   end
 
 end)
+end
 
 Citizen.CreateThread(function()
     
