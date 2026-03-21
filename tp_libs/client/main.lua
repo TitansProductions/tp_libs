@@ -49,6 +49,9 @@ end)
 
 RegisterNetEvent("tp_libs:getPlayerJob")
 AddEventHandler("tp_libs:getPlayerJob", function(job)
+    if Config.Debug then
+        print("Job Updated / Changed To: " .. job)
+    end
     -- todo nothing
 end)
 
