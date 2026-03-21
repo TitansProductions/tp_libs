@@ -197,6 +197,14 @@ end
    Events
 ]]---------------------------------------------------
 
+AddEventHandler("txAdmin:events:scheduledRestart", function(eventData)
+
+    if eventData.secondsRemaining == ( Config.SaveXMinutesBeforeTxAdminRestartEvent * 60) then
+        TriggerEvent("tp_libs:server:onDataUpdate")
+    end
+    
+end)
+
 RegisterServerEvent('tp_libs:sendNotification')
 AddEventHandler('tp_libs:sendNotification', function(tsource, message, type)
     local _source = tonumber(tsource)
