@@ -234,7 +234,13 @@ RegisterServerEvent("tp_libs:server:openContainerInventory")
 AddEventHandler("tp_libs:server:openContainerInventory", function(containerId, title)
 	GetFunctions().OpenContainerInventory(source, containerId, title)
 end)
-	
+
+RegisterServerEvent("tp_libs:registerChatSuggestions")
+AddEventHandler("tp_libs:registerChatSuggestions", function()
+   local _source = source
+    TriggerClientEvent("chat:addSuggestion", _source, "/savetpscripts", "Use the following script to save Titans Productions scripts.", {} )
+end)
+
 --[[ ------------------------------------------------
    Framework Events
 ]]---------------------------------------------------
