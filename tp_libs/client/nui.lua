@@ -131,9 +131,11 @@ end)
 --[[ Commands ]]--
 -----------------------------------------------------------
 
-RegisterCommand(Config.DocumentsCommand, function(source, args, rawCommand)
-    OpenSelectableMenu()
-end)
+if Config.DocumentsCommand ~= false then
+    RegisterCommand(Config.DocumentsCommand, function(source, args, rawCommand)
+        OpenSelectableMenu()
+    end)
+end
 
 -----------------------------------------------------------
 --[[ Threads ]]--
