@@ -87,7 +87,7 @@ Config.DiscordServerID = 'xxxxxxxxxxxxxxxxxxxx'
                 
 -- Your discord bot token, if does not exist, create a bot in the url below:
 -- https://discord.com/developers/applications
-Config.DiscordBotToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+Config.DiscordBotToken = '' -- DO NOT INSERT TOKEN HERE, READ THE COMMENT ABOVE ON ABOUT.
 
 -- @param Config.PermittedAdminGroups : Is used to execute tp_libs commands.
 Config.PermittedAdminGroups = { 'admin' } -- version 2.1.0
