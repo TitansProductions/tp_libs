@@ -18,6 +18,7 @@ local WEBHOOKS = {
         ['LEDGER_TRANSACTIONS']     = "",
         ['MEMBERS']                 = "",
         ['CHEAT']                   = "",
+        ['FAILED_TO_PAY_TAX']       = "",
    },
       
    ["tp_trash"] = {
