@@ -12,7 +12,11 @@
 */
 
 local WEBHOOKS = {
-
+      
+   ["tp_clans"] = {
+        ['COMMANDS']                = "",
+   },
+      
    ["tp_ranch"] = {
         ['BOUGHT']                  = "",
         ['STORES']                  = "",
