@@ -31,6 +31,26 @@ end)
 -- VORP
 RegisterNetEvent("vorp:SelectedCharacter", function()
     TriggerEvent("tp_libs:isPlayerReady")
+
+    -- Vorp related only for updaring job every minute
+    -- it seems that the jobUpdate event does not trigger on vorp most of the times. 
+    if Config.Framework == "old_vorp" or Config.Framework == "latest_vorp" then
+
+        Citizen.CreateThread(function()
+
+            while true do
+                Wait(60000)
+
+                TriggerEvent("tp_libs:ExecuteServerCallBack", "tp_libs:getPlayerJob", function(job)
+                    if job ~= nil then
+                        TriggerEvent("tp_libs:getPlayerJob", job)
+                    end
+                end)
+
+            end
+
+        end)
+    end
 end)
 
 -- GUM
@@ -81,22 +101,3 @@ AddEventHandler("tpz_core:getPlayerJob", function(data)
 
     TriggerEvent("tp_libs:getPlayerJob", data.job)
 end)
-
--- Vorp related only for updaring job every minute
--- it seems that the jobUpdate event does not trigger on vorp most of the times. 
-if Config.Framework == "old_vorp" or Config.Framework == "latest_vorp" then
-
-    Citizen.CreateThread(function()
-
-        while true do
-            Wait(60000)
-
-            TriggerEvent("tp_libs:ExecuteServerCallBack", "tp_libs:getPlayerJob", function(job)
-                TriggerEvent("tp_libs:getPlayerJob", job)
-            end)
-
-        end
-
-    end)
-end
-
