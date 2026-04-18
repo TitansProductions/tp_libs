@@ -15,7 +15,10 @@ local WEBHOOKS = {
       
    ["tp_clans"] = {
         ['COMMANDS']                = "",
-   },
+        ['FAILED_TO_PAY_TAX']       = "",
+        ['DELETED_CLAN']            = "",
+        ['RAIDS']                   = "",
+    },
       
    ["tp_ranch"] = {
         ['BOUGHT']                  = "",
