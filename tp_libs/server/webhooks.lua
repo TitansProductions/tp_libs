@@ -12,6 +12,10 @@
 */
 
 local WEBHOOKS = {
+
+   ["tp_cod_zombies"] = {
+        ['FORSAKEN']                = "", -- default map name
+   }, 
       
    ["tp_clans"] = {
         ['COMMANDS']                = "",
