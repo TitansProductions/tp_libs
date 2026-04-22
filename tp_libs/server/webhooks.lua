@@ -14,7 +14,7 @@
 local WEBHOOKS = {
 
    ["tp_cod_zombies"] = {
-        ['FORSAKEN']                = "", -- default map name
+        ['SISIKA_PENITENTIARY']     = "", -- default map name
    }, 
       
    ["tp_clans"] = {
