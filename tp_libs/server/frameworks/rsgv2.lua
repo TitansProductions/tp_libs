@@ -2,7 +2,27 @@ local Functions = {} -- DO NOT TOUCH
 
 if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
-    local RSG = exports['rsg-core']:GetCoreObject() -- Core Getter
+    local RSG = nil
+    local attempts = 0
+    local maxAttempts = 10
+
+    while attempts < maxAttempts do
+
+        attempts = attempts + 1
+
+        if attempts > 1 then
+            print("[RSG-CORE] Not ready or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
+        end
+        
+        RSG = exports['rsg-core']:GetCoreObject() -- Core Getter
+
+        if RSG ~= nil then
+            break
+        end
+
+        Wait(5000) -- mandatory wait - we want after many seconds
+
+    end
 
     Citizen.CreateThread(function () 
         
