@@ -5,10 +5,30 @@ local Functions = {} -- DO NOT TOUCH
 if Config.Framework == 'gum' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
     local GUM = nil
+    local attempts = 0
+    local maxAttempts = 10
 
-    TriggerEvent("getCore", function(cb) VORP = cb end)
+    while attempts < maxAttempts do
 
-    local GUMInv = exports.vorp_inventory:gum_inventoryApi() -- Core Inv Getter
+        attempts = attempts + 1
+
+        if attempts > 1 then
+            print("[GUM-CORE] Not ready or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
+        end
+        
+        TriggerEvent("getCore", function(cb) 
+            GUM = cb 
+        end)
+
+        if GUM ~= nil then
+            break
+        end
+
+        Wait(5000) -- mandatory wait - we want after many seconds
+
+    end
+
+    local GUMInv = exports.gum_inventory:gum_inventoryApi() -- Core Inv Getter
     
     Citizen.CreateThread(function () 
         
