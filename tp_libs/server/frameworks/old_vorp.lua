@@ -24,7 +24,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
             break
         end
 
-        Wait(1000)
+        Wait(5000) -- mandatory wait - we want after many seconds
 
     end
 
