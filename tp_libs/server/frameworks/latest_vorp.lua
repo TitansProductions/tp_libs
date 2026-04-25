@@ -3,8 +3,28 @@
 local Functions = {} -- DO NOT TOUCH
 
 if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
+    local VORP = nil
+    local attempts = 0
+    local maxAttempts = 10
 
-    local VORP    = exports.vorp_core:GetCore() -- Core Getter
+    while attempts < maxAttempts do
+
+        attempts = attempts + 1
+
+        if attempts > 1 then
+            print("VORP not ready, retrying... (" .. attempts .. ")")
+        end
+        
+        VORP = exports.vorp_core:GetCore() -- Core Getter
+
+        if VORP ~= nil then
+            break
+        end
+
+        Wait(5000) -- mandatory wait - we want after many seconds
+
+    end
+    
     local VORPInv = exports.vorp_inventory -- Core Inv Getter
 
     local function GetValue(value, default)
