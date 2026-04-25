@@ -4,8 +4,7 @@ local Functions = {} -- DO NOT TOUCH
 
 if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
-    local TPZ    = exports.tpz_core:getCoreAPI() -- Core Getter
-
+    local TPZ = nil
     local attempts = 0
     local maxAttempts = 10
 
