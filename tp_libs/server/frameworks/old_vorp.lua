@@ -5,8 +5,28 @@ local Functions = {} -- DO NOT TOUCH
 if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
     local VORP = nil
+    local attempts = 0
+    local maxAttempts = 10
 
-    TriggerEvent("getCore", function(cb) VORP = cb end)
+    while attempts < maxAttempts do
+
+        attempts = attempts + 1
+
+        if attempts > 1 then
+            print("VORP not ready, retrying... (" .. attempts .. ")")
+        end
+        
+        TriggerEvent("getCore", function(cb) 
+            VORP = cb 
+        end)
+
+        if VORP ~= nil then
+            break
+        end
+
+        Wait(1000)
+
+    end
 
     local VORPInv = exports.vorp_inventory:vorp_inventoryApi() -- Core Inv Getter
 
