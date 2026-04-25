@@ -12,7 +12,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
         attempts = attempts + 1
 
         if attempts > 1 then
-            print("VORP not ready, retrying... (" .. attempts .. ")")
+            print("[VORP-CORE] Not ready or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
         end
         
         VORP = exports.vorp_core:GetCore() -- Core Getter
