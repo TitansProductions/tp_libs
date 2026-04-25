@@ -5,6 +5,28 @@ local Functions = {} -- DO NOT TOUCH
 if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM CONFIG.FRAMEWORK OPTION.
 
     local TPZ    = exports.tpz_core:getCoreAPI() -- Core Getter
+
+    local attempts = 0
+    local maxAttempts = 10
+
+    while attempts < maxAttempts do
+
+        attempts = attempts + 1
+
+        if attempts > 1 then
+            print("[TPZ-CORE] Not ready or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
+        end
+        
+        TPZ = exports.tpz_core:getCoreAPI() -- Core Getter
+
+        if TPZ ~= nil then
+            break
+        end
+
+        Wait(5000) -- mandatory wait - we want after many seconds
+
+    end
+    
     local TPZInv = exports.tpz_inventory:getInventoryAPI() -- Core Inv Getter (EXAMPLE, INVENTORY API IS ALSO USED ON PLAYER OBJECT FOR TPZ-CORE)
     
     Citizen.CreateThread(function () 
