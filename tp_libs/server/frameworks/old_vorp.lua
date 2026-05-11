@@ -72,21 +72,33 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     
         Functions.GetIdentifier = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                    
             return xPlayer.identifier
         end
     
         Functions.GetCharacterId = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                        
             return xPlayer.charIdentifier
         end
     
         Functions.GetGroup = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                            
             return xPlayer.group
         end
     
         Functions.GetJob = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                                
             return xPlayer.job
         end
                 
@@ -102,11 +114,17 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     
         Functions.GetFirstName = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                                    
             return xPlayer.firstname
         end
     
         Functions.GetLastName = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                                        
             return xPlayer.lastname
         end
     
@@ -114,11 +132,17 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
     
         Functions.GetMoney = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                                            
             return xPlayer.money
         end
     
         Functions.GetGold = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false 
+                                                
             return xPlayer.gold
         end
     
