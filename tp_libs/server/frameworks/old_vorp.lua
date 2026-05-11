@@ -73,7 +73,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetIdentifier = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                     
             return xPlayer.identifier
         end
@@ -81,7 +81,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetCharacterId = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                         
             return xPlayer.charIdentifier
         end
@@ -89,7 +89,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetGroup = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                             
             return xPlayer.group
         end
@@ -97,7 +97,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetJob = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                                 
             return xPlayer.job
         end
@@ -115,7 +115,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetFirstName = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                                     
             return xPlayer.firstname
         end
@@ -123,7 +123,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetLastName = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                                         
             return xPlayer.lastname
         end
@@ -133,7 +133,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetMoney = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                                             
             return xPlayer.money
         end
@@ -141,7 +141,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
         Functions.GetGold = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
-            if xPlayer == nil then return false 
+            if xPlayer == nil then return false end
                                                 
             return xPlayer.gold
         end
