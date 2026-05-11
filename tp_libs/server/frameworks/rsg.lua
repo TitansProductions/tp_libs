@@ -55,11 +55,17 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         Functions.GetIdentifier = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.citizenid
         end
     
         Functions.GetCharacterId = function(source)
             local xPlayer = Functions.GetPlayer(source)
+          
+            if xPlayer == nil then return false end
+           
             return xPlayer.PlayerData.cid
         end
     
@@ -83,16 +89,25 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         Functions.GetJob = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return tostring(xPlayer.PlayerData.job.name)
         end
         
         Functions.SetJob = function(source, job)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             xPlayer.Functions.SetJob(job, 0)
         end
             
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             local grade = xPlayer.PlayerData.job.grade.level or PlayerData.job.grade or PlayerData.job.level or 0
 
             return grade
@@ -100,11 +115,17 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         Functions.GetFirstName = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.charinfo.firstname
         end
     
         Functions.GetLastName = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.charinfo.lastname
         end
     
@@ -112,11 +133,17 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
     
         Functions.GetMoney = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.Functions.GetMoney('cash')
         end
     
         Functions.GetGold = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.Functions.GetMoney('gold')
         end
     
