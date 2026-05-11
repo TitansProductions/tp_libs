@@ -54,12 +54,19 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
         end
     
         Functions.GetIdentifier = function(source)
+
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.citizenid
         end
     
         Functions.GetCharacterId = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.cid
         end
     
@@ -83,6 +90,9 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     
         Functions.GetJob = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return tostring(xPlayer.PlayerData.job.name)
         end
             
@@ -93,6 +103,9 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
             
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             local grade = xPlayer.PlayerData.job.grade.level or 0
 
             return grade
@@ -100,11 +113,17 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     
         Functions.GetFirstName = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.charinfo.firstname
         end
     
         Functions.GetLastName = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.PlayerData.charinfo.lastname
         end
     
@@ -112,11 +131,17 @@ if Config.Framework == 'rsgv2' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM
     
         Functions.GetMoney = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.Functions.GetMoney('cash')
         end
     
         Functions.GetGold = function(source)
             local xPlayer = Functions.GetPlayer(source)
+
+            if xPlayer == nil then return false end
+                
             return xPlayer.Functions.GetMoney('gold')
         end
     
