@@ -20,7 +20,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             break
         end
 
-        Wait(5000) -- mandatory wait - we want after many seconds
+        Wait(1000) -- mandatory wait - we want after many seconds
 
     end
 
