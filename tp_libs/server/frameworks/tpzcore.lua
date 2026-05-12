@@ -22,7 +22,7 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
             break
         end
 
-        Wait(5000) -- mandatory wait - we want after many seconds
+        Wait(1000) -- mandatory wait - we want after many seconds
 
     end
     
