@@ -16,6 +16,17 @@ local WEBHOOKS = {
    ["tp_cod_zombies"] = {
         ['VALENTINE']     = "", -- default map name
    }, 
+   
+    ["tpz_stables"] = {
+        ['COMMANDS'] = "",
+        ['BOUGHT'] = "",
+        ['SOLD'] = "",
+        ['SOLD_TAMED_HORSE'] = "",
+        ['TRANSFERRED'] = "",
+        ['RECEIVED_TAMED_HORSE'] = "",
+        ['BREEDING'] = "",
+    },
+
       
    ["tp_clans"] = {
         ['COMMANDS']                = "",
