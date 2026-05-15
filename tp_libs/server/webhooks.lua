@@ -17,7 +17,7 @@ local WEBHOOKS = {
         ['VALENTINE']     = "", -- default map name
    }, 
    
-    ["tpz_stables"] = {
+    ["tp_stables"] = {
         ['COMMANDS'] = "",
         ['BOUGHT'] = "",
         ['SOLD'] = "",
