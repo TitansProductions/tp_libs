@@ -13,7 +13,7 @@ if Config.Framework == 'tpzcore' then -- <- THE FRAMEWORK THAT WILL BE CALLED FR
         attempts = attempts + 1
 
         if attempts > 1 then
-            print("[TPZ-CORE] Not ready or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
+            error("[TPZ-CORE] Not ready, tp_libs running before framework itself or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
         end
         
         TPZ = exports.tpz_core:getCoreAPI() -- Core Getter
