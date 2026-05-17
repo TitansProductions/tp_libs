@@ -21,7 +21,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
             break
         end
 
-        Wait(5000) -- mandatory wait - we want after many seconds
+        Wait(1000) -- mandatory wait - we want after many seconds
 
     end
     
