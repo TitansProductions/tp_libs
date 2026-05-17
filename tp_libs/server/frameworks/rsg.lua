@@ -11,7 +11,7 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
         attempts = attempts + 1
 
         if attempts > 1 then
-            print("[RSG-CORE] Not ready or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
+            error("[RSG-CORE] Not ready, tp_libs running before framework itself or wrong framework selected on TP Libs Configuration - retrying... (" .. attempts .. ")")
         end
         
         RSG = exports['rsg-core']:GetCoreObject() -- Core Getter
