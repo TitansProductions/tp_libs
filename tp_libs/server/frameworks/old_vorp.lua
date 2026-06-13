@@ -67,7 +67,7 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
             end
     
             local xPlayer = VORP.getUser(source) -- THIS WILL ALWAYS BE AN ERROR ON OLD VORP, AS FAR I AM AWARE IT WAS FIXED ON LATEST VORP VERSIONS.
-            return xPlayer ~= nil
+            return xPlayer ~= nil and xPlayer ~= false
         end
     
         Functions.GetIdentifier = function(source)
