@@ -64,7 +64,7 @@ if Config.Framework == 'latest_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLE
             end
     
             local xPlayer = VORP.getUser(source)
-            return xPlayer ~= nil
+            return             return xPlayer ~= nil and xPlayer ~= false
         end
     
         Functions.GetIdentifier = function(source)
