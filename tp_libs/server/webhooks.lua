@@ -13,6 +13,14 @@
 
 local WEBHOOKS = {
 
+   ["tp_companies"] = {
+        ['COMMANDS']  = "",
+   }, 
+      
+   ["tp_wildlife_missions"] = {
+        ['RECEIVED_REWARDS']  = "",
+   }, 
+      
    ["tp_cod_zombies"] = {
         ['VALENTINE']     = "", -- default map name
    }, 
