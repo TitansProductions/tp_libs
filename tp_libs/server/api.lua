@@ -289,6 +289,9 @@ exports('getAPI', function()
         Functions.SetJob(source, job)
     end
         
+    self.setJobGrade = function(source, grade)
+        Functions.SetJobGrade(source, grade)
+    end    
     self.getJobGrade = function(source)
         local cb = Functions.GetJobGrade(source)
         return cb
