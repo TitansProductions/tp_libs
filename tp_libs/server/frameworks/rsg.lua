@@ -103,6 +103,12 @@ if Config.Framework == 'rsg' then -- <- THE FRAMEWORK THAT WILL BE CALLED FROM C
             xPlayer.Functions.SetJob(job, 0)
         end
             
+        Functions.SetJobGrade = function(source, grade)
+            local xPlayer = Functions.GetPlayer(source)
+            local job     = tostring(xPlayer.PlayerData.job.name)
+            xPlayer.Functions.SetJob(job, grade)
+        end
+            
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
 
