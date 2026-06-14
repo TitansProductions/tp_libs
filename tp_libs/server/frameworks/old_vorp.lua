@@ -107,6 +107,11 @@ if Config.Framework == 'old_vorp' then -- <- THE FRAMEWORK THAT WILL BE CALLED F
             xPlayer.setJob(job)
         end
             
+        Functions.SetJobGrade = function(source, grade)
+            local xPlayer = Functions.GetPlayer(source)
+            xPlayer.setJobGrade(grade)
+        end
+            
         Functions.GetJobGrade = function(source)
             local xPlayer = Functions.GetPlayer(source)
             return xPlayer.jobGrade
