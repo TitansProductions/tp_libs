@@ -14,6 +14,10 @@ AddEventHandler('getTPAPI', function(cb)
             frameworkSelected = 'vorp'
         end
 
+        if frameworkSelected == "rsgv2" then
+            frameworkSelected = "rsg"
+        end
+
         return frameworkSelected
     end
         
