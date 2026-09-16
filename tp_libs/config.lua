@@ -73,11 +73,8 @@ Config.SaveXMinutesBeforeTxAdminRestartEvent = 2
     The specified feature is for advanced permissions which are based on the discord roles of your discord server,
     we not only support group roles but also discord roles. 
 
-    [HOW TO INSERT DISCORD BOT TOKEN]:
-    1. Your discord bot token, if does not exist, create a bot in the url below:
-    https://discord.com/developers/applications
-
-    2. For inserting the discord bot token, go to server/discordapi.lua on the line: (1), called local TOKEN = "tokenhere"
+    READ TUTORIAL HERE:
+    https://titans-productions.gitbook.io/documentation/redm/tp-libs/discord-roles-support
 
 */
 
