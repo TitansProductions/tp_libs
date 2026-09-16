@@ -77,7 +77,7 @@ Config.SaveXMinutesBeforeTxAdminRestartEvent = 2
     1. Your discord bot token, if does not exist, create a bot in the url below:
     https://discord.com/developers/applications
 
-    2. For inserting the discord bot token, go to server/tp-server_discordapi.lua on the line: (1), called local TOKEN = "tokenhere"
+    2. For inserting the discord bot token, go to server/discordapi.lua on the line: (1), called local TOKEN = "tokenhere"
 
 */
 
@@ -86,7 +86,7 @@ Config.DiscordServerID = 'xxxxxxxxxxxxxxxxxxxx'
                 
 -- Your discord bot token, if does not exist, create a bot in the url below:
 -- https://discord.com/developers/applications
-Config.DiscordBotToken = '' -- DO NOT INSERT TOKEN HERE, READ THE COMMENT ABOVE ON ABOUT.
+Config.DiscordBotToken = 'READ ABOVE' -- DO NOT INSERT TOKEN HERE, READ THE COMMENT ABOVE ON ABOUT.
 
 -- @param Config.PermittedAdminGroups : Is used to execute tp_libs commands.
 Config.PermittedAdminGroups = { 'admin' } -- version 2.1.0
