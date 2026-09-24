@@ -21,6 +21,10 @@ Config.Framework = "old_vorp"
 -- about outdated scripts. 
 Config.VersionChecker = true
 
+-- If you want to disable the heartbeat of the client player, set it to true.
+-- This system is for ethernet dup protection, but in case you are afraid that it uses lot of performance, you can disable it from here.
+Config.DisableHeartbeat = false -- 2.1.2
+
 ---------------------------------------------------------------
 --[[ Scripts Saving ]]--
 ---------------------------------------------------------------
