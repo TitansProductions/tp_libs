@@ -252,6 +252,7 @@ exports('getAPI', function()
     end
         
     self.hasLostConnection = function(source)
+        if Config.DisableHeartbeat == true then return false end 
         if UserHeartbeats[source] == nil then return false end 
 
         return UserHeartbeats[source] == 1 and true or false
