@@ -7,7 +7,9 @@ AddEventHandler("tp_libs:isPlayerReady", function()
 
     TriggerServerEvent("tp_libs:registerChatSuggestions")
 
-    Citizen.CreateThread(function() while true do TriggerServerEvent("tp_libs:server:heartbeat") Wait(500) end end)  
+    if Config.DisableHeartbeat == nil or Config.DisableHeartbeat == false then
+        Citizen.CreateThread(function() while true do TriggerServerEvent("tp_libs:server:heartbeat") Wait(500) end end)  
+    end
 end)
 
 RegisterNetEvent("tp_libs:getPlayerJob")
