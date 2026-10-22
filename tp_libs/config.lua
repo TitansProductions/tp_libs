@@ -15,6 +15,7 @@ Config.Debug = true
 -- qbcore 
 -- redemrp
 -- tpzcore
+-- jrs_core
 Config.Framework = "old_vorp"
 
 -- Set it to false if you dont want to get informed when starting the server
