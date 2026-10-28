@@ -372,7 +372,6 @@ end)
    Threads
 ]]---------------------------------------------------
 
-if not Config.UseTxAdminRestartEvent then
 Citizen.CreateThread(function()
 	while true do
 		Wait(60000)
@@ -383,16 +382,22 @@ Citizen.CreateThread(function()
     local finished    = false
     local shouldSave  = false
 
-    for index, restartHour in pairs (Config.RestartHours) do
+	if not Config.UseTxAdminRestartEvent then
 
-      if currentTime == restartHour then
-        shouldSave = true
-      end
+        for index, restartHour in pairs (Config.RestartHours) do
 
-      if next(Config.RestartHours, index) == nil then
+            if currentTime == restartHour then
+              shouldSave = true
+            end
+      
+            if next(Config.RestartHours, index) == nil then
+              finished = true
+            end
+            
+        end
+
+    else 
         finished = true
-      end
-
     end
 
     while not finished do
@@ -413,7 +418,6 @@ Citizen.CreateThread(function()
   end
 
 end)
-end
 
 Citizen.CreateThread(function()
     
